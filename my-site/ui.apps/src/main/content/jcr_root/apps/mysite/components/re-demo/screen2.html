@@ -1,0 +1,17 @@
+
+<!-- section2.html -->
+<div id="section2" class="questionnaire-section">
+    <h2>HELP ME CHOOSE | Step 2 of 5</h2>
+    <p>${model.question2}</p>
+    <p class="drag-to-rearrange">Select any one</p>
+    <ul>
+        <li data-sly-repeat.screen2Answer="${model.screen2Answers}">
+            <input type="radio" name="pillion" value="${screen2Answer}" id="myCheckbox">
+            <label>${screen2Answer}</label>
+        </li>
+    </ul>
+    <div class="buttton-container">
+        <button type="button" class="prev" onclick="loadPreviousSection('section1.html')">Back</button>
+        <button type="button" id="nextButton" class="next" onclick="loadNextSection('section3.html')" disabled>Next</button>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<!-- section1.html -->
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+    <sly data-sly-call="${clientlib.all @ categories='mysite-questionnaire'}" />
+</sly>
+
+<div id="questionnaire" class="questionnaire-section active">
+    <h2>HELP ME CHOOSE |
+        <span>Step 1 of 5</span>
+    </h2>
+    <p>${model.question}</p>
+    <p class="drag-to-rearrange">Drag to rearrange.</p>
+    <ul class="sortable answers">
+        <sly data-sly-list.answers="${model.answers}">
+            <div class="answer-container">
+                <p class="answer-id-box">#${answersList.index}</p>
+                <div class="answer-section">
+                    <li data-value="${answers}" class="sortable-item section1">
+                        <div>
+                            <span>
+                                <img src="${properties.draggableIcon}" alt=""> ${answers}
+                            </span>
+                        </div>
+                    </li>
+                </div>
+            </div>
+        </sly>
+    </ul>
+    <div class="buttton-container first">
+        <button type="button" class="next" onclick="loadNextSection('section2.html')">Next</button>
+    </div>
+</div>
