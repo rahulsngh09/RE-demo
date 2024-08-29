@@ -2,21 +2,21 @@ package com.mysite.core.bean;
 
 public class RidingPositionImagesEntity {
 
-    private String imageURL;
+    private String image_url;
 
     public RidingPositionImagesEntity() {
 
     }
 
     public RidingPositionImagesEntity(String imageURL) {
-        this.imageURL = imageURL;
+        this.image_url = imageURL;
     }
 
     public String getImageURL() {
-        return imageURL;
+        return image_url;
     }
 
     public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+        this.image_url = imageURL;
     }
 }

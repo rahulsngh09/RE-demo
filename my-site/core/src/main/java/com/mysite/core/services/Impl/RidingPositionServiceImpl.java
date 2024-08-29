@@ -24,7 +24,7 @@ public class RidingPositionServiceImpl implements RidingPositionService {
     }
 
     @Override
-    public RidingPositionImagesEntity getAllRidingPositionsImages() {
+    public RidingPositionImagesEntity getAllRidingPositionsImages(String apiEndPoint) {
         RidingPositionImagesEntity getAllRidingPositionsImages = new RidingPositionImagesEntity();
         try{
             ClientResponse clientResponse = CommonUtil.getClientResponse(CommonConstant.GET,apiEndpoint,null,null);
