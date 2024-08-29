@@ -1,13 +1,16 @@
 package com.mysite.core.models;
 
 import com.mysite.core.bean.ImageEntity;
-import com.mysite.core.bean.SuggestedBikeDeatilsEntity;
+import com.mysite.core.bean.BikeDetails;
+import com.mysite.core.bean.Index;
+import com.mysite.core.services.BikeDetailsService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.api.resource.Resource;
@@ -42,25 +45,40 @@ public class QuestionnaireOptions {
     @SlingObject
     SlingHttpServletRequest request;
 
-    List<String> answers = new ArrayList<>();
+    List<Index> answers = new ArrayList<>();
+    @OSGiService
+    BikeDetailsService bikeDetailsService;
+
+    List<BikeDetails> bikeInfoList = new ArrayList<>();
+
+
+    public List<BikeDetails> getBikeInfoList() {
+        bikeDetailsList = bikeDetailsService.getBikeDetails();
+        return bikeInfoList;
+    }
+
+
+    List<String> ridingPositionImageAttributes = new ArrayList<>();
+
     List<String> screen2Answers = new ArrayList<>();
     List<String> screen3Answers = new ArrayList<>();
     List<String> allAuthoredImages = new ArrayList<>();
     List<String> allPersonalInterestImages = new ArrayList<>();
     private List<ImageEntity> optionWithImages = new ArrayList<>();
-    private List<SuggestedBikeDeatilsEntity> bikeDetailsList = new ArrayList<>();
-
-    public List<SuggestedBikeDeatilsEntity> getBikeDetailsList() {
+    private List<BikeDetails> bikeDetailsList = new ArrayList<>();
+    public List<BikeDetails> getBikeDetailsList() {
         getBikesDetail();
         return bikeDetailsList;
     }
+
+
 
     private void getBikesDetail(){
         ResourceResolver resourceResolver = request.getResourceResolver();
         Resource resource = resourceResolver.getResource("/content/dam/mysite/content-fragment");
         if (resource != null) {
             for (Resource childResource : resource.getChildren()) {
-                SuggestedBikeDeatilsEntity suggestedBikeDeatilsEntity = new SuggestedBikeDeatilsEntity();
+                BikeDetails suggestedBikeDeatilsEntity = new BikeDetails();
                 Resource masterResource = childResource.getChild("jcr:content/data/master");
                 if (masterResource != null) {
                     ValueMap valueMap = masterResource.getValueMap();
@@ -72,6 +90,17 @@ public class QuestionnaireOptions {
                 }
             }
         }
+    }
+
+    public List<String> getRidingPositionImageAttributes() {
+        ridingPositionImageAttributes.add("Cruiser");
+        ridingPositionImageAttributes.add("Upright");
+        ridingPositionImageAttributes.add("Off");
+        ridingPositionImageAttributes.add("Agg");
+        ridingPositionImageAttributes.add("Relax");
+        ridingPositionImageAttributes.add("Cafe");
+
+        return ridingPositionImageAttributes;
     }
 
     public String getQuestion2() {
@@ -106,14 +135,20 @@ public class QuestionnaireOptions {
         }
         return screen2Answers;
     }
-    public List<String> getAnswers() {
+
+
+    public List<Index> getAnswers() {
         if(options != null && options.hasChildren()){
+            int i=1;
             for(Resource resource : options.getChildren()){
-                answers.add(resource.getValueMap().get("answers", String.class));
+                String answer = resource.getValueMap().get("answers", String.class);
+                answers.add(new Index(i++,answer));
             }
         }
         return answers;
     }
+
+
 
     public List<String> getAllAuthoredImages() {
         if(screen4 != null && screen4.hasChildren()){

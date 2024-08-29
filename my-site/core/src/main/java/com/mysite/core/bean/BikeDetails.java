@@ -2,7 +2,7 @@ package com.mysite.core.bean;
 
 import java.util.List;
 
-public class SuggestedBikeDeatilsEntity {
+public class BikeDetails {
     private String bikeName;
     private String bikePrice;
     public String bikeHeroImage;
@@ -19,11 +19,11 @@ public class SuggestedBikeDeatilsEntity {
         this.forwardIcon = forwardIcon;
     }
 
-    public SuggestedBikeDeatilsEntity() {
+    public BikeDetails() {
 
     }
 
-    public SuggestedBikeDeatilsEntity(String bikeName, String bikePrice, String bikeHeroImage, List<String> bikeFeatures, List<String> bikeSmallImages,String forwardIcon) {
+    public BikeDetails(String bikeName, String bikePrice, String bikeHeroImage, List<String> bikeFeatures, List<String> bikeSmallImages, String forwardIcon) {
         this.bikeName = bikeName;
         this.bikePrice = bikePrice;
         this.bikeHeroImage = bikeHeroImage;

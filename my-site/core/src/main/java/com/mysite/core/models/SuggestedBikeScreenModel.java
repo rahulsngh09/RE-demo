@@ -1,6 +1,6 @@
 package com.mysite.core.models;
 
-import com.mysite.core.bean.SuggestedBikeDeatilsEntity;
+import com.mysite.core.bean.BikeDetails;
 import com.mysite.core.services.BikeDetailsService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -19,15 +19,15 @@ public class SuggestedBikeScreenModel {
 
 //    String url = "http://localhost:4502/api/assets/mysite/content-fragment-/suggested-bikes-details.json";
 
-    public List<SuggestedBikeDeatilsEntity> getSuggestedBikeDeatilsEntityList() {
+    public List<BikeDetails> getSuggestedBikeDeatilsEntityList() {
         return suggestedBikeDeatilsEntityList;
     }
 
-    List<SuggestedBikeDeatilsEntity> suggestedBikeDeatilsEntityList = new ArrayList<>();
+    List<BikeDetails> suggestedBikeDeatilsEntityList = new ArrayList<>();
 
 
-    @PostConstruct
-    protected void init() {
-        suggestedBikeDeatilsEntityList = bikeDetailsService.getBikeDetailsContentFragment();
-    }
+//    @PostConstruct
+//    protected void init() {
+//        suggestedBikeDeatilsEntityList = bikeDetailsService.getBikeDetailsContentFragment();
+//    }
 }

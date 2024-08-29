@@ -1,6 +1,6 @@
 package com.mysite.core.servlets;
 
-import com.mysite.core.bean.SuggestedBikeDeatilsEntity;
+import com.mysite.core.bean.BikeDetails;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
@@ -29,7 +29,7 @@ public class BikeDetailsServlet  extends SlingSafeMethodsServlet {
         Resource resource = resourceResolver.getResource("/content/dam/mysite/content-fragment/bike-details-cf/jcr:content/data/master");
         if(resource != null){
             ValueMap valueMap = resource.getValueMap();
-            SuggestedBikeDeatilsEntity suggestedBikeDeatilsEntity = new SuggestedBikeDeatilsEntity();
+            BikeDetails suggestedBikeDeatilsEntity = new BikeDetails();
             suggestedBikeDeatilsEntity.setBikeName(valueMap.get("bikeNameWithModel", String.class));
             suggestedBikeDeatilsEntity.setBikePrice(valueMap.get("bikePrice", String.class));
             suggestedBikeDeatilsEntity.setBikeHeroImage(valueMap.get("bikeHeroImage", String.class));

@@ -1,6 +1,6 @@
 package com.mysite.core.models;
 
-import com.mysite.core.bean.SuggestedBikeDeatilsEntity;
+import com.mysite.core.bean.BikeDetails;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -17,11 +17,11 @@ public class BikeDetailsCFModel {
     @SlingObject
     SlingHttpServletRequest request;
 
-    public List<SuggestedBikeDeatilsEntity> getBikeDetailsList() {
+    public List<BikeDetails> getBikeDetailsList() {
         return bikeDetailsList;
     }
 
-    private List<SuggestedBikeDeatilsEntity> bikeDetailsList = new ArrayList<>();
+    private List<BikeDetails> bikeDetailsList = new ArrayList<>();
 
     @PostConstruct
     protected void init() {
@@ -29,7 +29,7 @@ public class BikeDetailsCFModel {
         Resource resource = resourceResolver.getResource("/content/dam/mysite/content-fragment");
         if (resource != null) {
             for (Resource childResource : resource.getChildren()) {
-                SuggestedBikeDeatilsEntity suggestedBikeDeatilsEntity = new SuggestedBikeDeatilsEntity();
+                BikeDetails suggestedBikeDeatilsEntity = new BikeDetails();
                 Resource masterResource = childResource.getChild("jcr:content/data/master");
                 if (masterResource != null) {
                     ValueMap valueMap = masterResource.getValueMap();

@@ -121,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //************************************************************************ */
 
 console.log("test component is running :");
+
 document.addEventListener('DOMContentLoaded', () => {
     function setupImageSelection(sectionId, minSelections, maxSelections) {
         const section = document.querySelector(sectionId);
