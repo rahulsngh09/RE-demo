@@ -14,7 +14,12 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.api.resource.Resource;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import javax.jcr.RepositoryException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 
@@ -39,58 +44,44 @@ public class QuestionnaireOptions {
     private Resource personalInterest;
     @ChildResource
     private Resource backgroundImages;
-
-    @ValueMapValue
-    private String question4;
-    @SlingObject
-    SlingHttpServletRequest request;
-
-    List<Index> answers = new ArrayList<>();
     @OSGiService
     BikeDetailsService bikeDetailsService;
+    @ValueMapValue
+    private String question4;
 
-    List<BikeDetails> bikeInfoList = new ArrayList<>();
-
-
-    public List<BikeDetails> getBikeInfoList() {
-        bikeDetailsList = bikeDetailsService.getBikeDetails();
-        return bikeInfoList;
-    }
-
+    List<Index> answers = new ArrayList<>();
+//    List<BikeDetails> bikeInfoList = new ArrayList<>();
+//    public List<BikeDetails> getBikeInfoList() throws RepositoryException {
+//        bikeInfoList = bikeDetailsService.getBikeDetails();
+//        return bikeInfoList;
+//    }
 
     List<String> ridingPositionImageAttributes = new ArrayList<>();
-
     List<String> screen2Answers = new ArrayList<>();
     List<String> screen3Answers = new ArrayList<>();
     List<String> allAuthoredImages = new ArrayList<>();
     List<String> allPersonalInterestImages = new ArrayList<>();
     private List<ImageEntity> optionWithImages = new ArrayList<>();
-    private List<BikeDetails> bikeDetailsList = new ArrayList<>();
-    public List<BikeDetails> getBikeDetailsList() {
-        getBikesDetail();
-        return bikeDetailsList;
-    }
 
 
-
-    private void getBikesDetail(){
-        ResourceResolver resourceResolver = request.getResourceResolver();
-        Resource resource = resourceResolver.getResource("/content/dam/mysite/content-fragment");
-        if (resource != null) {
-            for (Resource childResource : resource.getChildren()) {
-                BikeDetails suggestedBikeDeatilsEntity = new BikeDetails();
-                Resource masterResource = childResource.getChild("jcr:content/data/master");
-                if (masterResource != null) {
-                    ValueMap valueMap = masterResource.getValueMap();
-                    suggestedBikeDeatilsEntity.setBikeName(valueMap.get("bikeNameWithModel", String.class));
-                    suggestedBikeDeatilsEntity.setBikePrice(valueMap.get("bikePrice", String.class));
-                    suggestedBikeDeatilsEntity.setBikeHeroImage(valueMap.get("bikeHeroImage", String.class));
-                    suggestedBikeDeatilsEntity.setForwardIcon(valueMap.get("forwardicon", String.class));
-                    bikeDetailsList.add(suggestedBikeDeatilsEntity);
-                }
-            }
-        }
-    }
+//    private void getBikesDetail(){
+//        ResourceResolver resourceResolver = request.getResourceResolver();
+//        Resource resource = resourceResolver.getResource("/content/dam/mysite/content-fragment");
+//        if (resource != null) {
+//            for (Resource childResource : resource.getChildren()) {
+//                BikeDetails suggestedBikeDeatilsEntity = new BikeDetails();
+//                Resource masterResource = childResource.getChild("jcr:content/data/master");
+//                if (masterResource != null) {
+//                    ValueMap valueMap = masterResource.getValueMap();
+//                    suggestedBikeDeatilsEntity.setBikeName(valueMap.get("bikeNameWithModel", String.class));
+//                    suggestedBikeDeatilsEntity.setBikePrice(valueMap.get("bikePrice", String.class));
+//                    suggestedBikeDeatilsEntity.setBikeHeroImage(valueMap.get("bikeHeroImage", String.class));
+//                    suggestedBikeDeatilsEntity.setForwardIcon(valueMap.get("forwardicon", String.class));
+//                    bikeDetailsList.add(suggestedBikeDeatilsEntity);
+//                }
+//            }
+//        }
+//    }
 
     public List<String> getRidingPositionImageAttributes() {
         ridingPositionImageAttributes.add("Cruiser");

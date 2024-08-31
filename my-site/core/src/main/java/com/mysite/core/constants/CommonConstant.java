@@ -28,5 +28,6 @@ public class CommonConstant {
     public static final String CONTENT_TRAINING_= "/content/training-project/us";
     public static final String TEMPLATE_PATH = "/conf/training-project/settings/wcm/templates/page-content";
     public static final String CONTENT_FRAGMENT_PARENT_PATH = "/content/dam/training-project/content-fragment";
+    public static final String PROJECT_PATH = "/content/mysite";
 
 }
