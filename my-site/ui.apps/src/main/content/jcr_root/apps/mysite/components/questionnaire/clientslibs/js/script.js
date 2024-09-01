@@ -51,20 +51,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // testRideButtons.forEach(button => {
-    //     button.addEventListener("click", function () {
-    //         console.log("form is....")
-    //         formOverlay.style.display = "flex";
-    //     });
-    // });
+    testRideButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            console.log("form is....")
+            formOverlay.style.display = "flex";
+        });
+    });
 
-    // closeButton.addEventListener("click", function () {
-    //     formOverlay.style.display = "none";
-    // });
+    closeButton.addEventListener("click", function () {
+        formOverlay.style.display = "none";
+    });
 
-    // checkbox.addEventListener('change', function () {
-    //     submitBtn.disabled = !this.checked;
-    // });
+    checkbox.addEventListener('change', function () {
+        submitBtn.disabled = !this.checked;
+    });
 
     updateButtonState();
 
@@ -227,23 +227,23 @@ if (closeButton) {
     closeButton.onclick = hideForm;
 }
 
-// $(document).ready(function () {
-//     $('#callbackForm').on('submit', function (event) {
-//         event.preventDefault();
-//         $('#form-content').hide();
-//         $('#success-message').show();
-//     });
+$(document).ready(function () {
+    $('#callbackForm').on('submit', function (event) {
+        event.preventDefault();
+        $('#form-content').hide();
+        $('#success-message').show();
+    });
 
-//     $('#close-popup').on('click', function () {
-//         $('#test-ride-form').hide();
-//     });
+    $('#close-popup').on('click', function () {
+        $('#test-ride-form').hide();
+    });
 
-//     $('#agree').on('change', function () {
-//         $('.submit-btn').prop('disabled', !this.checked);
-//     });
+    $('#agree').on('change', function () {
+        $('.submit-btn').prop('disabled', !this.checked);
+    });
 
-//     $('.close-btn').on('click', function () {
-//         $('#test-ride-form').hide();
-//     });
+    $('.close-btn').on('click', function () {
+        $('#test-ride-form').hide();
+    });
 
-// });
+});

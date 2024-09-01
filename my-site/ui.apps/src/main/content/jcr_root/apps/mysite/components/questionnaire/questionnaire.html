@@ -146,7 +146,7 @@
 
                 <div class="notification">
                     <button class="close-btn" aria-label="Close">&times;</button>
-                    <p id="notification-message"></p>
+                   
                 </div> <!-- Notification element -->
                 <div class="image-grid">
 
@@ -168,175 +168,122 @@
             </div>
         </section>
         <section>
-            <!-- <div class="main-background">
-            <div id="main-section">
-                <h2 class="section-title">Experience Your Next Royal Enfield Motorcycle</h2>
-               
-                <div class="bike-cards">
-                        <sly data-sly-list.bike="${model.bikeInfoList}">
-                            <div class="bike-card" style=" background-image: linear-gradient(to bottom, transparent -42%, #181818 38%), 
-                                url('${properties.backgroundImageForBike @ context='uri'}');">
-                                <div style="display: flex; justify-content: space-between;">
-                                    <h3 class="bike-name">${bike.bikeName}</h3>
-                                    <span><img src="${bike.forwardIcon}" alt=""></span>
-                                </div>
-                                <div class="bike-image-container">
-                                    <img src="${bike.bikeHeroImage @ context='uri'}" alt="${bike.name}"
-                                        class="bike-hero-image">
-                                    <div class="image-thumbnails">
-                                        <sly data-sly-list.smallImage="${bike.bikeSmallImages}">
-                                            <img src="${smallImage @ context='uri'}" alt="Small Image"
-                                                class="small-bike-image">
-                                        </sly>
-                                    </div>
-                                </div>
-                                <div class="bike-info">
-                                    <p class="price">Starts from <strong style="
-                        font-family: Montserrat;
-                        font-size: 18px;
-                        font-weight: bold;
-                    ">₹ ${bike.bikePrice}</strong></p>
-                                    <ul class="bike-features">
-                                        <sly data-sly-list.feature="${bike.bikeFeatures}">
-                                            <li><span class="tick">✔</span> Cast alloy wheels</li>
-                                        </sly>
-                                    </ul>
-                                    <div class="actions">
-                                        <button class="configure-btn prev">CONFIGURE NOW</button>
-                                        <button class="test-ride-btn next">BOOK A TEST RIDE</button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </sly>
-                    
-                </div>
-                <div class="cta-message">
-                    <p>Can't find your ideal Royal Enfield?</p>
-                    <p>
-                        <a href="#" class="connect-link">Connect with an expert</a>
-                        <span> or </span>
-                        <a href="#" class="retry-link">Retry</a>
-                    </p>
-                </div>
 
             </div>
-        </div> -->
 
             <!-- Handlebars template -->
             <div class="main-background" id="main-section">
                 <script id="bike-template" type="text/x-handlebars-template">
                     <h2 class="section-title">Meet your next Royal Enfield Motorcycle</h2>
                     <div class="bike-cards">
-            {{#each bikes}}
-                <div style="height: 570px; background-color: #000;border: 2px solid grey; border-radius: 6px;">
-                <div>
-                    <div class="bike-card">
-                        <div class="nameAndImgDiv">
-                            <h3 style="margin: 0px;">{{bikeName}}</h3>
-                            <span><img src="{{forwardIcon}}" alt="Forward Icon"></span>
-                        </div>
-                        
-                        <div class="bike-image-container">
-                            <div class="hero-image">
-                            <img src="{{bikeHeroImage}}" alt="{{bikeName}} Image" class="hero-image" width="289px" height="178px">
-                            </div>
-                            
-                        </div>
-                        <p style="display: flex; justify-content: center;"><strong>Starts from ₹</strong> {{bikePrice}}</p>
-                        <div class="image-thumbnails">
-                            {{#each bikeSmallImages}}
-                               <img src="{{this}}" alt="Small Image">
-                            {{/each}}
-                        </div>
-
-                        <div class="bike-info">
-                            
-                            <ul class="bike-features">
-                                {{#each bikeFeatures}}
-                                <li>{{this}}</li>
-                                {{/each}}
-                            </ul>
-
-                        </div>
-                    </div>
-
-                    <div>       
-                        <div class="actions">
-                            <button class="configure-btn prev">CONFIGURE NOW</button>
-                            <button class="test-ride-btn" style="    display: flex;
-                            height: 40px;
-                            width: 204px;
-                            padding: 8px 16px 8px 16px;
-                            cursor: pointer;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 12px;
-                            font-weight: 700;
-                        ">BOOK A TEST RIDE</button>
-                        </div>
-                    </div>
-                </div>
-                
-                 </div>
-            {{/each}}
-                    </div>
-                 </script>
-                <div class="cta-message">
-                    <p>Get more recommandations!</p>
-                </div>
-
-                <div id="test-ride-form" class="form-overlay" style="display: none;">
-                    <div class="form-container">
-                        <h2>Get a call from our product experts and find your next motorcycle</h2>
-                        <button class="close-btn" aria-label="Close">&times;</button>
-                        <form id="callbackForm" action="/path/to/servlet" method="post"
-                            onsubmit="return validateForm()">
-                            <div class="form-group">
-                                <label for="fullName">Full Name</label>
-                                <input type="text" id="fullName" class="inputformdata" name="fullName" required
-                                    oninput="validateFullName(this)" pattern="[A-Za-z\s]+"
-                                    title="Please enter only letters.">
-                                <span class="error-message" id="nameError"></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="phoneNumber">Phone Number</label>
-                                <div class="phone-input">
-                                    <span>+91</span>
-                                    <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="99878677868"
-                                        required oninput="validatePhoneNumber(this)" pattern="\d{10}"
-                                        title="Please enter a 10-digit phone number.">
+                        {{#each bikes}}
+                            <div style="height: 570px; background-color: #000; border: 2px solid grey; border-radius: 6px;">
+                                <div>
+                                    <div class="bike-card">
+                                        <div class="nameAndImgDiv">
+                                            <h3 style="margin: 0px;">{{bikeName}}</h3>
+                                            <span><img src="{{forwardIcon}}" alt="Forward Icon"></span>
+                                        </div>
+                                        
+                                        <div class="bike-image-container">
+                                            <div class="hero-image">
+                                                <img src="{{bikeHeroImage}}" alt="{{bikeName}} Image" class="hero-image" width="289px" height="178px">
+                                            </div>
+                                        </div>
+                                        
+                                        <p style="display: flex; justify-content: center;"><strong>Starts from ₹</strong> {{bikePrice}}</p>
+                                        <div class="image-thumbnails">
+                                            {{#each bikeSmallImages}}
+                                                <img src="{{this}}" alt="Small Image">
+                                            {{/each}}
+                                        </div>
+            
+                                        <div class="bike-info">
+                                            <ul class="bike-features">
+                                                {{#each bikeFeatures}}
+                                                    <li>{{this}}</li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+                                    </div>
+            
+                                    <div class="actions">
+                                        <button class="configure-btn prev">CONFIGURE NOW</button>
+                                        <button class="test-ride-btn" style="
+                                            display: flex;
+                                            height: 40px;
+                                            width: 204px;
+                                            padding: 8px 16px;
+                                            cursor: pointer;
+                                            align-items: center;
+                                            justify-content: center;
+                                            font-size: 12px;
+                                            font-weight: 700;
+                                        ">BOOK A TEST RIDE</button>
+                                    </div>
                                 </div>
-                                <span class="error-message" id="phoneError"></span>
                             </div>
-                            <div class="form-group">
-                                <label for="emailId">E-mail ID</label>
-                                <input type="email" id="emailId" class="inputformdata" name="emailId" required
-                                    oninput="validateEmail(this)">
-                                <span class="error-message" id="emailError"></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="pincode">Pincode</label>
-                                <input type="text" id="pincode" class="inputformdata" name="pincode" required
-                                    oninput="validatePincode(this)" pattern="\d{6}"
-                                    title="Please enter a valid 6-digit pincode.">
-                                <span class="error-message" id="pincodeError"></span>
-                            </div>
-                            <p class="disclaimer">Disclaimer: By submitting this form you acknowledge and agree to our
-                                <a href="#">terms and conditions</a> and <a href="#">privacy policy</a>.
-                                All information provided will be secured and processed as per our privacy policy.
-                            </p>
-                            <div class="form-group terms-group">
-                                <input type="checkbox" id="agree" name="agree" required>
-                                <label for="agree">I agree to <a href="#">Terms & Conditions</a> and <a href="#">Privacy
-                                        Policy</a></label>
-                            </div>
-                            <button type="submit" class="submit-btn" disabled>REQUEST A CALLBACK</button>
-                        </form>
+                        {{/each}}
                     </div>
+                </script>
+                <div>
+                    <span>Get more recommendations</span>
                 </div>
+            </div>
+            
+
+
+            <div id="test-ride-form" class="form-overlay" style="display: none;">
+                <div class="form-container">
+                    <h2>Get a call from our product experts and find your next motorcycle</h2>
+                    <button class="close-btn" aria-label="Close">&times;</button>
+                    <form id="callbackForm" action="/path/to/servlet" method="post" onsubmit="return validateForm()">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" class="inputformdata" name="fullName" required
+                                oninput="validateFullName(this)" pattern="[A-Za-z\s]+"
+                                title="Please enter only letters.">
+                            <span class="error-message" id="nameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <div class="phone-input">
+                                <span>+91</span>
+                                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="99878677868" required
+                                    oninput="validatePhoneNumber(this)" pattern="\d{10}"
+                                    title="Please enter a 10-digit phone number.">
+                            </div>
+                            <span class="error-message" id="phoneError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailId">E-mail ID</label>
+                            <input type="email" id="emailId" class="inputformdata" name="emailId" required
+                                oninput="validateEmail(this)">
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="pincode">Pincode</label>
+                            <input type="text" id="pincode" class="inputformdata" name="pincode" required
+                                oninput="validatePincode(this)" pattern="\d{6}"
+                                title="Please enter a valid 6-digit pincode.">
+                            <span class="error-message" id="pincodeError"></span>
+                        </div>
+                        <p class="disclaimer">Disclaimer: By submitting this form you acknowledge and agree to our
+                            <a href="#">terms and conditions</a> and <a href="#">privacy policy</a>.
+                            All information provided will be secured and processed as per our privacy policy.
+                        </p>
+                        <div class="form-group terms-group">
+                            <input type="checkbox" id="agree" name="agree" required>
+                            <label for="agree">I agree to <a href="#">Terms & Conditions</a> and <a href="#">Privacy
+                                    Policy</a></label>
+                        </div>
+                        <button type="submit" class="submit-btn" disabled>REQUEST A CALLBACK</button>
+                    </form>
+                </div>
+            </div>
 
             </div>
+
 
         </section>
     </section>
