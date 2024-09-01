@@ -1,19 +1,17 @@
 console.log("get pref js is running ");
-$(document).ready(function() {
-    // Initialize sortable for both sections
+$(document).ready(function () {
     $(".sortable").sortable({
-        update: function(event, ui) {
-            // Update numbering after sorting
-            updateNumbers($(this));
+        update: function (event, ui) {
+            updateNumber($(this));
         }
     });
     $(".sortable").disableSelection();
 });
 
-function updateNumbers($sortable) {
-    // Reset numbering for the specific sortable list
-    $sortable.find(".answer-container").each(function(index) {
-        $(this).find(".answer-id-box").text('#' + index);
+
+function updateNumber($sortable) {
+    $sortable.find(".answer-container").each(function (index) {
+        $(this).find(".answer-id-box").text('#' + (index + 1));
     });
 }
 
@@ -21,89 +19,348 @@ var preferences = [];
 var placePreferences = [];
 var selectedImages = [];
 var selectedOption;
+var selectedImageIds = [];
+let currentStep = 1; 
 
 function storePreferences() {
+    console.log('Storing preferences...');
+    preferences = [];
 
-    var items = document.querySelectorAll('.sortable .section1');
-
-    if (items.length === 0) {
-     //   console.log('No sortable items found.');
-    } else {
-       // console.log('Sortable items found:');
-    }
+    const items = document.querySelectorAll('.sortable .section1');
     items.forEach(function(item) {
-        preferences.push(item.getAttribute('data-value'));
+        const value = item.getAttribute('data-value');
+        const singleWord = value.split(' ')[0]; // Split by space and take the first word
+        preferences.push(singleWord);
     });
 
     console.log('Preferences:', preferences);
 }
 
-
-//*****************************************************************************
-
-
-//******************************************************************************
-
-// Array to store selected checkbox values
-let selectedValues = [];
-
-
 function placeToRide() {
+    placePreferences = [];
 
-    var items = document.querySelectorAll('.sortable .section3');
-
-    if (items.length === 0) {
-      //  console.log('No sortable items found.');
-    } else {
-       //s console.log('Sortable items found:');
-    }
+    const items = document.querySelectorAll('.sortable .section3');
     items.forEach(function(item) {
-        placePreferences.push(item.getAttribute('data-value'));
+        const value = item.getAttribute('data-value');
+        placePreferences.push(value);
     });
 
-    console.log('Preferences:', placePreferences);
+    console.log('PlacePreferences:', placePreferences);
 }
 
-//*******************************************************************************
-
-
 function checkSelection() {
-
     var selectedValue = document.querySelector('input[name="pillion"]:checked');
     var nextButton = document.querySelector("#section2 .next");
 
     var atLeastOneSelected = false;
-    if(selectedValue){
-        selectedOption = selectedValue.value;
-        atLeastOneSelected = true;
-        console.log("selectedValues",selectedOption);
-    }
+    selectedOption = "";
 
-   if (atLeastOneSelected) {
-       nextButton.disabled = false;
-   } else {
-       nextButton.disabled = true;
-   }
+    if (selectedValue) {
+        // Get the value of the selected option
+        selectedOption = selectedValue.value.trim();
+
+        // Check if 'Often / Always' is selected and replace it with 'Always'
+        if (selectedOption === 'Often / Always') {
+            selectedOption = 'Always';
+        }
+
+        atLeastOneSelected = true;
+    }
+    console.log("selectedOption", selectedOption);
+    nextButton.disabled = !atLeastOneSelected;
 }
 
-// Event listener for checkbox change
-//document.querySelectorAll('#section2 input[type="checkbox"]').forEach(checkbox => {
-   // checkbox.addEventListener('change', checkSelection);
-//});
+function initializeEventListeners() {
+    const nextButton = document.getElementById('next-button');
+    const backButton = document.getElementById('back-button');
 
-// Function to handle next button click
-//document.querySelector('#section2 .next').addEventListener('click', function() {
-    // Store selected values in formData or wherever needed
-    //formData.section2 = selectedValues;
+    if (nextButton) {
+        nextButton.removeEventListener('click', handleNextButtonClick);
+        nextButton.addEventListener('click', handleNextButtonClick);
+    }
 
-    // Proceed to next section
-    //const currentSection = this.closest('.questionnaire-section');
-    //const nextSection = document.querySelector(this.getAttribute('data-next-section'));
-    //currentSection.classList.remove('active');
-  //  nextSection.classList.add('active');
-//});
+    if (backButton) {
+        backButton.removeEventListener('click', handleBackButtonClick);
+        backButton.addEventListener('click', handleBackButtonClick);
+    }
+}
 
-//********************************************************************************************************
+function handleNextButtonClick() {
+    storePreferences();
+    console.log('Navigating to next step...');
+    currentStep++;
+}
+
+function handleBackButtonClick() {
+    console.log('Navigating back...');
+    currentStep--;
+}
+
+initializeEventListeners();
+
+
+
+function onNextButtonClick() {
+    updateSelectedImages(); // Update selected images when navigating to the next screen
+}
+
+// Function to handle the navigation back to the previous screen
+function onBackButtonClick() {
+    updateSelectedImages(); // Update selected images when navigating back
+}
+
+document.getElementById('section5Btn').addEventListener('click', onNextButtonClick);
+document.getElementById('back-button').addEventListener('click', onBackButtonClick);
+
+//*******************************************************************************
+
+function imageTagAttribute() {
+    const items = document.querySelectorAll('.selected');
+    const currentSelections = new Set();
+
+    // Loop through the selected items and add their custom attributes to the set
+    items.forEach(item => {
+        const customAttr = item.getAttribute('customAttr');
+        if (customAttr) {
+            currentSelections.add(customAttr);
+        }
+    });
+
+    // Convert the set to an array and limit to the max selections
+    selectedImages = Array.from(currentSelections).slice(0, 3);
+
+    console.log("Selected images are:", selectedImages);
+    // console.log({ preferences, selectedImages, selectedOption, placePreferences });
+
+    const payload = {
+        "purpose": preferences,
+        "pillion_riding": selectedOption,
+        "terrain": placePreferences,
+        "riding_position": selectedImages,
+    };
+
+    let recommendedImages = {};
+
+    // First POST API call
+    fetch('http://18.141.24.29:8000/api/recommendations/get-images', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+    })
+        .then(response => response.json())
+        .then(data => {
+            recommendedImages = data;
+            // console.log("images: ", recommendedImages);
+
+            return fetch('http://18.141.24.29:8000/api/image_mappings/', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }).then(response => response.json())
+                .then(data => {
+                    console.log('GET Success:', data);
+                
+                    const imageMappings = data.image_mappings;
+                    const imageGallery = document.getElementById('img-div');
+
+                    imageGallery.innerHTML = '';
+                    for (const key in recommendedImages.associations) {
+                        if (imageMappings.hasOwnProperty(key)) {
+                            const image = imageMappings[key];
+
+                            const imageGrid = document.createElement('div');
+                            imageGrid.classList.add('image-grid')
+                            const divElement = document.createElement('div');
+                            const imgDiv = document.createElement('div');
+                            imgDiv.classList.add('img-div')
+
+                            divElement.classList.add('image-card');
+                            divElement.setAttribute('data-image-id', key);
+
+                            const imgElement = document.createElement('img');
+
+                            // imgElement.classList.add('selectable-image')
+                            const overlayDiv = document.createElement('div');
+                            overlayDiv.className = 'overlay';
+                            const checkmarkDiv = document.createElement('div');
+                            checkmarkDiv.className = 'checkmark';
+
+                            overlayDiv.appendChild(checkmarkDiv);
+                            divElement.appendChild(overlayDiv)
+
+                            imgElement.src = image.image_url;
+                            imgElement.alt = image.title;
+                            imgElement.title = image.title;
+                            imgElement.style.width = '128px';
+                            imgElement.style.height = '128px';
+
+                            const tickImg = document.createElement('img');
+
+                            divElement.appendChild(imgElement);
+                            if (divElement.classList.contains('selected')) {
+                                divElement.appendChild(tickImg);
+                            }
+
+                            divElement.addEventListener('click', function () {
+                                if (!divElement.classList.contains('selected')) {
+                                    console.log('key', key);
+                                    selectedImageIds.push(key);
+                                } else {
+                                    selectedImageIds = selectedImageIds.filter(id => id !== key);
+                                }
+
+                                console.log('selectedId', selectedImageIds);
+                            });
+                            imageGallery.appendChild(divElement);
+                        }
+                    }
+
+                    document.getElementById('section5Btn').addEventListener('click', function () {
+                        const payload = {
+                            "purpose": preferences,
+                            "pillion_riding": selectedOption,
+                            "terrain": placePreferences,
+                            "riding_position": selectedImages,
+                            "associations": selectedImageIds
+                        };
+
+                        fetch('http://18.141.24.29:8000/api/recommendations/v2', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(payload),
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('POST Success:', data);
+
+                                const modelNames = data.recommendations.map(item => item.model_name);
+                                const params = new URLSearchParams();
+                                modelNames.forEach((modelName, index) => {
+                                    params.append(`model_name_${index}`, modelName);
+                                });
+                                console.log("params",params.toString());
+
+                                // After receiving the response, send it to your AEM servlet
+                                fetch(`/bin/captureBikeNames?${params.toString()}`, { // Replace with your actual servlet path
+                                    method: 'GET',
+
+                                })
+                                    .then(servletResponse => servletResponse.json())
+                                    .then(servletData => {
+                                        console.log('Servlet Success:', servletData);
+
+                                        const templateSource = document.getElementById('bike-template').innerHTML;
+                                        const template = Handlebars.compile(templateSource);
+                                        const context = {
+                                            bikes: servletData.map(bike => ({
+                                                bikeName: bike.bikeName,
+                                                bikeHeroImage: bike.bikeHeroImage || 'defaultHeroImageUrl',
+                                                bikePrice: bike.bikePrice || 'Price Not Available',
+                                                bikeSmallImages: bike.bikeSmallImages || ['defaultSmallImageUrl'],
+                                                bikeFeatures: bike.bikeFeatures || ['Feature Not Available'],
+                                                forwardIcon: bike.forwardIcon || 'defaultForwardIconUrl'
+                                            }))
+                                        };
+                    
+                                        const html = template(context);
+                                        document.getElementById('main-section').innerHTML = html;
+                                        // Handle success of servlet call
+                                    })
+                                    .catch(servletError => {
+                                        console.error('Servlet Error:', servletError);
+                                    });
+
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    });
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Handle any errors here
+                });
+        });
+
+    console.log('SelectedImages:', selectedImages);
+}
+
+function validateFullName(input) {
+    const regex = /^[A-Za-z\s]+$/;
+    const nameError = document.getElementById('nameError');
+    if (!regex.test(input.value)) {
+        nameError.textContent = 'Please enter only letters.';
+        input.setCustomValidity('Invalid full name.');
+    } else {
+        nameError.textContent = '';
+        input.setCustomValidity('');
+    }
+    toggleSubmitButton();
+}
+
+
+function validatePhoneNumber(input) {
+    const regex = /^\d{10}$/;
+    const phoneError = document.getElementById('phoneError');
+    if (!regex.test(input.value)) {
+        phoneError.textContent = 'Please enter a valid 10-digit phone number.';
+        input.setCustomValidity('Invalid phone number.');
+    } else {
+        phoneError.textContent = '';
+        input.setCustomValidity('');
+    }
+    toggleSubmitButton();
+}
+
+function validateEmail(input) {
+    const emailError = document.getElementById('emailError');
+    const isValid = input.checkValidity();
+    if (!isValid) {
+        emailError.textContent = 'Please enter a valid email address.';
+        input.setCustomValidity('Invalid email.');
+    } else {
+        emailError.textContent = '';
+        input.setCustomValidity('');
+    }
+    toggleSubmitButton();
+}
+
+function validatePincode(input) {
+    const regex = /^\d{6}$/;
+    const pincodeError = document.getElementById('pincodeError');
+    if (!regex.test(input.value)) {
+        pincodeError.textContent = 'Please enter a valid 6-digit pincode.';
+        input.setCustomValidity('Invalid pincode.');
+    } else {
+        pincodeError.textContent = '';
+        input.setCustomValidity('');
+    }
+    toggleSubmitButton();
+}
+
+function toggleSubmitButton() {
+    const form = document.getElementById('callbackForm');
+    const submitButton = document.querySelector('.submit-btn');
+    submitButton.disabled = !form.checkValidity();
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

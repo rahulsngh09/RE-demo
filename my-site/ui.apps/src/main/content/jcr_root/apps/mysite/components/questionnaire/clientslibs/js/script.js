@@ -1,61 +1,72 @@
-console.log("script file is running :");
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("script file is running :");
     const nextButtons = document.querySelectorAll(".next");
     const prevButtons = document.querySelectorAll(".prev");
-    // // ***********************************
-
     const checkboxes = document.querySelectorAll('#myCheckbox');
     const nextButton12 = document.getElementById('nextButton');
-    // // *****************************************
-
     const nextButton = document.querySelector("#section5 .next");
     const mainSection = document.querySelector("#main-section");
-
-    // **********************
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function () {
-            updateButtonState();
-        });
-    });
-
-    function updateButtonState() {
-        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-        nextButton12.disabled = !isChecked;
-        if(!isChecked){
-            nextButton.classList.add('disabled');
-        }else{
-            nextButton.classList.remove('disabled');
-        }
-    }
-
-
-    // form 
     const testRideButtons = document.querySelectorAll(".test-ride-btn");
     const formOverlay = document.getElementById("test-ride-form");
     const closeButton = document.querySelector(".close-btn");
     const checkbox = document.getElementById('agree');
     const submitBtn = document.querySelector('.submit-btn');
 
-    testRideButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            formOverlay.style.display = "flex";
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            updateButtonState();
         });
     });
 
-    closeButton.addEventListener("click", function () {
-        formOverlay.style.display = "none";
+
+    $(document).ready(function () {
+        function updateNumbers($sortable) {
+            $sortable.find(".answer-container").each(function (index) {
+                $(this).find(".answer-id-box").text('#' + (index + 1));
+            });
+            console.log("dsgsdj");
+        }
+
+        function checkSectionVisibility() {
+            if ($('#section3').hasClass('active')) {
+                updateNumbers($('#section3 .sortable.answers'));
+            }
+        }
+
+        checkSectionVisibility();
+
+        $('button.next').on('click', function () {
+            setTimeout(checkSectionVisibility, 10);
+        });
     });
 
-    checkbox.addEventListener('change', function () {
-        submitBtn.disabled = !this.checked;
-    });
+    function updateButtonState() {
+        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        nextButton12.disabled = !isChecked;
+        if (!isChecked) {
+            nextButton.classList.add('disabled');
+        } else {
+            nextButton.classList.remove('disabled');
+        }
+    }
 
+    // testRideButtons.forEach(button => {
+    //     button.addEventListener("click", function () {
+    //         console.log("form is....")
+    //         formOverlay.style.display = "flex";
+    //     });
+    // });
 
-    //************** */
+    // closeButton.addEventListener("click", function () {
+    //     formOverlay.style.display = "none";
+    // });
 
-    // Initial check in case any checkboxes are pre-checked
+    // checkbox.addEventListener('change', function () {
+    //     submitBtn.disabled = !this.checked;
+    // });
+
     updateButtonState();
-    // ***********************************************
 
     nextButton.addEventListener("click", function () {
         mainSection.style.display = mainSection.style.display === "block" ? "none" : "block";
@@ -86,61 +97,30 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-});
 
+    const selectedImagesState = {};
 
-document.addEventListener("DOMContentLoaded", function () {
-
-});
-
-
-
-//******************* */
-
-
-// $(function() {
-//     // Make the list sortable
-//     $(".sortable").sortable({
-//         update: function(event, ui) {
-//             console.log("sortablee.....");
-//             updateNumbers();
-//         }
-//     });
-
-//     // Function to update numbers dynamically
-//     function updateNumbers() {
-//         $(".sortable .sortable-item").each(function(index) {
-//             $(this).find(".answer-id-box").text("#" + (index + 1));
-//         });
-//     }
-// });
-
-
-
-
-//************************************************************************ */
-
-console.log("test component is running :");
-
-document.addEventListener('DOMContentLoaded', () => {
     function setupImageSelection(sectionId, minSelections, maxSelections) {
         const section = document.querySelector(sectionId);
-        const imageCards = section.querySelectorAll('.image-card');
-        const nextButton = section.querySelector('.next.riding');
-        const notification = section.querySelector('.notification'); // Notification element
-        let selectedImages = [];
-        let selectionFinalized = false; // Track if selection is finalized
+        if (!section) return;
+
+        const imageGrid = section.querySelector('.image-grid');
+        const nextButton = section.querySelector('.next');
+        const notification = section.querySelector('.notification');
+        let selectedImages = selectedImagesState[sectionId] || [];
+        let selectionFinalized = false;
 
         function updateNextButtonState() {
-            if (selectionFinalized) return; // Prevent changes if selection is finalized
+            // if (selectionFinalized) return;
 
-            // Enable button if the number of selected images meets the minimum requirement
             if (selectedImages.length >= minSelections) {
                 nextButton.classList.add('enabled');
                 nextButton.disabled = false;
+                console.log("update next button");;
             } else {
                 nextButton.classList.remove('enabled');
                 nextButton.disabled = true;
+                console.log("update next button else part");
             }
         }
 
@@ -150,83 +130,120 @@ document.addEventListener('DOMContentLoaded', () => {
                 notification.classList.add('show');
                 setTimeout(() => {
                     notification.classList.remove('show');
-                }, 3000); // Hide notification after 3 seconds
+                }, 3000);
             } else {
                 alert(message);
             }
         }
 
-        imageCards.forEach(card => {
-            card.addEventListener('click', () => {
-                if (selectionFinalized) return; // Prevent changes if selection is finalized
-
+        function updateSelectedImages() {
+            section.querySelectorAll('.image-card').forEach(card => {
                 const imageId = card.getAttribute('data-image-id');
-                if (card.classList.contains('selected')) {
-                    card.classList.remove('selected');
-                    selectedImages = selectedImages.filter(id => id !== imageId);
-                } else if (selectedImages.length < maxSelections) {
+                if (selectedImages.includes(imageId)) {
                     card.classList.add('selected');
-                    selectedImages.push(imageId);
                 } else {
-                    showNotification(`You can only select up to ${maxSelections} images.`);
+                    card.classList.remove('selected');
                 }
-                updateNextButtonState();
+            });
+            // updateNextButtonState();
+        }
+
+        function handleImageClick(event) {
+            const card = event.target.closest('.image-card');
+            if (!card) return;
+            const imageId = card.getAttribute('data-image-id');
+            if (card.classList.contains('selected')) {
+                card.classList.remove('selected');
+                selectedImages = selectedImages.filter(id => id !== imageId);
+            } else if (selectedImages.length < maxSelections) {
+                card.classList.add('selected');
+                selectedImages.push(imageId);
+            } else {
+                showNotification(`You can only select up to ${maxSelections} images.`);
+            }
+            console.log(selectedImages, selectedImages.length);
+            updateNextButtonState();
+            handleNextButtonClick();
+        }
+
+        function handleNextButtonClick() {
+            if (selectedImages.length >= minSelections) {
+                selectionFinalized = true;
+                selectedImagesState[sectionId] = selectedImages;
+                console.log(`Selected Images for ${sectionId}:`);
+            } else {
+                // showNotification(`Please select at least ${minSelections} image(s) to proceed.`);
+            }
+        }
+
+        imageGrid.addEventListener('click', handleImageClick);
+        nextButton.addEventListener('click', handleNextButtonClick);
+
+        document.querySelectorAll('.prev').forEach(button => {
+            button.addEventListener('click', () => {
+                const prevSectionId = button.getAttribute('data-prev-section');
+                if (prevSectionId === sectionId || button.getAttribute('data-prev-section')) {
+                    const currentSelectedImages = [];
+                    section.querySelectorAll('.image-card.selected').forEach(card => {
+                        currentSelectedImages.push(card.getAttribute('data-image-id'));
+                    });
+
+                    selectedImagesState[sectionId] = currentSelectedImages;
+
+                    // updateSelectedImages();
+                }
             });
         });
-
-        nextButton.addEventListener('click', () => {
-            if (selectedImages.length >= minSelections) {
-                selectionFinalized = true; // Finalize selection
-                // You can send the selectedImages array to your server or handle it as needed
-                console.log(`Selected Images for ${sectionId}:`, selectedImages);
-                // Here you can redirect to the next section or perform any further actions
-            } else {
-                showNotification(`Please select at least ${minSelections} image(s) to proceed.`);
-            }
-        });
-
-        // Initial check to set the correct state of the Next button
-        updateNextButtonState();
     }
 
-    // Setup image selection for each section
-    setupImageSelection('#section4', 1, 3); // Section 4 with minimum 1 and maximum 3 selections
-    setupImageSelection('#section5', 4, 6); // Section 5 with minimum 4 and maximum 6 selections
-});
-
-$(document).ready(function () {
-    $('#callbackForm').on('submit', function (event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        $('#form-content').hide(); // Hide the form content
-        $('#success-message').show(); // Show the success message
-    });
-
-    $('#close-popup').on('click', function () {
-        $('#test-ride-form').hide(); // Hide the form overlay
-    });
-
-    $('#agree').on('change', function () {
-        $('.submit-btn').prop('disabled', !this.checked);
-    });
-
-    $('.close-btn').on('click', function () {
-        $('#test-ride-form').hide();
-    });
+    setupImageSelection('#section4', 1, 3);
+    setupImageSelection('#section5', 4, 20);
 });
 
 
+function showForm() {
+    var formOverlay = document.getElementById('test-ride-form');
+    console.log("form is going to show")
+    formOverlay.style.display = 'flex';
+}
 
+// Function to hide the form
+function hideForm() {
+    var formOverlay = document.getElementById('test-ride-form');
+    formOverlay.style.display = 'none';
+}
 
+// Add event listeners to buttons
+var testRideButton = document.querySelector('.test-ride-btn');
+var closeButton = document.querySelector('.close-btn');
 
-  
-    
+// When the "BOOK A TEST RIDE" button is clicked, show the form
+if (testRideButton) {
+    testRideButton.onclick = showForm;
+}
 
+// When the close button is clicked, hide the form
+if (closeButton) {
+    closeButton.onclick = hideForm;
+}
 
+// $(document).ready(function () {
+//     $('#callbackForm').on('submit', function (event) {
+//         event.preventDefault();
+//         $('#form-content').hide();
+//         $('#success-message').show();
+//     });
 
+//     $('#close-popup').on('click', function () {
+//         $('#test-ride-form').hide();
+//     });
 
+//     $('#agree').on('change', function () {
+//         $('.submit-btn').prop('disabled', !this.checked);
+//     });
 
+//     $('.close-btn').on('click', function () {
+//         $('#test-ride-form').hide();
+//     });
 
-
-
-
+// });

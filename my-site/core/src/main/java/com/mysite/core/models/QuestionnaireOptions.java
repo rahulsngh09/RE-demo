@@ -48,40 +48,16 @@ public class QuestionnaireOptions {
     BikeDetailsService bikeDetailsService;
     @ValueMapValue
     private String question4;
+    @ValueMapValue
+    private String draggableIcon;
 
     List<Index> answers = new ArrayList<>();
-//    List<BikeDetails> bikeInfoList = new ArrayList<>();
-//    public List<BikeDetails> getBikeInfoList() throws RepositoryException {
-//        bikeInfoList = bikeDetailsService.getBikeDetails();
-//        return bikeInfoList;
-//    }
-
     List<String> ridingPositionImageAttributes = new ArrayList<>();
     List<String> screen2Answers = new ArrayList<>();
     List<String> screen3Answers = new ArrayList<>();
     List<String> allAuthoredImages = new ArrayList<>();
     List<String> allPersonalInterestImages = new ArrayList<>();
     private List<ImageEntity> optionWithImages = new ArrayList<>();
-
-
-//    private void getBikesDetail(){
-//        ResourceResolver resourceResolver = request.getResourceResolver();
-//        Resource resource = resourceResolver.getResource("/content/dam/mysite/content-fragment");
-//        if (resource != null) {
-//            for (Resource childResource : resource.getChildren()) {
-//                BikeDetails suggestedBikeDeatilsEntity = new BikeDetails();
-//                Resource masterResource = childResource.getChild("jcr:content/data/master");
-//                if (masterResource != null) {
-//                    ValueMap valueMap = masterResource.getValueMap();
-//                    suggestedBikeDeatilsEntity.setBikeName(valueMap.get("bikeNameWithModel", String.class));
-//                    suggestedBikeDeatilsEntity.setBikePrice(valueMap.get("bikePrice", String.class));
-//                    suggestedBikeDeatilsEntity.setBikeHeroImage(valueMap.get("bikeHeroImage", String.class));
-//                    suggestedBikeDeatilsEntity.setForwardIcon(valueMap.get("forwardicon", String.class));
-//                    bikeDetailsList.add(suggestedBikeDeatilsEntity);
-//                }
-//            }
-//        }
-//    }
 
     public List<String> getRidingPositionImageAttributes() {
         ridingPositionImageAttributes.add("Cruiser");
@@ -104,6 +80,9 @@ public class QuestionnaireOptions {
 
     public String getQuestion() {
         return question;
+    }
+    public String getDraggableIcon() {
+        return draggableIcon;
     }
 
     public String getQuestion4(){

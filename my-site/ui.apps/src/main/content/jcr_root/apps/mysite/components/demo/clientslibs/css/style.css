@@ -6,133 +6,55 @@ body {
     padding: 0;
 }
 
+#main-section {
+    display: none;
+    margin-top: 8rem;
+    padding: 20px;
+    background: #1c1c1c;
+    color: #fff;
+}
+
+.motorcycle-image {
+    margin-top: -1.2rem;
+    width: 340px;
+    margin-left: -19px;
+}
+
+.motorcycle-image h2 {
+    margin-right: 200px;
+}
+
+.middle-image {
+    transform: scale(1.2);
+    /* Zoom effect for the middle image */
+    z-index: 1;
+    /* Ensure it sits above other images */
+}
+
+.motorcycle-image h2 {
+    margin-right: 150px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
 .motorcycle-container {
     display: flex;
-    justify-content: center;
+
     gap: 20px;
-    padding: 20px;
-    flex-wrap: wrap;
 }
 
-.motorcycle-card {
-    background-color: #1b1b1b;
-    border: 1px solid #444;
-    border-radius: 10px;
-    padding: 20px;
-    width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    margin: 10px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
 
-.motorcycle-card:hover,
-.motorcycle-card:focus-within {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-}
-
-.motorcycle-card h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: #fffefd;
-}
-
-.motorcycle-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.image-thumbnails {
+.motorcycle-image {
+    /* height: 250px; Fixed height for the container */
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.image-thumbnails img {
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
-    object-fit: cover;
-    border: 2px solid #444;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.image-thumbnails img:hover {
-    transform: scale(1.1);
-}
-
-.price {
-    font-size: 1.2em;
-    margin: 15px 0;
-    color: #f5b301;
-}
-
-.features {
-    list-style: disc;
-    margin-top: 20px;
-}
-.features li {
-    margin-right: 20px;
-}
-
-.tick {
-    font-size: 18px;
-    margin-right: 10px;
-    color: #34C759; /* Green color for the tick symbol */
-}
-
-/* .feature-item {
-    display: flex;
+    flex-direction: column;
     align-items: center;
-    margin: 5px 0;
-    color: #ccc;
-} */
-
-/* .feature-item .checkmark {
-    width: 20px;
-    height: 20px;
-    background: url('/etc/clientlibs/mysite/icons/check-icon.png') no-repeat center center;
-    background-size: contain;
-    margin-right: 10px;
-} */
-
-.actions {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    /* Hide any overflowing image content */
+    position: relative;
 }
-
-.actions .configure-btn,
-.actions .test-ride-btn {
-    background-color: #f5b301;
-    border: none;
-    color: #000;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.actions .test-ride-btn {
-    background-color: #0047ab;
-}
-
-.actions button:hover {
-    opacity: 0.8;
-}
-
-
-.forward img{
-    color: white;
-    position: absolute;
-    left: 15rem;
-    background-color: #fff;
-
-
-}
-
 

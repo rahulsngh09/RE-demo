@@ -1,0 +1,247 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+    <sly data-sly-call="${clientlib.all @ categories='mysite-questionnaire'}" />
+</sly>
+
+
+<sly data-sly-use.model="com.mysite.core.models.QuestionnaireOptions">
+    <div class="background-container">
+        <!-- <img src="/content/dam/mysite/background-images/background-image.png" alt="Search"> -->
+    <div id="questionnaire" class="questionnaire-section active">
+        <h2>HELP ME CHOOSE |
+            <span>
+                Step 1 of 5
+            </span>
+
+        </h2>
+        <p>${model.question}</p>
+        <p class="drag-to-rearrange">Drag to rearrange.</p>
+        <ul class="sortable answers">
+            <sly data-sly-list.answers="${model.answers}">
+                <div class="answer-container">
+                    <p class="answer-id-box">#${answersList.index}</p>
+                    <div class="answer-section">
+                        <li data-value="${answers}" class="sortable-item section1">
+                            <div>
+                                <span>
+                                    <img src="${properties.draggableIcon}" alt=""> ${answers}
+                                </span>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </sly>
+
+        </ul>
+        <div class="buttton-container first">
+            <button type="button" class="next"  data-next-section="#section2">Next</button>
+        </div>
+    </div>
+
+
+    <div id="section2" class="questionnaire-section">
+        <h2>HELP ME CHOOSE | Step 2 of 5</h2>
+        <p>${model.question2}</p>
+        <p class="drag-to-rearrange">Select any one</p>
+        <ul>
+            <li data-sly-repeat.screen2Answer="${model.screen2Answers}" style="cursor: default;">
+                <input type="radio" name="pillion" value=" ${screen2Answer}" id="myCheckbox">
+                <label>${screen2Answer}</label>
+            </li>
+
+        </ul>
+        <div class="buttton-container">
+            <button type="button" class="prev" data-prev-section="#questionnaire">Back</button>
+            <button type="button" id="nextButton" class="next"  data-next-section="#section3"
+                disabled>Next</button>
+        </div>
+    </div>
+
+
+    <div id="section3" class="questionnaire-section">
+        <h2>HELP ME CHOOSE | Step 3 of 5</h2>
+        <p>${model.question3}</p>
+        <p class="drag-to-rearrange">Drag to rearrange.</p>
+        <ul class="sortable answers">
+
+            <li data-sly-repeat.screen3Answers="${model.optionWithImages}" class="sortable-item section3"
+                data-value="${screen3Answers}"
+                style="background-size:100%; background-image: linear-gradient(93.59deg, #000000 0.45%, rgba(0, 0, 0, 0.573648) 45.64%, rgba(0, 0, 0, 0) 108.5%), url('${screen3Answers.backgroundImage @ context='uri'}');">
+                <div class="answer-container">
+                    <p class="answer-id-box">#${screen3AnswersList.index}</p>
+                </div><img src="${properties.draggableIcon}" alt=""> ${screen3Answers.text}
+            </li>
+        </ul>
+
+        <div class="buttton-container">
+            <button type="button" class="prev" data-prev-section="#section2">Back</button>
+            <button type="button" class="next" onclick="placeToRide()" data-next-section="#section4">Next</button>
+        </div>
+
+    </div>
+
+
+   <div id="section4" class="questionnaire-section">
+    <h2>HELP ME CHOOSE | Step 4 of 5</h2>
+    <p>${model.question4}</p>
+    <div class="notification">
+        <button class="close-btn" aria-label="Close">&times;</button>
+        <p id="notification-message"></p>
+    </div> <!-- Notification element -->
+    <div class="image-grid">
+        <sly data-sly-list.authoredImages="${model.allAuthoredImages}">
+            <div class="image-card" data-image-id="${authoredImages.id}">
+                <div class="img-div">
+                    <img src="${authoredImages.src}" alt="Motorcycle Riding Position" class="selectable-image">
+                </div>
+                <div class="overlay">
+                    <div class="checkmark"></div>
+                </div>
+            </div>
+        </sly>
+    </div>
+    <div class="button-container">
+        <button type="button" class="prev" data-prev-section="#section3">Back</button>
+        <button type="button" class="next riding button-section" data-next-section="#section5" disabled>Next</button>
+    </div>
+</div>
+
+<!-- Repeat similar structure for section5, with appropriate changes -->
+
+
+
+
+    <div id="section5" class="questionnaire-section">
+        <h2>HELP ME CHOOSE | Step 5 of 5</h2>
+        <p>${properties.question5}</p>
+        <div class="notification">
+            <button class="close-btn" aria-label="Close">&times;</button>
+            <p id="notification-message"></p>
+        </div> <!-- Notification element -->
+        <div class="image-grid">
+            <sly data-sly-list.imagess="${model.allPersonalInterestImages}">
+                <div class="image-card personal-interest" data-image-id="1">
+                    <div class="img-div">
+                        <img src="${imagess}" alt="" class="selectable-image">
+                    </div>
+                    <div class="overlay">
+                        <div class="checkmark"></div>
+                    </div>
+                </div>
+            </sly>
+        </div>
+        <div class="buttton-container">
+            <button type="button" class="prev" data-prev-section="#section4">Back</button>
+            <button type="button" class="next" data-next-section="#main-section">Next</button>
+        </div>
+    </div>
+
+
+
+    <div id="main-section">
+        <div>
+            <p class="heading"><b> EXPERIENCE YOUR NEXT ROYAL ENFIELD MOTORCYCLE </b></p>
+        </div>
+        <div class="motorcycle-container">
+            <sly data-sly-list.bikeDetails="${model.bikeDetailsList}">
+                <div class="motorcycle-card background-image dark-background" style=" background-image: linear-gradient(to bottom, transparent -42%, #181818 38%), 
+                    url('${properties.backgroundImageForBike @ context='uri'}');">
+
+                    <div class="motorcycle-image background-image light-background" style="background-size:100%; 
+                    ">
+                        <h2>${bikeDetails.bikeName}</h2>
+                        <img src="${bikeDetails.bikeHeroImage}" alt="${bikeDetails.bikeName}" width="100%" height="auto">
+                        <div class="image-thumbnails">
+                            <sly data-sly-list.thumbnail="${bikeDetails.bikeHeroImage}">
+                                <img src="${thumbnail}" alt="Thumbnail" class="small-bike-image">
+                                <img src="${thumbnail}" alt="Thumbnail" class="small-bike-image middle-image">
+                                <img src="${thumbnail}" alt="Thumbnail" class="small-bike-image">
+                            </sly>
+                        </div>
+
+
+                        <p class="price">Starts from <strong style="
+                        font-family: Montserrat;
+                        font-size: 18px;
+                        font-weight: bold;
+                    ">₹ ${bikeDetails.bikePrice}</strong></p>
+                        <ul class="features">
+                            <li><span class="tick">✔</span> Cast alloy wheels</li>
+                            <li><span class="tick">✔</span> Weekend riding</li>
+                            <li><span class="tick">✔</span> Racing DNA</li>
+                            <li><span class="tick">✔</span> Highway riding</li>
+                            <li><span class="tick">✔</span> Twin-cylinder engine</li>
+                        </ul>
+
+                        <div class="actions">
+                            <button class="configure-btn prev">CONFIGURE NOW</button>
+                            <button class="test-ride-btn next">BOOK A TEST RIDE</button>
+                        </div>
+                    </div>
+
+                </div>
+            </sly>
+        </div>
+        <div class="cta-message">
+            <p>Can't find your ideal Royal Enfield?</p>
+            <p>
+                <a href="#" class="connect-link">Connect with an expert</a>
+                <span> or </span>
+                <a href="#" class="retry-link">Retry</a>
+            </p>
+        </div>
+    </div>
+
+
+
+
+    <div id="test-ride-form" class="form-overlay" style="display: none;">
+        <div class="form-container">
+            <h2>Get a call from our product experts and find your next motorcycle</h2>
+            <button class="close-btn" aria-label="Close">&times;</button>
+            <form id="callbackForm" action="/path/to/your/servlet" method="post">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" class="inputformdata" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <div class="phone-input ">
+                        <select id="countryCode" name="countryCode">
+                            <option value="+91">+91</option>
+                            <!-- Add more country codes as needed -->
+                        </select>
+                        <input type="tel" id="phoneNumber" class="inputformdata" name="phoneNumber" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="emailId">E-mail ID</label>
+                    <input type="email" id="emailId" class="inputformdata" name="emailId" required>
+                </div>
+                <div class="form-group">
+                    <label for="pincode">Pincode</label>
+                    <input type="text" id="pincode" class="inputformdata" name="pincode" required>
+                </div>
+                <p class="disclaimer">Disclaimer: By submitting this form you acknowledge and agree to our terms and
+                    conditions and privacy policy. All information provided will be secured and processed as per our
+                    privacy policy.</p>
+                <div class="form-group">
+                    <input type="checkbox" id="agree"  name="agree" required>
+                    <label for="agree">I agree to <a href="#">Terms & Conditions</a> and <a href="#">Privacy
+                            Policy</a></label>
+                </div>
+                <button type="submit" class="submit-btn" disabled>REQUEST A CALLBACK</button>
+            </form>
+        </div>
+        <div id="success-message" class="success-message" style="display: none;">
+            <p>Thanks for showing interest in Royal Enfield bikes. Our team will catch you soon. Thank you!</p>
+            <button id="close-popup" type="button">Close</button>
+        </div>
+    </div>
+    </div>
+
+</sly>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>

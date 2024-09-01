@@ -1,41 +1,22 @@
 <sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
-    <sly data-sly-call="${clientlib.all @ categories='mysite-demo'}"/>
+    <sly data-sly-call="${clientlib.all @ categories='mysite-demo'}" />
 </sly>
 
-<sly data-sly-use.model="com.mysite.core.models.BikeDetailsCFModel">
+<h1>heyy</h1>
 
-    <div class="motorcycle-container">
-        <sly data-sly-list.bikeDetails="${model.bikeDetailsList}">
-            <div class="motorcycle-card">
-                <h2>${bikeDetails.bikeName}</h2>
-                <div class="forward"><img src="${bikeDetails.forwardIcon}"></div>
-                <div class="motorcycle-image">
-                    <img src="${bikeDetails.bikeHeroImage}" alt="${bikeDetails.bikeName}">
-                    
-                    <div class="image-thumbnails">
-                        <sly data-sly-list.thumbnail="${bikeDetails.bikeHeroImage}">
-                            <img src="${thumbnail}" alt="Thumbnail" class="small-bike-image">
-                            <img src="${thumbnail}" alt="Thumbnail" class="small-bike-image">
-                            <img src="${thumbnail}" alt="Thumbnail" class="small-bike-image">
-                        </sly>
-                    </div>
-                </div>
-                
-                <p class="price">Starts from <strong>${bikeDetails.bikePrice}</strong></p>
-                <ul class="features">
-                    <li><span class="tick">✔</span> Cast alloy wheels</li>
-                    <li><span class="tick">✔</span> Weekend riding</li>
-                    <li><span class="tick">✔</span> Racing DNA</li>
-                    <li><span class="tick">✔</span> Highway riding</li>
-                    <li><span class="tick">✔</span> Twin-cylinder engine</li>
-                </ul>
-                
-                <div class="actions">
-                    <button class="configure-btn">CONFIGURE NOW</button>
-                    <button class="test-ride-btn">BOOK A TEST RIDE</button>
-                </div>
-            </div>
-        </sly>
+<div id="main-section">
+    <div>
+        <p class="heading"><b>EXPERIENCE YOUR NEXT ROYAL ENFIELD MOTORCYCLE</b></p>
     </div>
-
-</sly>
+    <div class="motorcycle-container" id="motorcycle-container">
+        <!-- Dynamic content will be rendered here by JavaScript -->
+    </div>
+    <div class="cta-message">
+        <p>Can't find your ideal Royal Enfield?</p>
+        <p>
+            <a href="#" class="connect-link">Connect with an expert</a>
+            <span> or </span>
+            <a href="#" class="retry-link">Retry</a>
+        </p>
+    </div>
+</div>
