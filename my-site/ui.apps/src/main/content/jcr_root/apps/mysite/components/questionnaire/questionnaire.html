@@ -7,13 +7,8 @@
         <section class="section-one">
             <div id="questionnaire" class="questionnaire-section active">
                 <div class="container">
-                    <h2 class="step-header">
-                        HELP ME CHOOSE
-                        <span class="dimmed">|</span>
-                        <span class="current-step">Step 1</span>
-                        <span class="of-total"> of 5</span>
-                    </h2>
-                    <p>${model.question}</p>
+                    <p class="help-me-choose">HELP ME CHOOSE . Step 1/5</p>
+                    <p class="question">${model.question}</p>
                     <p class="drag-to-rearrange">Drag to rearrange.</p>
                     <ul class="sortable answers">
                         <sly data-sly-list.answers="${model.answers}">
@@ -42,21 +37,15 @@
 
 
             <div id="section2" class="questionnaire-section">
-                <h2 class="step-header">
-                    HELP ME CHOOSE
-                    <span class="dimmed">|</span>
-                    <span class="current-step">Step 2</span>
-
-                    <span class="of-total"> of 5</span>
-                </h2>
-                <p>${model.question2}</p>
+                <p class="help-me-choose">HELP ME CHOOSE . Step 2/5</p>
+                <p class="question">${model.question2}</p>
                 <p class="drag-to-rearrange">Select any one.</p>
                 <ul>
-                    <li data-sly-repeat.screen2Answer="${model.screen2Answers}" style="cursor: default;"
+                    <li data-sly-repeat.screen2Answer="${model.screen2Answers}" style="cursor: pointer;"
                         class="option-item">
                         <input type="radio" name="pillion" value=" ${screen2Answer}" id="myCheckbox"
                             class="option-checkbox">
-                        <label>${screen2Answer}</label>
+                        <label style="cursor: pointer;">${screen2Answer}</label>
                     </li>
 
                 </ul>
@@ -69,14 +58,8 @@
 
 
             <div id="section3" class="questionnaire-section">
-                <h2 class="step-header">
-                    HELP ME CHOOSE
-                    <span class="dimmed">|</span>
-                    <span class="current-step">Step 3</span>
-
-                    <span class="of-total"> of 5</span>
-                </h2>
-                <p>${model.question3}</p>
+                <p class="help-me-choose">HELP ME CHOOSE . Step 3/5</p>
+                <p class="question">${model.question3}</p>
                 <p class="drag-to-rearrange">Drag to rearrange.</p>
                 <ul class="sortable answers" style="margin-left: 2rem;">
 
@@ -99,14 +82,8 @@
 
 
             <div id="section4" class="questionnaire-section">
-                <h2 class="step-header">
-                    HELP ME CHOOSE
-                    <span class="dimmed">|</span>
-                    <span class="current-step">Step 4</span>
-
-                    <span class="of-total"> of 5</span>
-                </h2>
-                <p>${model.question4}</p>
+                <p class="help-me-choose">HELP ME CHOOSE . Step 4/5</p>
+                <p class="question">${model.question4}</p>
                 <div class="notification">
                     <button class="close-btn" aria-label="Close">&times;</button>
                     <p id="notification-message"></p>
@@ -122,7 +99,7 @@
                             <div class="overlay" style="
                             width: 172px;
                             height: 120px;">
-                                <div class="checkmark"></div>
+                                <div class="checkmark"><img src="${properties.tickBtnIcon}" alt=""></div>
                             </div>
                         </div>
 
@@ -138,13 +115,8 @@
 
 
             <div id="section5" class="questionnaire-section">
-                <h2 class="step-header">
-                    HELP ME CHOOSE
-                    <span class="dimmed">|</span>
-                    <span class="current-step">Step 5</span>
-                    <span class="of-total"> of 5</span>
-                </h2>
-                <p>${properties.question5}</p>
+                <p class="help-me-choose">HELP ME CHOOSE . Step 5/5</p>
+                <p class="question">${properties.question5}</p>
 
                 <div class="notification">
                     <button class="close-btn" aria-label="Close">&times;</button>
@@ -152,12 +124,15 @@
                 </div> <!-- Notification element -->
                 <div class="image-grid">
 
-                    <div class="image-card personal-interest" id="image-card">
-                        <div class="help-me-choose-box" id="img-div">
-                            <!-- <img src="" alt="" class="selectable-image"> -->
+                    <div class="personal-interest" id="image-card">
+                        <div class="help-me-choose-box " id="img-div">
+
                         </div>
-                        <div class="overlay">
-                            <div class="checkmark"></div>
+                        <div class="overlay" style="
+                        width: 172px;
+                        height: 120px;">
+                            <div class="checkmark"><img src="${properties.tickBtnIcon}" alt=""
+                                    id="select-tick-img" data-image-url="${properties.tickBtnIcon}"></div>
                         </div>
                     </div>
 

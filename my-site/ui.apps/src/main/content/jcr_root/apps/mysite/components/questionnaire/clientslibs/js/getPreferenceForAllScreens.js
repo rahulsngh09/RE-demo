@@ -168,11 +168,12 @@ function imageTagAttribute() {
                             const divElement = document.createElement('div');
                             const imgDiv = document.createElement('div');
                             const imgElement = document.createElement('img');
+                            const checkmarkImg = document.createElement('img');
                             const overlayDiv = document.createElement('div');
                             const checkmarkDiv = document.createElement('div');
                             imageGrid.classList.add('image-grid')
                             imgDiv.classList.add('img-div')
-
+                            checkmarkImg.classList.add('select-tick-img')
                             divElement.classList.add('image-card');
                             divElement.setAttribute('data-image-id', key);
 
@@ -185,9 +186,16 @@ function imageTagAttribute() {
                             imgElement.title = image.title;
                             imgElement.style.width = '128px';
                             imgElement.style.height = '128px';
+
+                            var checkmarkImgPath = document.getElementById('select-tick-img');
+                            var imageURL = checkmarkImgPath.getAttribute('data-image-url');
+
+                            checkmarkImg.src = imageURL;
+                            
                             const tickImg = document.createElement('img');
 
                             overlayDiv.appendChild(checkmarkDiv);
+                            checkmarkDiv.appendChild(checkmarkImg);
                             divElement.appendChild(imgElement);
                             divElement.appendChild(overlayDiv)
                             if (divElement.classList.contains('selected')) {

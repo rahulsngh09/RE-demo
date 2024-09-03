@@ -6,14 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextButton12 = document.getElementById('nextButton');
     const nextButton = document.querySelector("#section5 .next");
     const mainSection = document.querySelector("#main-section");
-    // const testRideButtons = document.querySelectorAll(".test-ride-btn");
-    // const testBtn = document.getElementById('book-a-test-ride')
-    // console.log('testride', testBtn);
-    
+
     
 
-
-    checkboxes.forEach(checkbox => {
+    checkboxes.forEach(checkbox => {        
         checkbox.addEventListener('change', function () {
             updateButtonState();
         });
@@ -21,11 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.querySelectorAll('.option-item').forEach(item => {
         item.addEventListener('click', function(event) {
-           
-            // Check if a label or checkbox was clicked directly
+            console.log("event",event);
             const checkbox = this.querySelector('.option-checkbox');
             if (checkbox) {
-                checkbox.checked = !checkbox.checked; // Toggle checkbox state
+                checkbox.checked = !checkbox.checked; 
                 updateButtonState();
             }
         });
@@ -79,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //     submitBtn.disabled = !this.checked;
     // });
 
-    updateButtonState();
+    // updateButtonState();
 
     nextButton.addEventListener("click", function () {
         mainSection.style.display = mainSection.style.display === "block" ? "none" : "block";
@@ -121,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const nextButton = section.querySelector('.next');
         const notification = section.querySelector('.notification');
         let selectedImages = selectedImagesState[sectionId] || [];
-        let selectionFinalized = false;
+        // let selectionFinalized = false;
 
         function updateNextButtonState() {
             // if (selectionFinalized) return;

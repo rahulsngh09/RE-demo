@@ -12,6 +12,19 @@ li {
     font-optical-sizing: auto;
 }
 
+.help-me-choose{
+    width: 273px;
+    height: 34px;
+    color: #aaa;
+}
+.question{
+    width: 560px;
+    height: 45px;
+    size: 32px;
+    color: #FFFFFF;
+    letter-spacing: 0.2%;
+}
+
 .section-one{
     background-image: url('/content/dam/mysite/background-images/background-image.png');
     background-size: 50% 100%;
@@ -309,9 +322,9 @@ input[type="radio"]:checked::before {
 
 /* Checkmark styling */
 .checkmark::after {
-    content: '✔';
+    /* content: '✔'; */
     color: #000;
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 
 /* Show overlay when .image-card has class .selected */
@@ -425,7 +438,7 @@ input[type="radio"]:checked::before {
     object-fit: cover;
     border: 2px solid #444;
     cursor: pointer;
-    transform: skew(10deg);
+    transform: skew(13deg);
 
 }
 
@@ -586,8 +599,9 @@ input[type="radio"]:checked::before {
     background: none;
     border: none;
     color: #fff;
-    font-size: 20px;
+    font-size: 33px;
     cursor: pointer;
+    margin-top: 0.5rem;
 }
 
 .form-group {
@@ -604,7 +618,7 @@ input[type="radio"]:checked::before {
 .form-group input[type="text"],
 .form-group input[type="tel"],
 .form-group input[type="email"] {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #333;
@@ -614,7 +628,7 @@ input[type="radio"]:checked::before {
 }
 
 .phone-input {
-    width: 105%;
+    width: 100%;
     display: flex;
     align-items: center;
 }
@@ -655,9 +669,8 @@ input[type="radio"]:checked::before {
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
-    background: linear-gradient(112.38deg, rgba(255, 255, 255, 0.5) -120.84%, rgba(255, 255, 255, 0.1) 79.67%);
     border: 1px solid;
-    color: #e6b800;
+    color: #000;
 }
 
 .submit-btn:disabled {
@@ -810,10 +823,10 @@ input[type="radio"]:checked::before {
     /* Smooth transition for shadow effect */
 }
 
-#section4 .image-card.selected img {
+/* #section4 .image-card.selected img {
     box-shadow: 0 0 0 4px;
-    /* Blue shadow indicating selection */
-}
+    
+} */
 
 ::-webkit-scrollbar {
     width: 4px;
@@ -882,7 +895,7 @@ input[type="radio"]:checked::before {
     text-decoration: underline;
 }
 
-.cta-message span {
+.cta-message a {
     color: #fff;
 }
 
