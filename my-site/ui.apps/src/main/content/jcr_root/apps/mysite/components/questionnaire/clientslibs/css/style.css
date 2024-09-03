@@ -11,7 +11,26 @@ li {
     border-radius: 9px;
     font-optical-sizing: auto;
 }
-body {
+
+.section-one{
+    background-image: url('/content/dam/mysite/background-images/background-image.png');
+    background-size: 50% 100%;
+    background-position: left center;
+    background-repeat: no-repeat;
+    margin: 0;
+    
+    height: 85vh;
+    width: 100%;
+    background-position: 66px center;
+}
+
+body{
+    background-color: 060606;
+}
+
+
+
+/* .background-container{
     background-image: url('/content/dam/mysite/background-images/background-image.png');
    
     background-size: 50% 100%;
@@ -25,16 +44,16 @@ body {
     background-color: #000;
     height: 100vh;
     background-position: 66px center;
-}
+} */
 
-body.sections-visible {
+/* body.sections-visible {
     background-image: url('/content/dam/mysite/background-images/background-image.png');
 }
 
-/* Background image for the main section */
+
 body.main-section-visible {
     background-image: url('/content/dam/mysite/background-images/bike-background.png');
-}
+} */
 
 
 
@@ -532,19 +551,20 @@ input[type="radio"]:checked::before {
     justify-content: space-between;
     gap: 10px;
     margin-top: 10px;
-    width: 310px;
+    width: 320px;
     height: 80px;
-    transform: skew(20deg);
+    overflow : hidden;
 
     
 }
 
 .image-thumbnails img {
-    width: 102px;
+    width: 97px;
     height: 80px;
     object-fit: cover;
     border: 2px solid #444;
     cursor: pointer;
+    transform: skew(10deg);
 
 }
 
@@ -970,7 +990,7 @@ input[type="radio"]:checked::before {
     flex-wrap: wrap;
     /* Allow wrapping to the next line */
     gap: 15px;
-    height: 430px;
+    height: 300px;
     width: 565px;
     margin-bottom: 3rem;
     overflow-y: scroll;
@@ -1004,11 +1024,12 @@ input[type="radio"]:checked::before {
 
 .cta-message p {
     margin: 5px 0;
+    text-decoration: underline;
 }
 
 .cta-message .connect-link,
 .cta-message .retry-link {
-    color: #ff0000;
+    /* color: #ff0000; */
     text-decoration: none;
     font-weight: bold;
 }
@@ -1062,14 +1083,16 @@ input[type="radio"]:checked::before {
     width: 50%;
 }
 
-/* .main-background {
-    background-image: url("/content/dam/mysite/icons/bike-background.png");
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
-} */
+.main-background {
+   background-image: url('/content/dam/mysite/background-images/bike-background.png');
+   background-size:  100%;
+   background-position: center;
+   background-repeat: no-repeat;
+   margin: 0;
+   height: 100vh;
+   width: 100vw;
+   margin-left: -99px;
+}
 
 .bike-details-section {
     background-color: #141414;
@@ -1079,7 +1102,7 @@ input[type="radio"]:checked::before {
 }
 
 .container {
-    max-width: 1200px;
+
     margin: 0 auto;
     padding: 0 15px;
 }
@@ -1093,9 +1116,11 @@ input[type="radio"]:checked::before {
 }
 
 .bike-cards {
+   	margin-left: 4rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 20px;
+    opacity: 0.8;
 }
 
 .bike-card {
@@ -1103,7 +1128,7 @@ input[type="radio"]:checked::before {
     /* Darker background for cards */
     padding: 20px;
     width: 327px;
-    height: 485px;
+    height: 460px;
     position: relative;
 }
 
@@ -1165,13 +1190,10 @@ input[type="radio"]:checked::before {
 }
 
 .bike-features {
-    height: 112px;
     display: flex;
     list-style: none;
-    margin-top: 20px;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 1.5rem;
 }
 
 .bike-features li {
@@ -1203,7 +1225,7 @@ input[type="radio"]:checked::before {
 .bike-info {
     position: relative;
     text-align: center;
-    top: 32px;
+    top: 16px;
 }
 
 .bike-name {
@@ -1215,13 +1237,6 @@ input[type="radio"]:checked::before {
 .bike-price {
     font-size: 16px;
     margin-bottom: 20px;
-}
-
-.bike-features {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 20px;
-    text-align: left;
 }
 
 .feature-item {

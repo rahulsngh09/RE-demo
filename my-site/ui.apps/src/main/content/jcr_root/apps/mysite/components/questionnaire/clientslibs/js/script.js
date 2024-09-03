@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextButton12 = document.getElementById('nextButton');
     const nextButton = document.querySelector("#section5 .next");
     const mainSection = document.querySelector("#main-section");
-    const testRideButtons = document.querySelectorAll(".test-ride-btn");
-    const formOverlay = document.getElementById("test-ride-form");
-    const closeButton = document.querySelector(".close-btn");
-    const checkbox = document.getElementById('agree');
-    const submitBtn = document.querySelector('.submit-btn');
+    // const testRideButtons = document.querySelectorAll(".test-ride-btn");
+    // const testBtn = document.getElementById('book-a-test-ride')
+    // console.log('testride', testBtn);
+    
+    
 
 
     checkboxes.forEach(checkbox => {
@@ -19,6 +19,37 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    document.querySelectorAll('.option-item').forEach(item => {
+        item.addEventListener('click', function(event) {
+           
+            // Check if a label or checkbox was clicked directly
+            const checkbox = this.querySelector('.option-checkbox');
+            if (checkbox) {
+                checkbox.checked = !checkbox.checked; // Toggle checkbox state
+                updateButtonState();
+            }
+        });
+    });
+
+    function updateButtonState() {
+        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        nextButton12.disabled = !isChecked;
+        if (!isChecked) {
+            nextButton.classList.add('disabled');
+        } else {
+            nextButton.classList.remove('disabled');
+        }
+    }
+
+    function updateButtonState() {
+        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        nextButton12.disabled = !isChecked;
+        if (!isChecked) {
+            nextButton.classList.add('disabled');
+        } else {
+            nextButton.classList.remove('disabled');
+        }
+    }
 
     $(document).ready(function () {
         function updateNumbers($sortable) {
@@ -41,30 +72,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    function updateButtonState() {
-        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-        nextButton12.disabled = !isChecked;
-        if (!isChecked) {
-            nextButton.classList.add('disabled');
-        } else {
-            nextButton.classList.remove('disabled');
-        }
-    }
 
-    testRideButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            console.log("form is....")
-            formOverlay.style.display = "flex";
-        });
-    });
 
-    closeButton.addEventListener("click", function () {
-        formOverlay.style.display = "none";
-    });
 
-    checkbox.addEventListener('change', function () {
-        submitBtn.disabled = !this.checked;
-    });
+    // checkbox.addEventListener('change', function () {
+    //     submitBtn.disabled = !this.checked;
+    // });
 
     updateButtonState();
 
@@ -201,49 +214,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-function showForm() {
-    var formOverlay = document.getElementById('test-ride-form');
-    console.log("form is going to show")
-    formOverlay.style.display = 'flex';
-}
 
-// Function to hide the form
-function hideForm() {
-    var formOverlay = document.getElementById('test-ride-form');
-    formOverlay.style.display = 'none';
-}
 
-// Add event listeners to buttons
-var testRideButton = document.querySelector('.test-ride-btn');
-var closeButton = document.querySelector('.close-btn');
-
-// When the "BOOK A TEST RIDE" button is clicked, show the form
-if (testRideButton) {
-    testRideButton.onclick = showForm;
-}
-
-// When the close button is clicked, hide the form
-if (closeButton) {
-    closeButton.onclick = hideForm;
-}
-
-$(document).ready(function () {
-    $('#callbackForm').on('submit', function (event) {
-        event.preventDefault();
-        $('#form-content').hide();
-        $('#success-message').show();
-    });
-
-    $('#close-popup').on('click', function () {
-        $('#test-ride-form').hide();
-    });
-
-    $('#agree').on('change', function () {
-        $('.submit-btn').prop('disabled', !this.checked);
-    });
-
-    $('.close-btn').on('click', function () {
-        $('#test-ride-form').hide();
-    });
-
-});

@@ -3,27 +3,63 @@ h1,
 h2,
 p,
 ul,
-li,
-button {
+li {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* font-family: Arial, sans-serif; */
-    font: Montserrat;
-    
+    font-family: "Montserrat", sans-serif;
+    border-radius: 9px;
+    font-optical-sizing: auto;
 }
+
+.section-one{
+    background-image: url('/content/dam/mysite/background-images/background-image.png');
+    background-size: 50% 100%;
+    background-position: left center;
+    background-repeat: no-repeat;
+    margin: 0;
+    
+    height: 100vh;
+    width: 100%;
+    background-position: 66px center;
+}
+
+/* .background-container{
+    background-image: url('/content/dam/mysite/background-images/background-image.png');
+    background-size: 50% 100%;
+    background-position: left center;
+    background-repeat: no-repeat;
+    margin: 0;
+    background-color: #000;
+    height: 100vh;
+    background-position: 66px center;
+} */
+
+.questionnaire-section {
+    margin-top: 20px;
+    /* Additional styles for your sections */
+}
+
 
 .questionnaire-section {
     display: none;
-    /* Hide all sections initially */
     color: white;
-    background-color: black;
-    padding: 30px;
-    max-width: 800px;
-    margin: 50px auto;
+    /* padding: 20px; */
+    width: 560px;
+    height: 360px;
+    margin: 58px auto;
     border-radius: 8px;
-    margin-top: 7rem;
 }
+
+
+
+/* .sortable.answers {
+    width: 560px; 
+    height: 360px;
+    margin: 0 auto; 
+    padding: 10px; 
+    height: 360px;
+} */
 
 .questionnaire-section.active {
     display: block;
@@ -35,15 +71,56 @@ button {
     margin-bottom: 20px;
 }
 
+
 .questionnaire-section ul {
     list-style-type: none;
     margin-bottom: 20px;
 }
 
+.step-header {
+    font-size: 24px;
+    color: #fff;
+}
+
+.current-step {
+    font-weight: bold;
+    color: #fff;
+    width: 71px;
+    height: 20px;
+    font-size: 18px;
+}
+
+.of-total {
+    color: #aaa;
+    font-size: 18px;
+}
+
+.highlighted {
+    color: #fff;
+}
+
+.dimmed {
+    color: #aaa;
+}
+
+.answer-id-box {
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 40px;
+    color: black;
+    text-align: center;
+    background-color:#FFFFFF;
+    border-radius: 20px;
+    margin-top: 9px;
+}
+
+
 .questionnaire-section li {
     background-color: #333;
     cursor: move;
-    margin: 0px 0px 20px 0px;
+    margin: 0px 0px 20px 20px;
     padding: 15px;
     background-color: #333;
     border-left: 1.5px solid #fff;
@@ -52,6 +129,7 @@ button {
     align-items: center;
     height: 65px;
     gap: 8px;
+    position: relative;
 }
 
 
@@ -72,15 +150,12 @@ button {
 
 .answer-container {
     display: flex;
+
 }
 
-.answer-id-box {
-    width: 5%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    height: 64px;
-    color: #A7A7A7;
+.answer-container2 {
+    position: absolute;
+    left: -58px;
 }
 
 .answer-section {
@@ -169,8 +244,10 @@ button:disabled {
     font-weight: 700;
     background-color: #373737;
     color: #181818;
-    cursor: not-allowed; /* Change cursor to not-allowed */
+    cursor: not-allowed;
+    /* Change cursor to not-allowed */
 }
+
 /* style.css */
 
 /* Hide the default checkbox */
@@ -178,18 +255,18 @@ input[type="radio"] {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #ccc;
-    border-radius: 2px;
-    background-color: #000;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #ccc;
+    border-radius: 16px;
     cursor: pointer;
     position: relative;
+    color: #FFFFFF;
 }
 
 /* Style the checkbox when it is checked */
 input[type="radio"]:checked {
-    background-color: #FD5050;
+    background-color: #FFFFFF;
     border: none;
 }
 
@@ -199,8 +276,8 @@ input[type="radio"]:checked::before {
     position: absolute;
     width: 5px;
     height: 12.42px;
-    top: 2.58px;
-    left: 6.99px;
+    top: 4px;
+    left: 10px;
     gap: 0px;
     color: #000;
     border: solid #000;
@@ -212,16 +289,16 @@ input[type="radio"]:checked::before {
 .questionnaire-section .prev,
 .questionnaire-section .next {
     display: flex;
-    width: 176px;
-    height: 48px;
+    width: 268px;
+    height: 60px;
     gap: 8px;
-    border: 1px solid #A7A7A7;
+    border: 1px solid #525252;
     align-items: center;
     justify-content: center;
     font-size: 1em;
     cursor: pointer;
-    margin-top: 20px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
+    border-radius: 8px;
 }
 
 /* .questionnaire-section .prev:hover,
@@ -230,9 +307,8 @@ input[type="radio"]:checked::before {
 } */
 
 .buttton-container {
-    margin-top: 2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .first {
@@ -241,15 +317,19 @@ input[type="radio"]:checked::before {
 }
 
 .prev {
-    margin-left: 8px;
+    /* margin-left: 8px; */
     background: transparent;
     color: #fff;
 }
 
 .next {
-    background: linear-gradient(112.38deg, rgba(255, 255, 255, 0.5) -120.84%, rgba(255, 255, 255, 0.1) 79.67%);
-    border: 1px solid;
-    color: #e6b800;
+    background: #525252;
+    border: 1px solid #FFFFFF66;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 20px;
 }
 
 .drag-to-rearrange {
@@ -281,16 +361,22 @@ input[type="radio"]:checked::before {
 }
 
 .image-card {
-    width: calc(33.33% - 20px);
     position: relative;
     overflow: hidden;
 }
 
+.help-me-choose-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px;
+}
+
 .img-div {
-    
+
     width: 100%;
-    height: 200px;
-   
+    height: 124px;
+
 }
 
 .img-div img {
@@ -308,45 +394,53 @@ input[type="radio"]:checked::before {
 }
 
 .overlay {
-    display: none;
+    display: none; /* Hidden by default */
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    width: 123px;
+    height: 124px;
+    background: rgba(255, 255, 255, 0.35); /* Semi-transparent white background */
+    border: 2px solid white;
+    z-index: 10; /* Ensure it's above other content */
 }
 
+/* Styling for the checkmark */
 .checkmark {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 11px;
     width: 30px;
     height: 30px;
-    background-color: green;
+    background-color: #fff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 20; /* Ensure it's above the .overlay */
 }
+
+/* Checkmark styling */
 .checkmark::after {
     content: '✔';
-    color: white;
+    color: #000;
     font-size: 20px;
 }
+
+/* Show overlay when .image-card has class .selected */
 .image-card.selected .overlay {
     display: block;
 }
-.button-container {
-    margin-top: 20px;
-    text-align: center; /* Center the buttons in the container */
-}
+
 .button-container .next {
-    background-color: #ccc; /* Initially disabled style */
+    background-color: #ccc;
+    /* Initially disabled style */
     cursor: not-allowed;
 }
+
 .button-container .next.enabled {
-    background-color: #f90; /* Enabled button style */
+    background-color: #525252;
+    /* Enabled button style */
     cursor: pointer;
 }
 
@@ -395,15 +489,19 @@ input[type="radio"]:checked::before {
 }
 
 .motorcycle-card {
+    display: flex;
     background-color: #1b1b1b;
     border: 1px solid #444;
     border-radius: 10px;
     padding: 20px;
-    width: 300px;
+    width: 338px;
+    height: 605px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     margin: 10px;
     transition: transform 0.3s, box-shadow 0.3s;
+    align-items: center;
+    justify-content: center;
 }
 
 .motorcycle-card:hover,
@@ -426,29 +524,35 @@ input[type="radio"]:checked::before {
 
 .image-thumbnails {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: 10px;
     margin-top: 10px;
+    width: 310px;
+    height: 80px;
+    overflow: hidden;
+
+    
 }
 
 .image-thumbnails img {
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
+    width: 102px;
+    height: 80px;
     object-fit: cover;
     border: 2px solid #444;
     cursor: pointer;
-    transition: transform 0.3s;
-    
+    transform: skew(10deg);
+
 }
-.middle-image{
-    transform: scale(1.2); /* Zoom effect for the middle image */
+
+.middle-image {
+    transform: scale(1.2);
+    /* Zoom effect for the middle image */
     z-index: 1;
 }
 
-.image-thumbnails img:hover {
+/* .image-thumbnails img:hover {
     transform: scale(1.1);
-}
+} */
 
 .price {
     display: flex;
@@ -458,6 +562,7 @@ input[type="radio"]:checked::before {
     align-items: center;
     justify-content: flex-start;
     gap: 6px;
+    margin-left: -11rem;
 }
 
 .features {
@@ -509,20 +614,35 @@ input[type="radio"]:checked::before {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    /* gap: 10px; */
+    width: 364px;
+    height: 48px;
+
+}
+.nameAndImgDiv{
+    display: flex;
+    justify-content: space-between;
+    
 }
 
-.configure-btn{
+/* .nameAndImgDiv img{
+    vertical-align: middle; 
+    height: 24px;
+    width: auto; 
+} */
+
+.configure-btn {
     margin: 0px;
     border: 1px solid #A7A7A7;
-    color: #EDEDED;
+    color: #FFFFFF;
+    border-radius: 0px;
 }
 
 .actions .configure-btn,
 .actions .test-ride-btn {
     display: flex;
     height: 40px;
-    width: auto;
+    width: 204px;
     padding: 8px 16px 8px 16px;
     cursor: pointer;
     align-items: center;
@@ -546,17 +666,14 @@ input[type="radio"]:checked::before {
 
 #main-section {
     display: none;
-    margin-top: 8rem;
+    margin-top: 3rem;
     padding: 20px;
-    background: #1c1c1c;
     color: #fff;
+  
 }
-.motorcycle-image{
-    margin-top: -1.2rem;
-    width: 340px;
-    margin-left: -19px;
-}
-.motorcycle-image h2{
+
+
+.motorcycle-image h2 {
     margin-right: 200px;
 }
 
@@ -592,7 +709,7 @@ input[type="radio"]:checked::before {
 .form-container h2 {
     font-size: 20px;
     margin-bottom: 20px;
-    
+
 }
 
 .close-btn {
@@ -614,7 +731,7 @@ input[type="radio"]:checked::before {
 .form-group label {
     display: block;
     margin-bottom: 5px;
-    color: #fff;
+    color: #EDEDED;
 }
 
 .form-group input[type="text"],
@@ -622,26 +739,35 @@ input[type="radio"]:checked::before {
 .form-group input[type="email"] {
     width: 100%;
     padding: 10px;
-    border: none;
-    border-radius: 3px;
-    background: #000;
+    border-radius: 4px;
+    border: 1px solid #333;
+    background-color: #333;
     color: #fff;
+    font-size: 14px;
 }
-
-
 
 .phone-input {
+    width: 105%;
     display: flex;
+    align-items: center;
 }
 
-.phone-input select {
-    width: 80px;
-    margin-right: 10px;
+.phone-input span {
+    background-color: #444;
     padding: 10px;
-    border: none;
-    border-radius: 3px;
-    background: #000;
+    border-radius: 4px 0 0 4px;
+    border-right: none;
     color: #fff;
+}
+
+.phone-input input {
+    border-radius: 0 4px 4px 0;
+}
+
+.form-group.terms-group {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
 }
 
 .disclaimer {
@@ -657,24 +783,28 @@ input[type="radio"]:checked::before {
 .submit-btn {
     width: 100%;
     padding: 15px;
-    background: #ffcc00;
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    color: #000;
     font-weight: bold;
     text-transform: uppercase;
+    background: linear-gradient(112.38deg, rgba(255, 255, 255, 0.5) -120.84%, rgba(255, 255, 255, 0.1) 79.67%);
+    border: 1px solid;
+    color: #e6b800;
 }
 
 .submit-btn:disabled {
-    background: #ccc;
+    font-weight: 700;
+    background-color: #373737;
+    color: #181818;
     cursor: not-allowed;
 }
 
 .form-container a {
-    color: #ffcc00;
+    color: #FD5050;
     text-decoration: none;
 }
+
 .form-container a:hover {
     text-decoration: underline;
 }
@@ -701,39 +831,58 @@ input[type="radio"]:checked::before {
     font-weight: bold;
 }
 
-.heading{
-    margin-left: 35rem;
-    /* background-color: red; */
+.heading {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28.8px;
+    letter-spacing: 0.02em;
+    text-align: center;
 }
+
 /* General Styles */
 .notification {
     display: none;
-    position: fixed; /* Fixed position to ensure it's always visible */
-    bottom: 20px; /* Position at the bottom of the viewport */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Center horizontally */
-    background-color: #f44336; /* Red background for error/warning */
-    color: white; /* White text */
-    padding: 15px 20px; /* Padding for spacing */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 16px; /* Text size */
-    font-weight: bold; /* Bold text */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Shadow for better visibility */
-    z-index: 1000; /* Ensure it appears above other content */
-    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition for appearance */
+    position: fixed;
+    /* Fixed position to ensure it's always visible */
+    bottom: 20px;
+    /* Position at the bottom of the viewport */
+    left: 50%;
+    /* Center horizontally */
+    transform: translateX(-50%);
+    /* Center horizontally */
+    background-color: #f44336;
+    /* Red background for error/warning */
+    color: white;
+    /* White text */
+    padding: 15px 20px;
+    /* Padding for spacing */
+    border-radius: 5px;
+    /* Rounded corners */
+    font-size: 16px;
+    /* Text size */
+    font-weight: bold;
+    /* Bold text */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    /* Shadow for better visibility */
+    z-index: 1000;
+    /* Ensure it appears above other content */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    /* Smooth transition for appearance */
 }
 
 /* Show notification */
 .notification.show {
     display: block;
     opacity: 1;
-    transform: translateX(-50%) translateY(0); /* Slide up into view */
+    transform: translateX(-50%) translateY(0);
+    /* Slide up into view */
 }
 
 /* Hide notification */
 .notification.hide {
     opacity: 0;
-    transform: translateX(-50%) translateY(100px); /* Slide down out of view */
+    transform: translateX(-50%) translateY(100px);
+    /* Slide down out of view */
 }
 
 /* Close button styling */
@@ -758,55 +907,88 @@ input[type="radio"]:checked::before {
 .next.disabled {
     cursor: not-allowed;
     opacity: 0.5;
+    background-color: #525252;
+    color: #181818;
 }
+
 
 
 /* Section 4 image grid styles */
 #section4 .image-grid {
     display: flex;
-    flex-wrap: wrap; /* Allow wrapping to the next line */
-    gap: 15px; /* Space between images */
+    flex-wrap: wrap;
+    /* Allow wrapping to the next line */
+    gap: 15px;
+    margin-bottom: 4rem;
+    /* Space between images */
 }
 
 #section4 .image-card {
-    flex: 1 1 calc(33.333% - 15px); /* 3 images per row, accounting for gaps */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    position: relative; /* Position relative for absolute positioning of the overlay */
+    flex: 1 1 calc(33.333% - 15px);
+    /* 3 images per row, accounting for gaps */
+    box-sizing: border-box;
+    /* Include padding and border in the element's total width and height */
+    position: relative;
+    /* Position relative for absolute positioning of the overlay */
 }
 
 #section4 .image-card img {
-    width: 100%; /* Make image fill the container */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Ensure image doesn't have extra space below */
-    transition: box-shadow 0.3s ease; /* Smooth transition for shadow effect */
+    width: 100%;
+    /* Make image fill the container */
+    height: auto;
+    /* Maintain aspect ratio */
+    display: block;
+    /* Ensure image doesn't have extra space below */
+    transition: box-shadow 0.3s ease;
+    /* Smooth transition for shadow effect */
 }
 
 #section4 .image-card.selected img {
-    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.6); /* Blue shadow indicating selection */
+    box-shadow: 0 0 0 4px;
+    /* Blue shadow indicating selection */
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #fff;
+}
+
+::-webkit-scrollbar:hover {
+    background: #555;
 }
 
 /* Section 5 image grid styles */
 #section5 .image-grid {
     display: flex;
-    flex-wrap: wrap; /* Allow wrapping to the next line */
-    gap: 15px; /* Space between images */
+    flex-wrap: wrap;
+    /* Allow wrapping to the next line */
+    gap: 15px;
+    height: 430px;
+    width: 565px;
+    margin-bottom: 3rem;
+    overflow-y: scroll;
+    /* Space between images */
 }
 
 #section5 .image-card {
-    flex: 1 1 calc(25% - 15px); /* 4 images per row, accounting for gaps */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    position: relative; /* Position relative for absolute positioning of the overlay */
+    /* flex: 1 1 calc(25% - 15px);
+    box-sizing: border-box;
+    position: relative; */
 }
 
 #section5 .image-card img {
-    width: 100%; /* Make image fill the container */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Ensure image doesn't have extra space below */
-    transition: box-shadow 0.3s ease; /* Smooth transition for shadow effect */
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: box-shadow 0.3s ease;
 }
 
 #section5 .image-card.selected img {
-    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.6); /* Blue shadow indicating selection */
+    /* box-shadow: 0 0 0 4px; */
+    /* Blue shadow indicating selection */
 }
 
 .cta-message {
@@ -818,11 +1000,12 @@ input[type="radio"]:checked::before {
 
 .cta-message p {
     margin: 5px 0;
+    text-decoration: underline;
 }
 
 .cta-message .connect-link,
 .cta-message .retry-link {
-    color: #ff0000;
+    /* color: #ff0000; */
     text-decoration: none;
     font-weight: bold;
 }
@@ -835,11 +1018,15 @@ input[type="radio"]:checked::before {
 .cta-message span {
     color: #fff;
 }
-.middle-image{
-    transform: scale(1.2); /* Zoom effect for the middle image */
-    z-index: 1; /* Ensure it sits above other images */
+
+.middle-image {
+    transform: scale(1.2);
+    /* Zoom effect for the middle image */
+    z-index: 1;
+    /* Ensure it sits above other images */
 }
-.motorcycle-image h2{
+
+.motorcycle-image h2 {
     margin-right: 150px;
     font-size: 20px;
     margin-bottom: 20px;
@@ -848,40 +1035,232 @@ input[type="radio"]:checked::before {
 
 .motorcycle-container {
     display: flex;
-    
+
     gap: 20px;
 }
 
-.motorcycle-card {
-    background: #2a2a2a;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-    position: relative;
-}
 
 .motorcycle-image {
-    height: 250px; /* Fixed height for the container */
+    /* height: 250px; Fixed height for the container */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-size: cover;
     background-position: center;
-    overflow: hidden; /* Hide any overflowing image content */
+    overflow: hidden;
+    /* Hide any overflowing image content */
+    position: relative;
+    padding-left: 9px;
+    width: 352px;
+}
+
+.inputformdata {
+    width: 50%;
+}
+
+.main-background {
+    background-image: url('/content/dam/mysite/background-images/bike-background.png');
+    background-size:  100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    /* background-position: 66px center; */
+    margin-left: -99px;
+}
+
+.bike-details-section {
+    background-color: #141414;
+    /* Dark background similar to the image */
+    padding: 50px 0;
+    color: #fff;
+}
+
+.container {
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.bike-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.bike-card {
+    /* background-color: #000000; */
+    /* Darker background for cards */
+    padding: 20px;
+    width: 327px;
+    height: 485px;
     position: relative;
 }
 
+/* .bike-image-container {
+    position: relative;
+    top: -30px;
+}
+.bike-image-container .hero-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+
+} */
+
+.bike-hero-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
 
 
+/* .image-thumbnails img {
+    width: 102px;
+    height: 86px;
+    border-radius: 5px;
+    object-fit: cover;
+    border: 2px solid #444;
+    cursor: pointer;
+    transition: transform 0.3s;
+    border-radius: 8px;
 
+} */
 
+.middle-image {
+    transform: scale(1.2);
+    /* Zoom effect for the middle image */
+    z-index: 1;
+}
 
+/* .image-thumbnails img:hover {
+    transform: scale(1.1);
+} */
+/* .image-thumbnails .small-bike-image:nth-child(2) {
+    /* Add your specific styles here */
+    /* border: 2px solid blue;
+    transform: scale(1.1); 
+} */
 
+.price {
+    display: flex;
+    font-size: 12px;
+    margin: 15px 0;
+    color: #ffffff;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
 
+}
 
+.bike-features {
+    height: 112px;
+    display: flex;
+    list-style: none;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+}
 
+.bike-features li {
+    display: flex;
+    width: auto;
+    height: 32px;
+    padding: 8px 10px 8px 10px;
+    border-radius: 0px;
+    background-color: #282828;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: #A7A7A7;
+}
 
+.tick {
+    font-weight: 500;
+    font-size: 12px;
+    margin-right: 10px;
+    /* Green color for the tick symbol */
+}
 
+.small-bike-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 5px;
+}
 
+.bike-info {
+    position: relative;
+    text-align: center;
+    top: 32px;
+}
+
+.bike-name {
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+.bike-price {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.bike-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.feature-item {
+    font-size: 14px;
+    padding: 5px 0;
+    border-bottom: 1px solid #333;
+}
+
+.bike-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.configure-now-btn,
+.book-test-ride-btn {
+    background-color: #ffc107;
+    /* Yellowish button color */
+    padding: 10px 15px;
+    /* border-radius: 5px; */
+    color: #000;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.configure-now-btn:hover,
+.book-test-ride-btn:hover {
+    background-color: #e0a800;
+}
+
+.book-test-ride-btn {
+    background-color: #343a40;
+    /* Dark button color */
+    color: #fff;
+}
+
+.book-test-ride-btn:hover {
+    background-color: #23272b;
+}
 

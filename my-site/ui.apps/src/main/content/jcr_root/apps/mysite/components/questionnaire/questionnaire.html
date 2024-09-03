@@ -3,8 +3,8 @@
 </sly>
 
 <sly data-sly-use.model="com.mysite.core.models.QuestionnaireOptions">
-    <section class="background-container">
-        <section style="width: 100%; height: 100%;">
+    <div>
+        <section class="section-one">
             <div id="questionnaire" class="questionnaire-section active">
                 <div class="container">
                     <h2 class="step-header">
@@ -35,7 +35,7 @@
                     </ul>
                     <div class="buttton-container first">
                         <button type="button" class="next" data-next-section="#section2"
-                            onclick="storePreferences()">NEXT</button>
+                            onclick="storePreferences();">NEXT</button>
                     </div>
                 </div>
             </div>
@@ -52,15 +52,17 @@
                 <p>${model.question2}</p>
                 <p class="drag-to-rearrange">Select any one.</p>
                 <ul>
-                    <li data-sly-repeat.screen2Answer="${model.screen2Answers}" style="cursor: default;">
-                        <input type="radio" name="pillion" value=" ${screen2Answer}" id="myCheckbox">
+                    <li data-sly-repeat.screen2Answer="${model.screen2Answers}" style="cursor: default;"
+                        class="option-item">
+                        <input type="radio" name="pillion" value=" ${screen2Answer}" id="myCheckbox"
+                            class="option-checkbox">
                         <label>${screen2Answer}</label>
                     </li>
 
                 </ul>
                 <div class="buttton-container">
                     <button type="button" class="prev" data-prev-section="#questionnaire">BACK</button>
-                    <button type="button" id="nextButton" class="next" onclick="checkSelection()"
+                    <button type="button" id="nextButton" class="next" onclick="checkSelection();"
                         data-next-section="#section3" disabled>NEXT</button>
                 </div>
             </div>
@@ -89,7 +91,7 @@
 
                 <div class="buttton-container">
                     <button type="button" class="prev" data-prev-section="#section2">BACK</button>
-                    <button type="button" class="next" onclick="placeToRide()"
+                    <button type="button" class="next" onclick="placeToRide();"
                         data-next-section="#section4">NEXT</button>
                 </div>
 
@@ -129,7 +131,7 @@
                 <div class="buttton-container">
                     <button type="button" class="prev" data-prev-section="#section3">BACK</button>
                     <button type="button" class="next riding button-section" data-next-section="#section5"
-                        id="callApiBtn" onclick="imageTagAttribute()" disabled>NEXT</button>
+                        id="callApiBtn" onclick="imageTagAttribute();" disabled>NEXT</button>
                 </div>
             </div>
 
@@ -146,7 +148,7 @@
 
                 <div class="notification">
                     <button class="close-btn" aria-label="Close">&times;</button>
-                   
+
                 </div> <!-- Notification element -->
                 <div class="image-grid">
 
@@ -166,71 +168,12 @@
                         disabled>NEXT</button>
                 </div>
             </div>
-        </section>
-        <section>
 
-            </div>
+
 
             <!-- Handlebars template -->
             <div class="main-background" id="main-section">
-                <script id="bike-template" type="text/x-handlebars-template">
-                    <h2 class="section-title">Meet your next Royal Enfield Motorcycle</h2>
-                    <div class="bike-cards">
-                        {{#each bikes}}
-                            <div style="height: 570px; background-color: #000; border: 2px solid grey; border-radius: 6px;">
-                                <div>
-                                    <div class="bike-card">
-                                        <div class="nameAndImgDiv">
-                                            <h3 style="margin: 0px;">{{bikeName}}</h3>
-                                            <span><img src="{{forwardIcon}}" alt="Forward Icon"></span>
-                                        </div>
-                                        
-                                        <div class="bike-image-container">
-                                            <div class="hero-image">
-                                                <img src="{{bikeHeroImage}}" alt="{{bikeName}} Image" class="hero-image" width="289px" height="178px">
-                                            </div>
-                                        </div>
-                                        
-                                        <p style="display: flex; justify-content: center;"><strong>Starts from ₹</strong> {{bikePrice}}</p>
-                                        <div class="image-thumbnails">
-                                            {{#each bikeSmallImages}}
-                                                <img src="{{this}}" alt="Small Image">
-                                            {{/each}}
-                                        </div>
-            
-                                        <div class="bike-info">
-                                            <ul class="bike-features">
-                                                {{#each bikeFeatures}}
-                                                    <li>{{this}}</li>
-                                                {{/each}}
-                                            </ul>
-                                        </div>
-                                    </div>
-            
-                                    <div class="actions">
-                                        <button class="configure-btn prev">CONFIGURE NOW</button>
-                                        <button class="test-ride-btn" style="
-                                            display: flex;
-                                            height: 40px;
-                                            width: 204px;
-                                            padding: 8px 16px;
-                                            cursor: pointer;
-                                            align-items: center;
-                                            justify-content: center;
-                                            font-size: 12px;
-                                            font-weight: 700;
-                                        ">BOOK A TEST RIDE</button>
-                                    </div>
-                                </div>
-                            </div>
-                        {{/each}}
-                    </div>
-                </script>
-                <div>
-                    <span>Get more recommendations</span>
-                </div>
             </div>
-            
 
 
             <div id="test-ride-form" class="form-overlay" style="display: none;">
@@ -248,8 +191,8 @@
                         <div class="form-group">
                             <label for="phoneNumber">Phone Number</label>
                             <div class="phone-input">
-                                <span>+91</span>
-                                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="99878677868" required
+                                <!-- <span>+91</span> -->
+                                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+91" required
                                     oninput="validatePhoneNumber(this)" pattern="\d{10}"
                                     title="Please enter a 10-digit phone number.">
                             </div>
@@ -281,13 +224,74 @@
                     </form>
                 </div>
             </div>
-
-            </div>
-
-
         </section>
-    </section>
+    </div>
+
 </sly>
+
+<script id="bike-template" type="text/x-handlebars-template">
+    <h2 class="section-title">Meet your next Royal Enfield Motorcycle</h2>
+    <div class="bike-cards">
+        {{#each bikes}}
+            <div style="height: 543px; background-color: #000; border: 2px solid grey; border-radius: 6px;">
+                <div>
+                    <div class="bike-card">
+                        <div class="nameAndImgDiv">
+                            <h3 style="margin: 0px;">{{bikeName}}</h3>
+                            <span><img src="{{forwardIcon}}" alt="Forward Icon"></span>
+                        </div>
+                        
+                        <div class="bike-image-container">
+                            <div class="hero-image">
+                                <img src="{{bikeHeroImage}}" alt="{{bikeName}} Image" class="hero-image" width="289px" height="178px">
+                            </div>
+                        </div>
+                        
+                        <p style="display: flex; justify-content: center;"><strong>Starts from ₹</strong> {{bikePrice}}</p>
+                        <div class="image-thumbnails">
+                            {{#each bikeSmallImages}}
+                                <img src="{{this}}" alt="Small Image" >
+                            {{/each}}
+                        </div>
+
+                        <div class="bike-info">
+                            <ul class="bike-features">
+                                {{#each bikeFeatures}}
+                                    <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+
+                   
+                </div>
+                <div class="actions">
+                    <button class="configure-btn prev">CONFIGURE NOW</button>
+                    <button class="test-ride-btn" id="book-a-test-ride" style="
+                        display: flex;
+                        height: 40px;
+                        width: 204px;
+                        padding: 8px 16px;
+                        cursor: pointer;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 12px;
+                        font-weight: 700;
+                    ">BOOK A TEST RIDE</button>
+    
+                </div>
+            </div>
+        {{/each}}
+
+       
+
+    </div>
+    <div class="cta-message">
+        <p>
+            <a href="#" class="retry-link">Get more recommandations</a>
+        </p>
+    </div>
+</script>
 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -298,3 +302,4 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>

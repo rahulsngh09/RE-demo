@@ -20,14 +20,19 @@ var placePreferences = [];
 var selectedImages = [];
 var selectedOption;
 var selectedImageIds = [];
-let currentStep = 1; 
+let currentStep = 1;
+
+
+const testBtn = document.getElementById('book-a-test-ride')
+console.log('pref file testride', testBtn);
+
 
 function storePreferences() {
     console.log('Storing preferences...');
     preferences = [];
 
     const items = document.querySelectorAll('.sortable .section1');
-    items.forEach(function(item) {
+    items.forEach(function (item) {
         const value = item.getAttribute('data-value');
         const singleWord = value.split(' ')[0]; // Split by space and take the first word
         preferences.push(singleWord);
@@ -40,7 +45,7 @@ function placeToRide() {
     placePreferences = [];
 
     const items = document.querySelectorAll('.sortable .section3');
-    items.forEach(function(item) {
+    items.forEach(function (item) {
         const value = item.getAttribute('data-value');
         placePreferences.push(value);
     });
@@ -98,21 +103,9 @@ function handleBackButtonClick() {
 
 initializeEventListeners();
 
-
-
-function onNextButtonClick() {
-    updateSelectedImages(); // Update selected images when navigating to the next screen
-}
-
-// Function to handle the navigation back to the previous screen
-function onBackButtonClick() {
-    updateSelectedImages(); // Update selected images when navigating back
-}
-
-document.getElementById('section5Btn').addEventListener('click', onNextButtonClick);
-document.getElementById('back-button').addEventListener('click', onBackButtonClick);
-
 //*******************************************************************************
+
+
 
 function imageTagAttribute() {
     const items = document.querySelectorAll('.selected');
@@ -162,7 +155,7 @@ function imageTagAttribute() {
             }).then(response => response.json())
                 .then(data => {
                     console.log('GET Success:', data);
-                
+
                     const imageMappings = data.image_mappings;
                     const imageGallery = document.getElementById('img-div');
 
@@ -172,48 +165,36 @@ function imageTagAttribute() {
                             const image = imageMappings[key];
 
                             const imageGrid = document.createElement('div');
-                            imageGrid.classList.add('image-grid')
                             const divElement = document.createElement('div');
                             const imgDiv = document.createElement('div');
+                            const imgElement = document.createElement('img');
+                            const overlayDiv = document.createElement('div');
+                            const checkmarkDiv = document.createElement('div');
+                            imageGrid.classList.add('image-grid')
                             imgDiv.classList.add('img-div')
 
                             divElement.classList.add('image-card');
                             divElement.setAttribute('data-image-id', key);
 
-                            const imgElement = document.createElement('img');
-
                             // imgElement.classList.add('selectable-image')
-                            const overlayDiv = document.createElement('div');
                             overlayDiv.className = 'overlay';
-                            const checkmarkDiv = document.createElement('div');
                             checkmarkDiv.className = 'checkmark';
-
-                            overlayDiv.appendChild(checkmarkDiv);
-                            divElement.appendChild(overlayDiv)
 
                             imgElement.src = image.image_url;
                             imgElement.alt = image.title;
                             imgElement.title = image.title;
                             imgElement.style.width = '128px';
                             imgElement.style.height = '128px';
-
                             const tickImg = document.createElement('img');
 
+                            overlayDiv.appendChild(checkmarkDiv);
                             divElement.appendChild(imgElement);
+                            divElement.appendChild(overlayDiv)
                             if (divElement.classList.contains('selected')) {
                                 divElement.appendChild(tickImg);
                             }
 
-                            divElement.addEventListener('click', function () {
-                                if (!divElement.classList.contains('selected')) {
-                                    console.log('key', key);
-                                    selectedImageIds.push(key);
-                                } else {
-                                    selectedImageIds = selectedImageIds.filter(id => id !== key);
-                                }
 
-                                console.log('selectedId', selectedImageIds);
-                            });
                             imageGallery.appendChild(divElement);
                         }
                     }
@@ -243,7 +224,7 @@ function imageTagAttribute() {
                                 modelNames.forEach((modelName, index) => {
                                     params.append(`model_name_${index}`, modelName);
                                 });
-                                console.log("params",params.toString());
+                                console.log("params", params.toString());
 
                                 // After receiving the response, send it to your AEM servlet
                                 fetch(`/bin/captureBikeNames?${params.toString()}`, { // Replace with your actual servlet path
@@ -266,10 +247,28 @@ function imageTagAttribute() {
                                                 forwardIcon: bike.forwardIcon || 'defaultForwardIconUrl'
                                             }))
                                         };
-                    
+
                                         const html = template(context);
                                         document.getElementById('main-section').innerHTML = html;
                                         // Handle success of servlet call
+
+                                        const testRideButtons = document.querySelectorAll(".test-ride-btn");
+                                        const formOverlay = document.getElementById("test-ride-form");
+                                        const closeButton = document.querySelector(".close-btn");
+                                        const checkbox = document.getElementById('agree');
+                                        const submitBtn = document.querySelector('.submit-btn');
+                                        function formOPen() {
+                                            testRideButtons.forEach(button => {
+                                                button.addEventListener("click", function () {
+                                                    formOverlay.style.display = "flex";
+                                                });
+                                            });
+
+                                        }
+
+                                        formOPen();
+
+
                                     })
                                     .catch(servletError => {
                                         console.error('Servlet Error:', servletError);
@@ -290,6 +289,27 @@ function imageTagAttribute() {
 
     console.log('SelectedImages:', selectedImages);
 }
+
+$(document).ready(function () {
+    $('#callbackForm').on('submit', function (event) {
+        event.preventDefault();
+        $('#form-content').hide();
+        $('#success-message').show();
+    });
+
+    $('#close-popup').on('click', function () {
+        $('#test-ride-form').hide();
+    });
+
+    $('#agree').on('change', function () {
+        $('.submit-btn').prop('disabled', !this.checked);
+    });
+
+    $('.close-btn').on('click', function () {
+        $('#test-ride-form').hide();
+    });
+
+});
 
 function validateFullName(input) {
     const regex = /^[A-Za-z\s]+$/;
@@ -343,16 +363,6 @@ function validatePincode(input) {
     }
     toggleSubmitButton();
 }
-
-function toggleSubmitButton() {
-    const form = document.getElementById('callbackForm');
-    const submitButton = document.querySelector('.submit-btn');
-    submitButton.disabled = !form.checkValidity();
-}
-
-
-
-
 
 
 

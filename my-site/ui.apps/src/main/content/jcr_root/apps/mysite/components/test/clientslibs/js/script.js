@@ -1,34 +1,27 @@
-console.log("test component is running :");
-document.addEventListener("DOMContentLoaded", function() {
+// document.addEventListener('DOMContentLoaded', function() {
+//     async function fetchDataAndRender() {
+//         try {
+//             // Fetch the JSON data from your servlet
+//             const response = await fetch('/bin/bikesdetails'); // Adjust the URL as needed
+//             const data = await response.json();
 
-    const imageCards = document.querySelectorAll(".image-card");
-    const maxSelections = 3;
-    let selectedCount = 0;
+//             // Get the Handlebars template from the HTML
+//             const templateSource = document.getElementById('bike-template').innerHTML;
+//             const template = Handlebars.compile(templateSource);
 
-    imageCards.forEach(card => {
-        card.addEventListener("click", function() {
-            if (card.classList.contains("selected")) {
-                card.classList.remove("selected");
-                selectedCount--;
-            } else if (selectedCount < maxSelections) {
-                card.classList.add("selected");
-                selectedCount++;
-                
-            }
-        });
-    });
-});
-// const maxSelections = 3;
-//         let selectedImages = [];
+//             // Create a data context
+//             const context = { bikes: data };
 
-//         function selectImage(card) {
-//             if (card.classList.contains('selected')) {
-//                 card.classList.remove('selected');
-//                 selectedImages = selectedImages.filter(item => item !== card);
-//             } else {
-//                 if (selectedImages.length < maxSelections) {
-//                     card.classList.add('selected');
-//                     selectedImages.push(card);
-//                 }
-//             }
+//             // Generate the HTML
+//             const html = template(context);
+
+//             // Render the HTML into the page
+//             document.getElementById('content').innerHTML = html;
+//         } catch (error) {
+//             console.error('Error fetching or rendering data:', error);
 //         }
+//     }
+
+//     // Call the function to fetch data and render the template
+//     fetchDataAndRender();
+// });
