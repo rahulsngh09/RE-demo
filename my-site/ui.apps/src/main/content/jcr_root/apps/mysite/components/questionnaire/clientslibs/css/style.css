@@ -28,37 +28,6 @@ body{
     background-color: 060606;
 }
 
-
-
-/* .background-container{
-    background-image: url('/content/dam/mysite/background-images/background-image.png');
-   
-    background-size: 50% 100%;
-    
-    background-position: left center;
-   
-    background-repeat: no-repeat;
-   
-    margin: 0;
-    
-    background-color: #000;
-    height: 100vh;
-    background-position: 66px center;
-} */
-
-/* body.sections-visible {
-    background-image: url('/content/dam/mysite/background-images/background-image.png');
-}
-
-
-body.main-section-visible {
-    background-image: url('/content/dam/mysite/background-images/bike-background.png');
-} */
-
-
-
-
-
 .questionnaire-section {
     margin-top: 20px;
     /* Additional styles for your sections */
@@ -74,16 +43,6 @@ body.main-section-visible {
     margin: 58px auto;
     border-radius: 8px;
 }
-
-
-
-/* .sortable.answers {
-    width: 560px; 
-    height: 360px;
-    margin: 0 auto; 
-    padding: 10px; 
-    height: 360px;
-} */
 
 .questionnaire-section.active {
     display: block;
@@ -156,22 +115,6 @@ body.main-section-visible {
     position: relative;
 }
 
-
-/* .questionnaire-section button.next {
-    background-color: #ffcc00;
-    color: black;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-} */
-
-/* .questionnaire-section .next:hover {
-    background-color: #e6b800;
-} */
-
 .answer-container {
     display: flex;
 
@@ -186,81 +129,6 @@ body.main-section-visible {
     width: 95%;
     ;
 }
-
-/* /apps/mysite/clientlibs/questionnaire/styles.css */
-
-/* .questionnaire-section .image-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-} */
-
-/* .questionnaire-section .image-grid img {
-    width: calc(25% - 10px); /* Adjust width to fit 4 images per row with spacing 
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    border: 2px solid #444;
-    cursor: pointer;
-    transition: border-color 0.3s;
-} */
-
-/* .questionnaire-section .image-grid img:hover {
-    border-color: #ffcc00;
-} */
-
-/* Adjust button styles as needed */
-/* .questionnaire-section .prev,
-.questionnaire-section .next {
-    background-color: #ffcc00;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 20px;
-    margin-right: 10px;
-}
-
-.questionnaire-section .prev:hover,
-.questionnaire-section .next:hover {
-    background-color: #e6b800;
-} */
-
-/* /apps/mysite/clientlibs/questionnaire/styles.css */
-
-/* .questionnaire-section .image-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 10px;
-} */
-
-/* .questionnaire-section .image-container {
-    position: relative;
-    width: calc(25% - 10px); 
-    max-width: 100%;
-    cursor: pointer;
-    transition: border-color 0.3s;
-} */
-
-/* .questionnaire-section .image-container img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    border: 2px solid #444;
-} */
-
-/* .questionnaire-section .image-grid:hover img {
-    border-color: #ffcc00;
-} */
-
-/* .questionnaire-section .image-grid.selected img {
-    border-color: #00cc00;
-} */
-
-
 
 /* *************** checkbox design**************** */
 
@@ -324,11 +192,6 @@ input[type="radio"]:checked::before {
     /* margin-right: 10px; */
     border-radius: 8px;
 }
-
-/* .questionnaire-section .prev:hover,
-.questionnaire-section .next:hover {
-    background-color: #e6b800;
-} */
 
 .buttton-container {
     display: flex;
@@ -502,8 +365,6 @@ input[type="radio"]:checked::before {
 }
 
 
-/*  ************************************************************  */
-
 .motorcycle-container {
     display: flex;
     justify-content: center;
@@ -574,10 +435,6 @@ input[type="radio"]:checked::before {
     z-index: 1;
 }
 
-/* .image-thumbnails img:hover {
-    transform: scale(1.1);
-} */
-
 .price {
     display: flex;
     font-size: 12px;
@@ -619,20 +476,6 @@ input[type="radio"]:checked::before {
     /* Green color for the tick symbol */
 }
 
-/* .feature-item {
-    display: flex;
-    align-items: center;
-    margin: 5px 0;
-    color: #ccc;
-} */
-
-/* .feature-item .checkmark {
-    width: 20px;
-    height: 20px;
-    background: url('/etc/clientlibs/mysite/icons/check-icon.png') no-repeat center center;
-    background-size: contain;
-    margin-right: 10px;
-} */
 
 .actions {
     display: flex;
@@ -1132,17 +975,6 @@ input[type="radio"]:checked::before {
     position: relative;
 }
 
-/* .bike-image-container {
-    position: relative;
-    top: -30px;
-}
-.bike-image-container .hero-image{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-
-} */
 
 .bike-hero-image {
     width: 100%;
@@ -1151,32 +983,11 @@ input[type="radio"]:checked::before {
 }
 
 
-/* .image-thumbnails img {
-    width: 102px;
-    height: 86px;
-    border-radius: 5px;
-    object-fit: cover;
-    border: 2px solid #444;
-    cursor: pointer;
-    transition: transform 0.3s;
-    border-radius: 8px;
-
-} */
-
 .middle-image {
     transform: scale(1.2);
     /* Zoom effect for the middle image */
     z-index: 1;
 }
-
-/* .image-thumbnails img:hover {
-    transform: scale(1.1);
-} */
-/* .image-thumbnails .small-bike-image:nth-child(2) {
-    /* Add your specific styles here */
-    /* border: 2px solid blue;
-    transform: scale(1.1); 
-} */
 
 .price {
     display: flex;
