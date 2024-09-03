@@ -1082,7 +1082,7 @@ input[type="radio"]:checked::before {
 
 .book-test-ride-btn {
     background-color: #343a40;
-    /* Dark button color */
+ 
     color: #fff;
 }
 
