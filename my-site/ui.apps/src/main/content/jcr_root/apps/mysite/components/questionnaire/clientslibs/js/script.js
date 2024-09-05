@@ -67,9 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-
-
-
     // checkbox.addEventListener('change', function () {
     //     submitBtn.disabled = !this.checked;
     // });
@@ -179,6 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 selectionFinalized = true;
                 selectedImagesState[sectionId] = selectedImages;
                 console.log(`Selected Images for ${sectionId}:`);
+                console.log("selected image is :", selectedImages);
             } else {
                 // showNotification(`Please select at least ${minSelections} image(s) to proceed.`);
             }

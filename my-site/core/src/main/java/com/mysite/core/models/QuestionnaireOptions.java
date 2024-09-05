@@ -1,25 +1,16 @@
 package com.mysite.core.models;
 
 import com.mysite.core.bean.ImageEntity;
-import com.mysite.core.bean.BikeDetails;
 import com.mysite.core.bean.Index;
 import com.mysite.core.services.BikeDetailsService;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.api.resource.Resource;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.jcr.RepositoryException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 
@@ -52,21 +43,24 @@ public class QuestionnaireOptions {
     private String draggableIcon;
 
     List<Index> answers = new ArrayList<>();
-    List<String> ridingPositionImageAttributes = new ArrayList<>();
     List<String> screen2Answers = new ArrayList<>();
     List<String> screen3Answers = new ArrayList<>();
     List<String> allAuthoredImages = new ArrayList<>();
-    List<String> allPersonalInterestImages = new ArrayList<>();
     private List<ImageEntity> optionWithImages = new ArrayList<>();
 
     public List<String> getRidingPositionImageAttributes() {
+        List<String> ridingPositionImageAttributes = new ArrayList<>();
+//        if(screen4 != null && screen4.hasChildren()){
+//            for(Resource resource : screen4.getChildren()){
+//                allAuthoredImages.add(resource.getValueMap().get("option4", String.class));
+//            }
+//        }
         ridingPositionImageAttributes.add("Cruiser");
         ridingPositionImageAttributes.add("Upright");
         ridingPositionImageAttributes.add("Off");
         ridingPositionImageAttributes.add("Agg");
         ridingPositionImageAttributes.add("Relax");
         ridingPositionImageAttributes.add("Cafe");
-
         return ridingPositionImageAttributes;
     }
 
@@ -106,7 +100,6 @@ public class QuestionnaireOptions {
         return screen2Answers;
     }
 
-
     public List<Index> getAnswers() {
         if(options != null && options.hasChildren()){
             int i=1;
@@ -118,8 +111,6 @@ public class QuestionnaireOptions {
         return answers;
     }
 
-
-
     public List<String> getAllAuthoredImages() {
         if(screen4 != null && screen4.hasChildren()){
             for(Resource resource : screen4.getChildren()){
@@ -127,15 +118,6 @@ public class QuestionnaireOptions {
             }
         }
         return allAuthoredImages;
-    }
-
-    public List<String> getAllPersonalInterestImages(){
-        if(personalInterest != null && personalInterest.hasChildren()){
-            for(Resource resource : personalInterest.getChildren()){
-                allPersonalInterestImages.add(resource.getValueMap().get("personalInterestImages", String.class));
-            }
-        }
-        return allPersonalInterestImages;
     }
 
     public List<ImageEntity> getOptionWithImages(){

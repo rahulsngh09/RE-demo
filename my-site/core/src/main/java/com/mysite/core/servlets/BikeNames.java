@@ -1,6 +1,7 @@
 package com.mysite.core.servlets;
 
 import com.mysite.core.bean.BikeDetails;
+import com.mysite.core.constants.CommonConstant;
 import com.mysite.core.services.BikeDetailsService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -53,15 +54,15 @@ public class BikeNames extends SlingAllMethodsServlet {
             for (BikeDetails bikeDetail : bikeDetails) {
                 JSONObject bikeDetailJson = new JSONObject();
                 try {
-                    bikeDetailJson.put("bikeName", bikeDetail.getBikeName());
-                    bikeDetailJson.put("bikePrice", bikeDetail.getBikePrice());
-                    bikeDetailJson.put("bikeHeroImage", bikeDetail.getBikeHeroImage());
+                    bikeDetailJson.put(CommonConstant.BIKE_NAME, bikeDetail.getBikeName());
+                    bikeDetailJson.put(CommonConstant.BIKE_PRICE, bikeDetail.getBikePrice());
+                    bikeDetailJson.put(CommonConstant.BIKE_HERO_IMAGE, bikeDetail.getBikeHeroImage());
                     bikeDetailJson.put("forwardIcon", bikeDetail.getForwardIcon());
 
                     JSONArray bikeFeaturesArray = new JSONArray(bikeDetail.getBikeFeatures());
-                    bikeDetailJson.put("bikeFeatures", bikeFeaturesArray);
+                    bikeDetailJson.put(CommonConstant.BIKE_FEATURES, bikeFeaturesArray);
                     JSONArray bikeSmallImagesArray = new JSONArray(bikeDetail.getBikeSmallImages());
-                    bikeDetailJson.put("bikeSmallImages", bikeSmallImagesArray);
+                    bikeDetailJson.put(CommonConstant.BIKE_SMALL_IMAGES, bikeSmallImagesArray);
 
                     bikeDetailsJsonArray.put(bikeDetailJson);
                 } catch (JSONException e) {

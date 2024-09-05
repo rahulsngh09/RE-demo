@@ -1,4 +1,12 @@
-console.log("get pref js is running ");
+const testBtn = document.getElementById('book-a-test-ride')
+// console.log('pref file testride', testBtn);
+var preferences = [];
+var placePreferences = [];
+var selectedImages = [];
+var selectedOption;
+var selectedImageIds = [];
+let currentStep = 1;
+
 $(document).ready(function () {
     $(".sortable").sortable({
         update: function (event, ui) {
@@ -8,24 +16,32 @@ $(document).ready(function () {
     $(".sortable").disableSelection();
 });
 
+$(document).ready(function () {
+    $('#callbackForm').on('submit', function (event) {
+        event.preventDefault();
+        $('#form-content').hide();
+        $('#success-message').show();
+    });
+
+    $('#close-popup').on('click', function () {
+        $('#test-ride-form').hide();
+    });
+
+    $('#agree').on('change', function () {
+        $('.submit-btn').prop('disabled', !this.checked);
+    });
+
+    $('.close-btn').on('click', function () {
+        $('#test-ride-form').hide();
+    });
+
+});
 
 function updateNumber($sortable) {
     $sortable.find(".answer-container").each(function (index) {
         $(this).find(".answer-id-box").text('#' + (index + 1));
     });
 }
-
-var preferences = [];
-var placePreferences = [];
-var selectedImages = [];
-var selectedOption;
-var selectedImageIds = [];
-let currentStep = 1;
-
-
-const testBtn = document.getElementById('book-a-test-ride')
-console.log('pref file testride', testBtn);
-
 
 function storePreferences() {
     console.log('Storing preferences...');
@@ -61,10 +77,7 @@ function checkSelection() {
     selectedOption = "";
 
     if (selectedValue) {
-        // Get the value of the selected option
         selectedOption = selectedValue.value.trim();
-
-        // Check if 'Often / Always' is selected and replace it with 'Always'
         if (selectedOption === 'Often / Always') {
             selectedOption = 'Always';
         }
@@ -105,13 +118,11 @@ initializeEventListeners();
 
 //*******************************************************************************
 
-
-
+//Api Call
 function imageTagAttribute() {
     const items = document.querySelectorAll('.selected');
     const currentSelections = new Set();
 
-    // Loop through the selected items and add their custom attributes to the set
     items.forEach(item => {
         const customAttr = item.getAttribute('customAttr');
         if (customAttr) {
@@ -123,7 +134,6 @@ function imageTagAttribute() {
     selectedImages = Array.from(currentSelections).slice(0, 3);
 
     console.log("Selected images are:", selectedImages);
-    // console.log({ preferences, selectedImages, selectedOption, placePreferences });
 
     const payload = {
         "purpose": preferences,
@@ -177,7 +187,6 @@ function imageTagAttribute() {
                             divElement.classList.add('image-card');
                             divElement.setAttribute('data-image-id', key);
 
-                            // imgElement.classList.add('selectable-image')
                             overlayDiv.className = 'overlay';
                             checkmarkDiv.className = 'checkmark';
 
@@ -191,7 +200,6 @@ function imageTagAttribute() {
                             var imageURL = checkmarkImgPath.getAttribute('data-image-url');
 
                             checkmarkImg.src = imageURL;
-                            
                             const tickImg = document.createElement('img');
 
                             overlayDiv.appendChild(checkmarkDiv);
@@ -201,8 +209,6 @@ function imageTagAttribute() {
                             if (divElement.classList.contains('selected')) {
                                 divElement.appendChild(tickImg);
                             }
-
-
                             imageGallery.appendChild(divElement);
                         }
                     }
@@ -242,7 +248,7 @@ function imageTagAttribute() {
                                     .then(servletResponse => servletResponse.json())
                                     .then(servletData => {
                                         console.log('Servlet Success:', servletData);
-
+                                        //handlebar template
                                         const templateSource = document.getElementById('bike-template').innerHTML;
                                         const template = Handlebars.compile(templateSource);
                                         const context = {
@@ -258,14 +264,13 @@ function imageTagAttribute() {
 
                                         const html = template(context);
                                         document.getElementById('main-section').innerHTML = html;
-                                        // Handle success of servlet call
 
                                         const testRideButtons = document.querySelectorAll(".test-ride-btn");
                                         const formOverlay = document.getElementById("test-ride-form");
                                         const closeButton = document.querySelector(".close-btn");
                                         const checkbox = document.getElementById('agree');
                                         const submitBtn = document.querySelector('.submit-btn');
-                                        function formOPen() {
+                                        function userForm() {
                                             testRideButtons.forEach(button => {
                                                 button.addEventListener("click", function () {
                                                     formOverlay.style.display = "flex";
@@ -274,14 +279,11 @@ function imageTagAttribute() {
 
                                         }
 
-                                        formOPen();
-
-
+                                        userForm();
                                     })
                                     .catch(servletError => {
                                         console.error('Servlet Error:', servletError);
                                     });
-
                             })
                             .catch(error => {
                                 console.error('Error:', error);
@@ -291,33 +293,12 @@ function imageTagAttribute() {
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    // Handle any errors here
                 });
         });
 
     console.log('SelectedImages:', selectedImages);
 }
 
-$(document).ready(function () {
-    $('#callbackForm').on('submit', function (event) {
-        event.preventDefault();
-        $('#form-content').hide();
-        $('#success-message').show();
-    });
-
-    $('#close-popup').on('click', function () {
-        $('#test-ride-form').hide();
-    });
-
-    $('#agree').on('change', function () {
-        $('.submit-btn').prop('disabled', !this.checked);
-    });
-
-    $('.close-btn').on('click', function () {
-        $('#test-ride-form').hide();
-    });
-
-});
 
 function validateFullName(input) {
     const regex = /^[A-Za-z\s]+$/;
