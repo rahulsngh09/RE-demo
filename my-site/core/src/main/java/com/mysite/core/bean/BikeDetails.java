@@ -5,7 +5,7 @@ import java.util.List;
 public class BikeDetails {
     private String bikeName;
     private String bikePrice;
-    public String bikeHeroImage;
+    private String bikeHeroImage;
     private List<String> bikeFeatures;
     private List<String> bikeSmallImages;
     private String forwardIcon;

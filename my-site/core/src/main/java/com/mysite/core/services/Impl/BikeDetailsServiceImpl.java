@@ -57,7 +57,7 @@ public class BikeDetailsServiceImpl implements BikeDetailsService {
             SearchResult result = query.getResult();
             int count = 0;
             for (Hit hit : result.getHits()) {
-                if(count > 4){
+                if(count > 3){
                     break;
                 }
                 Node node = hit.getNode();
@@ -66,7 +66,8 @@ public class BikeDetailsServiceImpl implements BikeDetailsService {
                 String currentNodeName = node.getName();
                 Node node1 = session.getNode(CommonConstant.CONTENT_FRAGMENT_PARENT_PATH + currentNodeName + CommonConstant.JCR_MASTER_PATH_OF_CF);
                 String currentBikeName = node1.hasProperty(CommonConstant.BIKE_NAME)?node1.getProperty(CommonConstant.BIKE_NAME).getString() : null;
-                if(bikeNames != null && bikeNames.contains(currentBikeName)){
+                boolean bike =  bikeNames.stream().anyMatch(str -> str.equalsIgnoreCase(currentBikeName));
+                if(bikeNames != null && bike){
                     BikeDetails bikeDeatils = new BikeDetails();
                     bikeDeatils.setBikeName(node1.hasProperty(CommonConstant.BIKE_NAME) ? node1.getProperty(CommonConstant.BIKE_NAME).getString() : null);
                     bikeDeatils.setBikePrice(node1.hasProperty(CommonConstant.BIKE_PRICE) ? node1.getProperty(CommonConstant.BIKE_PRICE).getString() : null);
@@ -107,7 +108,7 @@ public class BikeDetailsServiceImpl implements BikeDetailsService {
         logger.info("found the mentioned username");
         try {
             return resourceResolverFactory.getServiceResourceResolver(map);
-        } catch (LoginException e) {
+        } catch (ResourceResolverException | LoginException e) {
             logger.error("Login Exception occured while getting ResourceResolver.",e);
             throw new ResourceResolverException("Error getting ResourceResolver",e);
         }
