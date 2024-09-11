@@ -32,7 +32,6 @@ li {
     background-position: left center;
     background-repeat: no-repeat;
     margin: 0;
-    
     height: 85vh;
     width: 100%;
     background-position: 66px center;
@@ -119,7 +118,6 @@ body{
     cursor: move;
     margin: 0px 0px 20px 20px;
     padding: 15px;
-    background-color: #333;
     border-left: 1.5px solid #fff;
     font-size: 18px;
     display: flex;
@@ -133,6 +131,15 @@ body{
     display: flex;
 
 }
+.option-item {
+    border: 2px solid transparent; /* Default border */
+    transition: border 0.3s ease; /* Smooth transition */
+}
+
+.option-item.selectedd {
+    border-color: white; /* Border color when selected */
+}
+
 
 .answer-container2 {
     position: absolute;
@@ -169,6 +176,7 @@ input[type="radio"] {
     position: relative;
     color: #FFFFFF;
 }
+
 
 /* Style the checkbox when it is checked */
 input[type="radio"]:checked {

@@ -7,20 +7,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextButton = document.querySelector("#section5 .next");
     const mainSection = document.querySelector("#main-section");
 
-    
 
-    checkboxes.forEach(checkbox => {        
-        checkbox.addEventListener('change', function () {
-            updateButtonState();
-        });
-    });
+    // checkboxes.forEach(checkbox => {        
+    //     checkbox.addEventListener('change', function () {
+    //         updateButtonState();
+    //     });
+    // });
 
     document.querySelectorAll('.option-item').forEach(item => {
         item.addEventListener('click', function(event) {
             console.log("event",event);
+            document.querySelectorAll('.option-item').forEach(el => {
+                el.classList.remove('selectedd');
+                el.querySelector('.option-checkbox').checked = false;
+            });
             const checkbox = this.querySelector('.option-checkbox');
             if (checkbox) {
                 checkbox.checked = !checkbox.checked; 
+                this.classList.toggle('selectedd', checkbox.checked);
                 updateButtonState();
             }
         });
@@ -137,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     notification.classList.remove('show');
                 }, 3000);
             } else {
-                alert(message);
+                // alert(message);
             }
         }
 
