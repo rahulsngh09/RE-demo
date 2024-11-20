@@ -1,4 +1,4 @@
-package com.mysite.core.models.Impl;
+package com.mysite.core.models.impl;
 
 import com.mysite.core.bean.ImageEntity;
 import com.mysite.core.bean.Index;

@@ -16,27 +16,6 @@ $(document).ready(function () {
     $(".sortable").disableSelection();
 });
 
-$(document).ready(function () {
-    $('#callbackForm').on('submit', function (event) {
-        event.preventDefault();
-        $('#form-content').hide();
-        $('#success-message').show();
-    });
-
-    $('#close-popup').on('click', function () {
-        $('#test-ride-form').hide();
-    });
-
-    $('#agree').on('change', function () {
-        $('.submit-btn').prop('disabled', !this.checked);
-    });
-
-    $('.close-btn').on('click', function () {
-        $('#test-ride-form').hide();
-    });
-
-});
-
 function updateNumber($sortable) {
     $sortable.find(".answer-container").each(function (index) {
         $(this).find(".answer-id-box").text('#' + (index + 1));
@@ -63,6 +42,7 @@ function placeToRide() {
     const items = document.querySelectorAll('.sortable .section3');
     items.forEach(function (item) {
         const value = item.getAttribute('data-value');
+        console.log("value is:",value);
         placePreferences.push(value);
     });
 
@@ -135,6 +115,37 @@ function imageTagAttribute() {
 
     console.log("Selected images are:", selectedImages);
 
+
+    function toggleSelection(imageId, imageCard) {
+        const index = selectedImageIds.indexOf(imageId);
+        if (index > -1) {
+            // Deselect the image
+            selectedImageIds.splice(index, 1);
+            imageCard.classList.remove('selected');
+            console.log(`Deselected image ID: ${imageId}`)
+            console.log(selectedImageIds, "size of array is ",selectedImageIds.length);
+        } else {
+            // Select the image
+            selectedImageIds.push(imageId);
+            imageCard.classList.add('selected');
+            console.log(`Selected image ID: ${imageId}`);
+            console.log(selectedImageIds, "size of array is ",selectedImageIds.length);
+        }
+
+        const nextButton = document.getElementById('section5Btn');
+        if(selectedImageIds.length >= 4){
+            console.log("finally user selcetd more tha")
+            nextButton.disabled = false;
+            nextButton.classList.remove('disabled');
+        }else{
+            nextButton.disabled = true;
+            nextButton.classList.add('disabled');
+        }
+
+    }
+
+    document.getElementById('section5Btn').disabled = true;
+
     const payload = {
         "purpose": preferences,
         "pillion_riding": selectedOption,
@@ -145,7 +156,7 @@ function imageTagAttribute() {
     let recommendedImages = {};
 
     // First POST API call
-    fetch('http://18.141.24.29:8000/api/recommendations/get-images', {
+    fetch('http://18.141.24.29:8001/api/recommendations/get-images', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -155,9 +166,9 @@ function imageTagAttribute() {
         .then(response => response.json())
         .then(data => {
             recommendedImages = data;
-            // console.log("images: ", recommendedImages);
+            console.log("images: ", recommendedImages);
 
-            return fetch('http://18.141.24.29:8000/api/image_mappings/', {
+            return fetch('http://18.141.24.29:8001/api/image_mappings/', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -167,6 +178,7 @@ function imageTagAttribute() {
                     console.log('GET Success:', data);
 
                     const imageMappings = data.image_mappings;
+                    // console.log("image-mapping",data.image_mappings);
                     const imageGallery = document.getElementById('img-div');
 
                     imageGallery.innerHTML = '';
@@ -190,16 +202,22 @@ function imageTagAttribute() {
                             overlayDiv.className = 'overlay';
                             checkmarkDiv.className = 'checkmark';
 
+                            imgElement.className='img-info';
+
                             imgElement.src = image.image_url;
                             imgElement.alt = image.title;
                             imgElement.title = image.title;
-                            imgElement.style.width = '128px';
-                            imgElement.style.height = '128px';
+                            // imgElement.style.width = '128px';
+                            // imgElement.style.height = '128px';
 
                             var checkmarkImgPath = document.getElementById('select-tick-img');
                             var imageURL = checkmarkImgPath.getAttribute('data-image-url');
 
                             checkmarkImg.src = imageURL;
+
+                            divElement.onclick = function () {
+                                toggleSelection(key, divElement)
+                            };
                             const tickImg = document.createElement('img');
 
                             overlayDiv.appendChild(checkmarkDiv);
@@ -222,7 +240,7 @@ function imageTagAttribute() {
                             "associations": selectedImageIds
                         };
 
-                        fetch('http://18.141.24.29:8000/api/recommendations/v2', {
+                        fetch('http://18.141.24.29:8001/api/recommendations/v2', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -241,7 +259,7 @@ function imageTagAttribute() {
                                 console.log("params", params.toString());
 
                                 // After receiving the response, send it to your AEM servlet
-                                fetch(`/bin/captureBikeNames?${params.toString()}`, { // Replace with your actual servlet path
+                                fetch(`/bin/captureBikeNames?${params.toString()}`, {
                                     method: 'GET',
 
                                 })
@@ -264,22 +282,29 @@ function imageTagAttribute() {
 
                                         const html = template(context);
                                         document.getElementById('main-section').innerHTML = html;
+                                        // console.log("context is :",context);
 
                                         const testRideButtons = document.querySelectorAll(".test-ride-btn");
                                         const formOverlay = document.getElementById("test-ride-form");
                                         const closeButton = document.querySelector(".close-btn");
                                         const checkbox = document.getElementById('agree');
                                         const submitBtn = document.querySelector('.submit-btn');
+
                                         function userForm() {
                                             testRideButtons.forEach(button => {
+
+                                                const bikeDetails = button.getAttribute('bike-details');
+
                                                 button.addEventListener("click", function () {
                                                     formOverlay.style.display = "flex";
+
+                                                    console.log('Bike details for form:', bikeDetails);
                                                 });
                                             });
 
                                         }
 
-                                        userForm();
+                                        // userForm();
                                     })
                                     .catch(servletError => {
                                         console.error('Servlet Error:', servletError);
@@ -299,59 +324,160 @@ function imageTagAttribute() {
     console.log('SelectedImages:', selectedImages);
 }
 
+$(document).ready(function () {
+    //     $('#callbackForm').on('submit', function (event) {
+    //         event.preventDefault();
+    //         $('#form-content').hide();
+    //         $('#success-message').show();
+    //     });
 
+    //     $('#close-popup').on('click', function () {
+    //         $('#test-ride-form').hide();
+    //     });
+
+    $('#agree').on('change', function () {
+        $('.submit-btn').prop('disabled', !this.checked);
+    });
+
+    $('.close-btn').on('click', function () {
+        $('#test-ride-form').hide();
+        $('#callbackForm')[0].reset();
+    });
+
+});
 function validateFullName(input) {
-    const regex = /^[A-Za-z\s]+$/;
     const nameError = document.getElementById('nameError');
-    if (!regex.test(input.value)) {
-        nameError.textContent = 'Please enter only letters.';
+
+    // Check if input contains invalid characters
+    if (/[0-9]/.test(input.value)) {
+        nameError.textContent = 'Please enter only letters. Digits are not allowed.';
         input.setCustomValidity('Invalid full name.');
     } else {
         nameError.textContent = '';
         input.setCustomValidity('');
     }
-    toggleSubmitButton();
+
+    // Filter the input value to allow only letters and spaces
+    input.value = input.value.replace(/[^A-Za-z\s]/g, '');
 }
 
 
 function validatePhoneNumber(input) {
-    const regex = /^\d{10}$/;
     const phoneError = document.getElementById('phoneError');
-    if (!regex.test(input.value)) {
-        phoneError.textContent = 'Please enter a valid 10-digit phone number.';
+
+    // Filter the input value
+    input.value = input.value.replace(/[^0-9]/g, '');
+
+    if (input.value.length > 10) {
+        phoneError.textContent = 'Phone number cannot exceed 10 digits.';
         input.setCustomValidity('Invalid phone number.');
     } else {
         phoneError.textContent = '';
         input.setCustomValidity('');
     }
-    toggleSubmitButton();
 }
 
 function validateEmail(input) {
     const emailError = document.getElementById('emailError');
-    const isValid = input.checkValidity();
-    if (!isValid) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!regex.test(input.value)) {
         emailError.textContent = 'Please enter a valid email address.';
-        input.setCustomValidity('Invalid email.');
+        input.setCustomValidity('Invalid email address.');
     } else {
-        emailError.textContent = '';
+        emailError.textContent = ''; // Clear error if input is valid
         input.setCustomValidity('');
     }
-    toggleSubmitButton();
 }
 
 function validatePincode(input) {
-    const regex = /^\d{6}$/;
     const pincodeError = document.getElementById('pincodeError');
-    if (!regex.test(input.value)) {
+
+    // Filter the input value
+    input.value = input.value.replace(/[^0-9]/g, '');
+
+    if (input.value.length !== 6) {
         pincodeError.textContent = 'Please enter a valid 6-digit pincode.';
         input.setCustomValidity('Invalid pincode.');
     } else {
-        pincodeError.textContent = '';
+        pincodeError.textContent = ''; // Clear error if input is valid
         input.setCustomValidity('');
     }
-    toggleSubmitButton();
 }
+
+
+
+//   // Start observing the main section
+// const mainSection = document.querySelector("#main-section");
+// let observerTriggered = false;
+
+// // Function to observe when the user scrolls to the main section
+// const observeMainSection = () => {
+//   const observer = new IntersectionObserver((entries, observer) => {
+//     entries.forEach((entry) => {
+//       if (entry.isIntersecting && !observerTriggered) {
+//         observerTriggered = true; // Ensure the function runs only once
+//         observer.unobserve(mainSection); // Stop observing after triggering
+//         onScrollToMainSection(); // Invoke your function
+//       }
+//     });
+//   });
+
+//   // Observe the main section
+//   observer.observe(mainSection);
+// };
+
+// // Function to handle the bike tab highlighting
+// const onScrollToMainSection = () => {
+//   const tabs = document.querySelectorAll(".bike-tab");
+//   const bikeCards = document.querySelectorAll(".bike-inner-card");
+//   const tabLine = document.querySelector(".bike-tab-line");
+
+//   // Function to highlight the active tab
+//   const setActiveTab = (bikeId) => {
+//     tabs.forEach((tab) => tab.classList.remove("active")); // Remove active class from all tabs
+//     const activeTab = document.querySelector(`[data-bike-id="${bikeId}"]`);
+//     if (activeTab) {
+//       activeTab.classList.add("active");
+
+//       // Move the red underline below the active tab
+//       const tabRect = activeTab.getBoundingClientRect();
+//       const containerRect = activeTab.parentElement.getBoundingClientRect();
+//       tabLine.style.width = `${tabRect.width}px`;
+//       tabLine.style.transform = `translateX(${tabRect.left - containerRect.left}px)`;
+//     }
+//   };
+
+//   // Observer for individual bike cards
+//   const bikeObserver = new IntersectionObserver((entries) => {
+//     entries.forEach((entry) => {
+//       if (entry.isIntersecting) {
+//         const bikeId = entry.target.id; // Get the bike's ID
+//         setActiveTab(bikeId); // Highlight the corresponding tab
+//       }
+//     });
+//   }, {
+//     root: null, // Viewport is the root
+//     threshold: 0.5, // Trigger when 50% of the element is visible
+//   });
+
+//   // Observe each bike card
+//   bikeCards.forEach((card) => bikeObserver.observe(card));
+// };
+
+// // Directly initialize the observer for the main section
+// observeMainSection();
+
+  
+  
+
+
+
+
+
+
+
+
 
 
 

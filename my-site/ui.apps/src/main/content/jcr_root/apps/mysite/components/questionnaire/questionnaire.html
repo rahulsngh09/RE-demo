@@ -2,32 +2,38 @@
     <sly data-sly-call="${clientlib.all @ categories='mysite-questionnaire'}" />
 </sly>
 
-<sly data-sly-use.model="com.mysite.core.models.QuestionnaireOptions">
-    <div>
+<sly data-sly-use.model="com.mysite.core.models.StepwiseQuestionnaireModel">
+    <div class="main-div">
         <section class="section-one">
             <div id="questionnaire" class="questionnaire-section active">
-                <div class="container">
-                    <p class="help-me-choose">HELP ME CHOOSE . Step 1/5</p>
-                    <p class="question">${model.question}</p>
-                    <p class="drag-to-rearrange">Drag to rearrange.</p>
-                    <ul class="sortable answers">
-                        <sly data-sly-list.answers="${model.answers}">
-                            <div class="answer-container">
-                                <p class="answer-id-box">#${answers.index}</p>
-                                <div class="answer-section">
-                                    <li data-value="${answers.answer}" class="sortable-item section1">
-                                        <div>
-                                            <span>
-                                                <img src="${model.draggableIcon}" alt="">
-                                            </span>
-                                        </div>
-                                        ${answers.answer}
-                                    </li>
-                                </div>
-                            </div>
-                        </sly>
+                <div class="container-basic">
+                    <div class="upperside">
+                        <p class="help-me-choose">HELP ME CHOOSE . Step 1/5</p>
+                        <p class="question">${model.question}</p>
+                        <p class="drag-to-rearrange">Drag to rearrange.</p>
+                    </div>
 
-                    </ul>
+                    <div class="draggableOptions">
+                        <ul class="sortable answers">
+                            <sly data-sly-list.answers="${model.answers}">
+                                <div class="answer-container">
+                                    <p class="answer-id-box">#${answers.index}</p>
+                                    <div class="answer-section">
+                                        <li data-value="${answers.answer}" class="sortable-item section1">
+                                            <div>
+                                                <span>
+                                                    <img src="${model.draggableIcon}" alt="">
+                                                </span>
+                                            </div>
+                                            ${answers.answer}
+                                        </li>
+                                    </div>
+                                </div>
+                            </sly>
+
+                        </ul>
+                    </div>
+                   
                     <div class="buttton-container first">
                         <button type="button" class="next" data-next-section="#section2"
                             onclick="storePreferences();">NEXT</button>
@@ -37,18 +43,23 @@
 
 
             <div id="section2" class="questionnaire-section">
-                <p class="help-me-choose">HELP ME CHOOSE . Step 2/5</p>
-                <p class="question">${model.question2}</p>
-                <p class="drag-to-rearrange">Select any one.</p>
-                <ul>
-                    <li data-sly-repeat.screen2Answer="${model.screen2Answers}" style="cursor: pointer;"
-                        class="option-item">
-                        <input type="radio" name="pillion" value=" ${screen2Answer}" id="myCheckbox"
-                            class="option-checkbox">
-                        <label style="cursor: pointer;">${screen2Answer}</label>
-                    </li>
+                <!-- <div class="upperside2"> -->
+                    <p class="help-me-choose">HELP ME CHOOSE . Step 2/5</p>
+                    <p class="question">${model.question2}</p>
+                    <!-- <p class="drag-to-rearrange">Drag to rearrange.</p> -->
+                <!-- </div> -->
 
-                </ul>
+                <div class="screen2">
+                    <ul class="selectText">
+                        <li data-sly-repeat.screen2Answer="${model.screen2Answers}"
+                            class="option-item">
+                            <input type="radio" name="pillion" value=" ${screen2Answer}" id="myCheckbox"
+                                class="option-checkbox">
+                            <label style="cursor: pointer;">${screen2Answer}</label>
+                        </li>
+
+                    </ul>
+                </div>
                 <div class="buttton-container">
                     <button type="button" class="prev" data-prev-section="#questionnaire">BACK</button>
                     <button type="button" id="nextButton" class="next" onclick="checkSelection();"
@@ -58,24 +69,40 @@
 
 
             <div id="section3" class="questionnaire-section">
-                <p class="help-me-choose">HELP ME CHOOSE . Step 3/5</p>
-                <p class="question">${model.question3}</p>
-                <p class="drag-to-rearrange">Drag to rearrange.</p>
-                <ul class="sortable answers" style="margin-left: 2rem;">
 
-                    <li data-sly-repeat.screen3Answers="${model.optionWithImages}" class="sortable-item section3"
-                        data-value="${screen3Answers.text}"
-                        style="background-size:100%; background-image: linear-gradient(93.59deg, #000000 0.45%, rgba(0, 0, 0, 0.573648) 45.64%, rgba(0, 0, 0, 0) 108.5%), url('${screen3Answers.backgroundImage @ context='uri'}');">
-                        <div class="answer-container answer-container2">
-                            <p class="answer-id-box">#${screen3AnswersList.index}</p>
-                        </div><img src="${model.draggableIcon}" alt=""> ${screen3Answers.text}
-                    </li>
-                </ul>
+                <div class="upperside">
+                    <p class="help-me-choose">HELP ME CHOOSE . Step 3/5</p>
+                    <p class="question">${model.question3}</p>
+                    <p class="drag-to-rearrange">Drag to rearrange.</p>
+                </div>
+                <div class="draggableOptions">
+                    <ul class="sortable answers">
+                        <sly data-sly-list.screen3Answers="${model.optionWithImages}">
+                            <div class="answer-container">
+                                <p class="answer-id-box">#${screen3Answers.index}</p>
+                                <div class="answer-section">
+                                    <li data-value="${screen3Answers.text}" class="sortable-item section3"
+                                        style="background-size:100%; background-image: linear-gradient(93.59deg, #000000 0.45%, rgba(0, 0, 0, 0.573648) 45.64%, rgba(0, 0, 0, 0) 108.5%), url('${screen3Answers.backgroundImage @ context='uri'}');">
+                                        <div>
+                                            <span>
+                                                <img src="${model.draggableIcon}" alt="">
+                                            </span>
+                                        </div>
+                                        ${screen3Answers.text}
+                                    </li>
+                                </div>
+                            </div>
+                        </sly>
 
-                <div class="buttton-container">
-                    <button type="button" class="prev" data-prev-section="#section2">BACK</button>
-                    <button type="button" class="next" onclick="placeToRide();"
-                        data-next-section="#section4">NEXT</button>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="buttton-container">
+                        <button type="button" class="prev" data-prev-section="#section2">BACK</button>
+                        <button type="button" class="next" onclick="placeToRide();"
+                            data-next-section="#section4">NEXT</button>
+                    </div>
                 </div>
 
             </div>
@@ -99,7 +126,7 @@
                             <div class="overlay" style="
                             width: 174px;
                             height: 120px;">
-                                <div class="checkmark"><img src="${properties.tickBtnIcon}" alt=""></div>
+                                <div class="checkmark"><img src="${properties.selectIcon}" alt=""></div>
                             </div>
                         </div>
 
@@ -127,76 +154,20 @@
                         <div class="help-me-choose-box " id="img-div">
 
                         </div>
-                        <div class="overlay" style="
-                        width: 172px;
-                        height: 120px;">
-                            <div class="checkmark"><img src="${properties.tickBtnIcon}" alt=""
-                                    id="select-tick-img" data-image-url="${properties.tickBtnIcon}"></div>
+                        <div class="overlay">
+                            <div class="checkmark"><img src="${properties.tickBtnIcon}" alt="" id="select-tick-img"
+                                    data-image-url="${properties.selectIcon}"></div>
                         </div>
                     </div>
 
                 </div>
                 <div class="buttton-container">
                     <button type="button" class="prev" id="back-button" data-prev-section="#section4">BACK</button>
-                    <button type="button" class="next" id="section5Btn" data-next-section="#main-section"
-                        disabled>NEXT</button>
+                    <button type="button" class="next" id="section5Btn" data-next-section="#main-section">NEXT</button>
                 </div>
             </div>
-
-
-
             <!-- Handlebars template -->
             <div class="main-background" id="main-section">
-            </div>
-
-
-            <div id="test-ride-form" class="form-overlay" style="display: none;">
-                <div class="form-container">
-                    <h2>Get a call from our product experts and find your next motorcycle</h2>
-                    <button class="close-btn" aria-label="Close">&times;</button>
-                    <form id="callbackForm" action="/path/to/servlet" method="post" onsubmit="return validateForm()">
-                        <div class="form-group">
-                            <label for="fullName">Full Name</label>
-                            <input type="text" id="fullName" class="inputformdata" name="fullName" required
-                                oninput="validateFullName(this)" pattern="[A-Za-z\s]+"
-                                title="Please enter only letters.">
-                            <span class="error-message" id="nameError"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="phoneNumber">Phone Number</label>
-                            <div class="phone-input">
-                                <!-- <span>+91</span> -->
-                                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+91" required
-                                    oninput="validatePhoneNumber(this)" pattern="\d{10}"
-                                    title="Please enter a 10-digit phone number.">
-                            </div>
-                            <span class="error-message" id="phoneError"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="emailId">E-mail ID</label>
-                            <input type="email" id="emailId" class="inputformdata" name="emailId" required
-                                oninput="validateEmail(this)">
-                            <span class="error-message" id="emailError"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="pincode">Pincode</label>
-                            <input type="text" id="pincode" class="inputformdata" name="pincode" required
-                                oninput="validatePincode(this)" pattern="\d{6}"
-                                title="Please enter a valid 6-digit pincode.">
-                            <span class="error-message" id="pincodeError"></span>
-                        </div>
-                        <p class="disclaimer">Disclaimer: By submitting this form you acknowledge and agree to our
-                            <a href="#">terms and conditions</a> and <a href="#">privacy policy</a>.
-                            All information provided will be secured and processed as per our privacy policy.
-                        </p>
-                        <div class="form-group terms-group">
-                            <input type="checkbox" id="agree" name="agree" required>
-                            <label for="agree">I agree to <a href="#">Terms & Conditions</a> and <a href="#">Privacy
-                                    Policy</a></label>
-                        </div>
-                        <button type="submit" class="submit-btn" disabled>REQUEST A CALLBACK</button>
-                    </form>
-                </div>
             </div>
         </section>
     </div>
@@ -204,15 +175,24 @@
 </sly>
 
 <script id="bike-template" type="text/x-handlebars-template">
-    <h2 class="section-title">Meet your next Royal Enfield Motorcycle</h2>
-    <div class="bike-cards">
+    <div class="fixedPart">
+        <h2 class="section-title">Meet your next Royal Enfield Motorcycle</h2>
+        <div class="bike-tabs">
+            {{#each bikes}}
+                <div class="bike-tab" data-bike-id="bike-{{@index}}">{{bikeName}}</div>
+            {{/each}}
+        </div>
+        <div class="bike-tab-line"></div>
+
+    </div>
+    <div class="bike-cards" id="bike-cards-container">
         {{#each bikes}}
-            <div style="height: 543px; background-color: #000; border: 2px solid grey; border-radius: 6px;">
+            <div class="bike-inner-card" id="bike-{{@index}}">
                 <div>
                     <div class="bike-card">
                         <div class="nameAndImgDiv">
                             <h3 style="margin: 0px;">{{bikeName}}</h3>
-                            <span><img src="{{forwardIcon}}" alt="Forward Icon"></span>
+                            <span><img src="{{forwardIcon}}" alt="Forward Icon" style="cursor: pointer;"></span>
                         </div>
                         
                         <div class="bike-image-container">
@@ -236,23 +216,27 @@
                             </ul>
                         </div>
                     </div>
-
+                    
+                    <div class="actions">
+                        <button class="configure-btn prev">CONFIGURE NOW</button>
+                        <button class="test-ride-btn" id="book-a-test-ride" onclick="showTestRideForm();"
+                         bike-details=
+                        '{"bikeName": "{{bikeName}}", "bikePrice": "{{bikePrice}}", 
+                        "bikeHeroImage": "{{bikeHeroImage}}"}'
+                         style="
+                            display: flex;
+                            height: 40px;
+                            width: 204px;
+                            padding: 8px 16px;
+                            cursor: pointer;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 12px;
+                            font-weight: 700;
+                        ">BOOK A TEST RIDE</button>
+        
+                    </div>
                    
-                </div>
-                <div class="actions">
-                    <button class="configure-btn prev">CONFIGURE NOW</button>
-                    <button class="test-ride-btn" id="book-a-test-ride" style="
-                        display: flex;
-                        height: 40px;
-                        width: 204px;
-                        padding: 8px 16px;
-                        cursor: pointer;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 12px;
-                        font-weight: 700;
-                    ">BOOK A TEST RIDE</button>
-    
                 </div>
             </div>
         {{/each}}
@@ -272,7 +256,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
-
+<!-- <link rel="icon" href="data:,"> -->
+<!-- <script src="https://cdn.tailwindcss.com"></script> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
