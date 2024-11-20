@@ -20,7 +20,6 @@ body,html {
 
 }
 
-
 main.container {
     padding: 0;
 }
@@ -30,7 +29,7 @@ main.container {
     height: 34px;
     color: #aaa;
     font-weight: bold;
-    /* background-color: red; */
+   
 }
 
 .upperside {
