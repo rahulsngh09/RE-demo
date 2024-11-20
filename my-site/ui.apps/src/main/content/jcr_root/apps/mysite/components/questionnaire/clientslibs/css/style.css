@@ -1,4 +1,3 @@
-body,
 h1,
 h2,
 p,
@@ -8,54 +7,97 @@ li {
     padding: 0;
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
-    border-radius: 9px;
+    /* border-radius: 9px; */
     font-optical-sizing: auto;
 }
 
-.help-me-choose{
-    width: 273px;
+body,html {
+    background-color: #181818;
+    font-family: "Montserrat", sans-serif;
+    /* height: 100%; */
+    margin: 0;
+    padding: 0;
+
+}
+
+
+main.container {
+    padding: 0;
+}
+
+.help-me-choose {
+    width: 278px;
     height: 34px;
     color: #aaa;
     font-weight: bold;
+    /* background-color: red; */
 }
-.question{
+
+.upperside {
     width: 560px;
-    height: 45px;
+    height: 127px;
+
+}
+
+/**** First Section *****************************/
+.question {
+    width: 560px;
+    height: 50px;
     size: 32px;
     color: #FFFFFF;
     letter-spacing: 0.2%;
+    font-weight: 600;
 }
 
-.section-one{
+.section-one {
+    /* background-image: url('/content/dam/mysite/background-images/background-image.png');
+    background-size: 60% 100%;
+    background-position: left center;
+    background-repeat: no-repeat; */
+    /* margin: 0; */
+    min-height: 591px;
+    /* width: 100vw; */
+}
+
+.main-div {
+    display: flex;
+    justify-content: center;
+}
+
+.option-item {
+    border: 2px solid transparent;
+    /* Default border */
+    transition: border 0.3s ease;
+    width: 560px;
+    /* Smooth transition */
+}
+
+.container-basic {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.questionnaire-section {
     background-image: url('/content/dam/mysite/background-images/background-image.png');
-    background-size: 50% 100%;
+    background-size: 60% 100%;
     background-position: left center;
     background-repeat: no-repeat;
-    margin: 0;
-    height: 85vh;
-    width: 100%;
-    background-position: 66px center;
-}
+    /* background-repeat: no-repeat; */
+    /* margin: 0; */
+    /* height: 82vh; */
+    /* width: 100vw; */
 
-body{
-    background-color: 060606;
-}
-
-.questionnaire-section {
-    margin-top: 20px;
-    /* Additional styles for your sections */
-}
-
-
-.questionnaire-section {
     display: none;
-    color: white;
+
+    /* color: white; */
     /* padding: 20px; */
-    width: 560px;
-    height: 360px;
-    margin: 58px auto;
-    border-radius: 8px;
+    width: 654px;
+    /* height: 360px; */
+    margin: 16px auto;
+    /* border-radius: 8px; */
 }
+
 
 .questionnaire-section.active {
     display: block;
@@ -70,7 +112,13 @@ body{
 
 .questionnaire-section ul {
     list-style-type: none;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+}
+
+.draggableOptions {
+    width: 560px;
+    /* height: 360px; */
+    display: flex;
 }
 
 .step-header {
@@ -107,39 +155,41 @@ body{
     height: 40px;
     color: black;
     text-align: center;
-    background-color:#FFFFFF;
+    background-color: #FFFFFF;
     border-radius: 20px;
     margin-top: 9px;
 }
 
+.option-item{
+    cursor: pointer;
+    width: 560px;
+}
+
 
 .questionnaire-section li {
+    width: 496px;
+    height: 58px;
     background-color: #333;
     cursor: move;
-    margin: 0px 0px 20px 20px;
+    margin: 0px 0px 20px 0px;
     padding: 15px;
     border-left: 1.5px solid #fff;
     font-size: 18px;
     display: flex;
     align-items: center;
-    height: 65px;
     gap: 8px;
     position: relative;
+    color: white;
+    border-radius: 4px;
 }
 
 .answer-container {
     display: flex;
+    width: 560px;
+    height: 75px;
+    gap: 22px;
 
 }
-.option-item {
-    border: 2px solid transparent; /* Default border */
-    transition: border 0.3s ease; /* Smooth transition */
-}
-
-.option-item.selectedd {
-    border-color: white; /* Border color when selected */
-}
-
 
 .answer-container2 {
     position: absolute;
@@ -148,10 +198,22 @@ body{
 
 .answer-section {
     width: 95%;
-    ;
 }
 
+/* *************** first section over**************** */
+
 /* *************** checkbox design**************** */
+
+/* *************** Second section**************** */
+
+.option-item.selectedd {
+    border-color: white;
+    /* Border color when selected */
+}
+.upperside2{
+    width: 327px;
+    height: 35px;
+}
 
 button:disabled {
     font-weight: 700;
@@ -161,7 +223,12 @@ button:disabled {
     /* Change cursor to not-allowed */
 }
 
-/* style.css */
+.screen2 {
+    width: 327px;
+    height: 228px;
+    display: flex;
+}
+
 
 /* Hide the default checkbox */
 input[type="radio"] {
@@ -177,6 +244,9 @@ input[type="radio"] {
     color: #FFFFFF;
 }
 
+.personal-interest {
+    cursor: pointer;
+}
 
 /* Style the checkbox when it is checked */
 input[type="radio"]:checked {
@@ -217,7 +287,9 @@ input[type="radio"]:checked::before {
 
 .buttton-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    width: 560px;
+    gap: 10px;
 }
 
 .first {
@@ -257,23 +329,22 @@ input[type="radio"]:checked::before {
 
 .image-card-box {
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 
 .image-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 1rem;
-    
+    justify-content: flex-start;
+    gap: 15px;
+    width: 560px;
+    margin-bottom: 3rem;
 }
 
 .image-card {
     position: relative;
-    overflow: hidden;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+    /* overflow: hidden; */
 }
 
 .help-me-choose-box {
@@ -284,10 +355,8 @@ input[type="radio"]:checked::before {
 }
 
 .img-div {
-
     width: 100%;
     height: 124px;
-
 }
 
 .img-div img {
@@ -295,7 +364,6 @@ input[type="radio"]:checked::before {
     height: 100%;
     object-fit: cover;
 }
-
 
 .selectable-image {
     width: 100%;
@@ -305,23 +373,27 @@ input[type="radio"]:checked::before {
 }
 
 .overlay {
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
     position: absolute;
     top: 0;
     left: 0;
     width: 125px;
-    height: 124px;
-    background: rgba(255, 255, 255, 0.35); /* Semi-transparent white background */
+    height: 125px;
+    background: rgba(255, 255, 255, 0.35);
+    /* Semi-transparent white background */
     border: 2px solid white;
-    z-index: 10; /* Ensure it's above other content */
+    z-index: 10;
+    /* Ensure it's above other content */
     border-radius: 4px;
 }
+
 
 /* Styling for the checkmark */
 .checkmark {
     position: absolute;
-    top: 8px;
-    right: 11px;
+    top: -10px;
+    right: -2px;
     width: 30px;
     height: 30px;
     background-color: #fff;
@@ -329,14 +401,13 @@ input[type="radio"]:checked::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 20; /* Ensure it's above the .overlay */
+    z-index: 20;
+    /* Ensure it's above the .overlay */
 }
 
 /* Checkmark styling */
 .checkmark::after {
-    /* content: '✔'; */
     color: #000;
-    /* font-size: 20px; */
 }
 
 /* Show overlay when .image-card has class .selected */
@@ -346,7 +417,6 @@ input[type="radio"]:checked::before {
 
 .button-container .next {
     background-color: #ccc;
-    /* Initially disabled style */
     cursor: not-allowed;
 }
 
@@ -388,7 +458,6 @@ input[type="radio"]:checked::before {
     opacity: 0.6;
     /* Reduce opacity */
 }
-
 
 .motorcycle-container {
     display: flex;
@@ -434,14 +503,14 @@ input[type="radio"]:checked::before {
 
 .image-thumbnails {
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
+    justify-content: space-evenly;
+    /* gap: 10px; */
     margin-top: 10px;
     width: 320px;
     height: 80px;
-    overflow : hidden;
+    /* overflow: hidden; */
 
-    
+
 }
 
 .image-thumbnails img {
@@ -511,10 +580,11 @@ input[type="radio"]:checked::before {
     height: 48px;
 
 }
-.nameAndImgDiv{
+
+.nameAndImgDiv {
     display: flex;
     justify-content: space-between;
-    
+
 }
 
 /* .nameAndImgDiv img{
@@ -559,9 +629,9 @@ input[type="radio"]:checked::before {
 #main-section {
     display: none;
     /* margin-top: 3rem; */
-    padding: 20px;
+    /* padding: 20px; */
     color: #fff;
-  
+
 }
 
 
@@ -573,133 +643,9 @@ input[type="radio"]:checked::before {
 
 
 
-/*  *************************  */
+/*  ************form styling*************  */
 
-.form-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    margin-top: 1.2rem;
-}
 
-.form-container {
-    background: #2a2a2a;
-    padding: 30px;
-    border-radius: 8px;
-    width: 400px;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.form-container h2 {
-    font-size: 20px;
-    margin-bottom: 20px;
-
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 33px;
-    cursor: pointer;
-    margin-top: 0.5rem;
-}
-
-.form-group {
-    margin-bottom: 15px;
-    background: #2a2a2a;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #EDEDED;
-}
-
-.form-group input[type="text"],
-.form-group input[type="tel"],
-.form-group input[type="email"] {
-    width: 95%;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #333;
-    background-color: #333;
-    color: #fff;
-    font-size: 14px;
-}
-
-.phone-input {
-    width: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.phone-input span {
-    background-color: #444;
-    padding: 10px;
-    border-radius: 4px 0 0 4px;
-    border-right: none;
-    color: #fff;
-}
-
-.phone-input input {
-    border-radius: 0 4px 4px 0;
-}
-
-.form-group.terms-group {
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-}
-
-.disclaimer {
-    font-size: 12px;
-    margin-bottom: 15px;
-    color: #ccc;
-}
-
-.form-group input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: 1px solid;
-    color: #000;
-}
-
-.submit-btn:disabled {
-    font-weight: 700;
-    background-color: #373737;
-    color: #181818;
-    cursor: not-allowed;
-}
-
-.form-container a {
-    color: #FD5050;
-    text-decoration: none;
-}
-
-.form-container a:hover {
-    text-decoration: underline;
-}
 
 .success-message {
     background: #2a2a2a;
@@ -807,20 +753,21 @@ input[type="radio"]:checked::before {
 
 /* Section 4 image grid styles */
 #section4 .image-grid {
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
     /* Allow wrapping to the next line */
-    gap: 15px;
-    margin-bottom: 4rem;
+    /* gap: 15px; */
+    /* margin-bottom: 4rem; */
     /* Space between images */
 }
 
 #section4 .image-card {
-    flex: 1 1 calc(33.333% - 15px);
+    /* flex: 1 1 calc(33.333% - 15px); */
     /* 3 images per row, accounting for gaps */
     box-sizing: border-box;
     /* Include padding and border in the element's total width and height */
     position: relative;
+    width: 172px;
     /* Position relative for absolute positioning of the overlay */
 }
 
@@ -861,7 +808,7 @@ input[type="radio"]:checked::before {
     height: 300px;
     width: 565px;
     margin-bottom: 3rem;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     /* Space between images */
 }
 
@@ -869,6 +816,13 @@ input[type="radio"]:checked::before {
     /* flex: 1 1 calc(25% - 15px);
     box-sizing: border-box;
     position: relative; */
+    width: 127px;
+    height: 127px;
+}
+
+.img-info {
+    width: 127px;
+    height: 127px;
 }
 
 #section5 .image-card img {
@@ -918,6 +872,10 @@ input[type="radio"]:checked::before {
     /* Ensure it sits above other images */
 }
 
+.bike-tabs {
+    display: none;
+}
+
 .motorcycle-image h2 {
     margin-right: 150px;
     font-size: 20px;
@@ -940,7 +898,7 @@ input[type="radio"]:checked::before {
     justify-content: center;
     background-size: cover;
     background-position: center;
-    overflow: hidden;
+    /* overflow: hidden; */
     /* Hide any overflowing image content */
     position: relative;
     padding-left: 9px;
@@ -952,14 +910,14 @@ input[type="radio"]:checked::before {
 }
 
 .main-background {
-   background-image: url('/content/dam/mysite/background-images/bike-background.png');
-   background-size:  100%;
-   background-position: center;
-   background-repeat: no-repeat;
-   margin: 0;
-   height: 100vh;
-   width: 100vw;
-   margin-left: -99px;
+    background-image: url('/content/dam/mysite/background-images/bike-background.png');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    padding: 20px;
 }
 
 .bike-details-section {
@@ -972,7 +930,7 @@ input[type="radio"]:checked::before {
 .container {
 
     margin: 0 auto;
-    padding: 0 15px;
+    /* padding: 0 15px; */
 }
 
 .section-title {
@@ -984,7 +942,7 @@ input[type="radio"]:checked::before {
 }
 
 .bike-cards {
-   	margin-left: 4rem;
+    /* margin-left: 4rem; */
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -1000,6 +958,12 @@ input[type="radio"]:checked::before {
     position: relative;
 }
 
+.bike-inner-card {
+    height: 543px;
+    background-color: #000;
+    border: 2px solid grey;
+    border-radius: 6px;
+}
 
 .bike-hero-image {
     width: 100%;
@@ -1062,7 +1026,7 @@ input[type="radio"]:checked::before {
 .bike-info {
     position: relative;
     text-align: center;
-    top: 16px;
+    top: 35px;
 }
 
 .bike-name {
@@ -1108,7 +1072,7 @@ input[type="radio"]:checked::before {
 
 .book-test-ride-btn {
     background-color: #343a40;
- 
+
     color: #fff;
 }
 
@@ -1116,3 +1080,524 @@ input[type="radio"]:checked::before {
     background-color: #23272b;
 }
 
+/*  Responsive or for mobile devices ************/
+@media (max-width: 768px) {
+    .main-div{
+        display: flex;
+        justify-content: space-between;
+    }
+    /* For tablets and mobile (portrait) */
+    .questionnaire-section {
+        width: 90%;
+        height: auto;
+        margin: 20px auto;
+        padding: 15px;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .questionnaire-section h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .questionnaire-section .container {
+        padding: 0 10px;
+    }
+
+    /* .questionnaire-section ul {
+        margin-bottom: 10px;
+    } */
+
+    .answer-id-box {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .questionnaire-section li {
+        /* font-size: 16px;
+        height: auto;
+        padding: 10px;
+        margin: 0 0 15px 0;
+        border-left: 2px solid #fff;
+        flex-direction: column;
+        align-items: flex-start; */
+    }
+
+    .questionnaire-section li .sortable-item {
+        /* display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%; */
+    }
+
+    .questionnaire-section li img {
+        /* max-width: 30px; */
+        /* margin-bottom: 10px; */
+    }
+
+    .buttton-container.first .next {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 375px) {
+    body {
+        background-color: #181818;
+    }
+
+    .container-basic {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .sortable-container {
+        overflow: visible; /* Prevent any clipping */
+        position: relative; /* Ensure relative positioning for sortable items */
+      }
+      
+
+    /* For small mobile devices (portrait) */
+    .help-me-choose {
+        width: 238px;
+        height: 34px;
+        color: #aaa;
+        font-weight: bold;
+        /* background-color: blue; */
+    }
+
+    .upperside {
+        width: 327px;
+        height: 129px;
+        /* background-color: yellow; */
+        gap: 8px;
+    }
+
+    .question {
+        width: 335px;
+        height: 26px;
+        line-height: 23.9px;
+        size: 32px;
+        /* margin-top: 1rem; */
+        margin-bottom: 2rem;
+    }
+
+    .double {
+        position: relative;
+        /* height: 92vh; */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        top: 250px;
+        /* left: -60px; */
+        align-items: center;
+    }
+
+    .drag-to-rearrange {
+        height: 19px;
+        width: 327px;
+        font-family: TT Commons;
+        size: 16px;
+        /* background-color: red; */
+    }
+
+    .draggableOptions {
+        width: 382px;
+        height: 333px;
+        display: flex;
+        margin: 15px;
+        align-items: baseline;
+        justify-content: space-evenly;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        /* background-color: red; */
+
+    }
+    .answer-section {
+        width: 283px;
+        height: 48px;
+        /* background-color: red; */
+    }
+
+    .answer-container {
+       display: flex;
+        width: 327px;
+        height: 84px;
+        gap: 16px;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .questionnaire-section {
+        /* margin-top: 20px; */
+        background-image: url('/content/dam/mysite/background-images/background-image.png');
+        background-size: 100% 100%;
+        background-position: 30% left;
+        background-repeat: no-repeat;
+        /* margin: 0; */
+        height:643px;
+        /* width: 100vw; */
+
+        display: none;
+        color: white;
+        /* padding: 20px; */
+        width: 345px;
+        /* height: 360px; */
+        margin: 58px auto;
+        border-radius: 8px;
+    }
+
+    .questionnaire-section h2 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .answer-id-box {
+        width: 28px;
+        display: flex;
+        align-items: center;
+        height: 28px;
+        color: black;
+        text-align: center;
+        background-color: #FFFFFF;
+        border-radius: 16px;
+        /* margin-top: 5px; */
+        justify-content: center;
+        font-weight: 800;
+    }
+
+
+    .option-item{
+        cursor: pointer;
+        width: 327px;
+    }
+
+    .questionnaire-section li {
+        width: 292px;
+        height: 64px;
+        background-color: #333;
+        cursor: move;
+        margin: 0px 0px 20px 0px;
+        padding: 15px;
+        border-left: 1.5px solid #fff;
+        font-size: 18px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        position: relative;
+        /* border-radius: 8px; */
+
+    }
+
+    .questionnaire-section li img {
+        max-width: 25px;
+        margin-bottom: 8px;
+    }
+
+    .buttton-container {
+        position: absolute;
+        display: flex;
+        justify-content: flex-end;
+        width: 362px;
+        height: 80px;
+        gap: 15px;
+        /* padding-right: 10px; */
+        /* padding-left: 9px; */
+        /* margin-top: 12rem; */
+        background-color: #262626;
+        align-items: center;
+        top: 780px;
+        left: 2px;
+        padding: 16px 24px 16px 24px;
+    }
+
+    .buttton-container.first .next {
+        /* padding: 10px 20px; */
+        padding: 16px 24px 16px 24px;
+        font-size: 12px;
+        width: 156px;
+        height: 48px;
+        border-radius: 8px;
+
+    }
+
+    /********* Second screen ***************/
+
+    .screen2 {
+        width: 345px;
+        height: 333px;
+        display: flex;
+        margin: 15px;
+        align-items: baseline;
+        justify-content: space-evenly;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        /* background-color: red; */
+    }
+    /* .selectText{
+        display: flex;
+        gap: 24px;
+    } */
+
+    input[type="radio"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 28px;
+        height: 28px;
+        border: 1px solid #ccc;
+        border-radius: 16px;
+        cursor: pointer;
+        position: relative;
+        color: #FFFFFF;
+    }
+
+
+    /*********** Fourth Screen *****************/
+
+    .image-grid {
+        display: flex;
+        /* flex-wrap: wrap; */
+        justify-content: space-between;
+        gap: 20px;
+        width: 344px;
+        height: 390px;
+        margin-top: 65px;
+        margin: 17px;
+        /* margin-bottom: 3rem; */
+    }
+
+    #section4 .image-card {
+        box-sizing: border-box;
+        position: relative;
+        width: 162px;
+    }
+
+    .img-div {
+        width: 100%;
+        height: 120px;
+    }
+
+    /************Section 5******************/
+    #section5 .image-grid {
+        display: flex;
+        flex-wrap: wrap;
+        /* Allow wrapping to the next line */
+        gap: 15px;
+        /* height: 300px; */
+        width: 360px;
+        /* margin-bottom: 3rem; */
+        /* overflow-y: scroll; */
+        /* Space between images */
+    }
+
+    #section5 .image-card {
+        /* flex: 1 1 calc(25% - 15px);
+    box-sizing: border-box;
+    position: relative; */
+        width: 96px;
+        height: 96px;
+    }
+
+    #section5 .image-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .help-me-choose-box {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        border-radius: 4px;
+    }
+
+    .overlay2{
+       
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 95px;
+        height: 95px;
+        border: 2px solid white;
+        z-index: 10;
+        border-radius: 4px;
+    }
+
+    .overlay {
+        display: none;
+        /* Hidden by default */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 95px;
+        height: 95px;
+
+        border: 2px solid white;
+        z-index: 10;
+        /* Ensure it's above other content */
+        border-radius: 4px;
+    }
+    .checkmark {
+        position: absolute;
+        top: -10px;
+        right: -2px;
+        width: 24px;
+        height: 24px;
+        background-color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+        /* Ensure it's above the .overlay */
+    }
+
+    #section5 .img-info {
+        width: 96px;
+        height: 96px;
+    }
+
+
+    /*************** for final screen *********************/
+
+    .section-title {
+        text-align: center;
+        font-size: 13px;
+        /* margin-bottom: 30px; */
+        margin-top: 1rem;
+        /* text-transform: uppercase; */
+        color: #fff;
+    }
+
+    .bike-tabs {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 20px;
+        padding: 10px 0;
+        /* border-bottom: 2px solid #ff0000; */
+        width: 360px;/
+    }
+
+    .bike-card {
+        padding: 10px;
+        width: 358px;
+        height: 505px;
+
+    }
+
+    .bike-inner-card {
+        height: auto;
+    }
+
+    .hero-image img {
+        width: 100%;
+        /* Make image responsive */
+        height: auto;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        width: 327px;
+    }
+
+    .configure-btn,
+    .test-ride-btn {
+        font-size: 10px;
+        padding: 8px;
+        flex: 1;
+        margin: 5px;
+    }
+
+    .bike-cards {
+        margin-top: 7.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow-y: auto;
+
+    }
+
+    .bike-tab {
+        color: #fff;
+        font-weight: bold;
+        /* padding: 10px; */
+        cursor: pointer;
+        flex: 1;
+        text-align: center;
+        border-bottom: 2px solid transparent;
+
+    }
+
+    .bike-tab.active {
+        color: #ff0000;
+        /* Active tab color */
+        border-bottom-color: #ff0000;
+    }
+
+    .main-background {
+        background-image: url('/content/dam/mysite/background-images/mobile-background-image.png');
+        background-size: 110%;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        height: auto;
+        width: 340px;
+        overflow-y: auto;
+        /* margin-left: -99px; */
+        color: #fff;
+    }
+
+    .bike-features {
+        display: flex;
+        list-style: none;
+        flex-wrap: wrap;
+        gap: 14px;
+        width: 275px;
+    }
+
+    .image-thumbnails img{
+        width: 86px;
+    }
+    .bike-image-container{
+        width: 271px;
+    }
+
+  
+
+    .bike-tab-line {
+        position: absolute;
+        bottom: 0;
+        height: 2px;
+        background-color: red;
+        transition: transform 0.3s ease;
+        width: 0;
+        left: 0;
+    }
+    .fixedPart{
+        position: fixed;
+        /* margin-bottom: 3rem; */
+        z-index: 999;
+        background: #282828;
+        top: 1px;
+        width: 100%;
+        left: 1px;
+
+    }
+}
+
+@media(min-width:1024px) and (max-width:1439px) {
+    .main-background {
+        height: 110vh;
+    }
+
+}
