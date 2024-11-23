@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.querySelectorAll('.option-item').forEach(item => {
         item.addEventListener('click', function(event) {
-            console.log("event",event);
+            // console.log("event",event);
             document.querySelectorAll('.option-item').forEach(el => {
                 el.classList.remove('selectedd');
                 el.querySelector('.option-checkbox').checked = false;
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
             $sortable.find(".answer-container").each(function (index) {
                 $(this).find(".answer-id-box").text('#' + (index + 1));
             });
-            console.log("dsgsdj");
+            // console.log("dsgsdj");
         }
 
         function checkSectionVisibility() {
@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     setupImageSelection('#section4', 1, 3);
-    setupImageSelection('#section5', 4, 20);
+    // setupImageSelection('#section5', 4, 20);
 });
 
 

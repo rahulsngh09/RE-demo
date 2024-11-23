@@ -1,7 +1,0 @@
-
-#base=js
-jquery.js
-script.js
-screen2.js
-getPreferenceForAllScreens.js
-screen4.js

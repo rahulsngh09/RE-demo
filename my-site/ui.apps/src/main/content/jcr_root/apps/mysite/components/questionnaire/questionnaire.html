@@ -33,7 +33,7 @@
 
                         </ul>
                     </div>
-                   
+
                     <div class="buttton-container first">
                         <button type="button" class="next" data-next-section="#section2"
                             onclick="storePreferences();">NEXT</button>
@@ -43,16 +43,14 @@
 
 
             <div id="section2" class="questionnaire-section">
-                <!-- <div class="upperside2"> -->
-                    <p class="help-me-choose">HELP ME CHOOSE . Step 2/5</p>
-                    <p class="question">${model.question2}</p>
-                    <!-- <p class="drag-to-rearrange">Drag to rearrange.</p> -->
-                <!-- </div> -->
+
+                <p class="help-me-choose">HELP ME CHOOSE . Step 2/5</p>
+                <p class="question">${model.question2}</p>
+
 
                 <div class="screen2">
                     <ul class="selectText">
-                        <li data-sly-repeat.screen2Answer="${model.screen2Answers}"
-                            class="option-item">
+                        <li data-sly-repeat.screen2Answer="${model.screen2Answers}" class="option-item">
                             <input type="radio" name="pillion" value=" ${screen2Answer}" id="myCheckbox"
                                 class="option-checkbox">
                             <label style="cursor: pointer;">${screen2Answer}</label>
@@ -77,12 +75,12 @@
                 </div>
                 <div class="draggableOptions">
                     <ul class="sortable answers">
-                        <sly data-sly-list.screen3Answers="${model.optionWithImages}">
+                        <sly data-sly-list.screen3Answers="${model.screen3Answers}">
                             <div class="answer-container">
                                 <p class="answer-id-box">#${screen3Answers.index}</p>
                                 <div class="answer-section">
                                     <li data-value="${screen3Answers.text}" class="sortable-item section3"
-                                        style="background-size:100%; background-image: linear-gradient(93.59deg, #000000 0.45%, rgba(0, 0, 0, 0.573648) 45.64%, rgba(0, 0, 0, 0) 108.5%), url('${screen3Answers.backgroundImage @ context='uri'}');">
+                                        style="background-size:100%; background-image: linear-gradient(93.59deg, #000000 0.45%, rgba(0, 0, 0, 0.573648) 45.64%, rgba(0, 0, 0, 0) 108.5%), url('${screen3Answers.backgroundImage @ context='uri'}')">
                                         <div>
                                             <span>
                                                 <img src="${model.draggableIcon}" alt="">
@@ -114,9 +112,9 @@
                 <div class="notification">
                     <button class="close-btn" aria-label="Close">&times;</button>
                     <p id="notification-message"></p>
-                </div> <!-- Notification element -->
+                </div> 
                 <div class="image-grid">
-                    <sly data-sly-list.authoredImages="${model.allAuthoredImages}">
+                    <sly data-sly-list.authoredImages="${model.ridingPositionImagesURL}">
 
                         <div class="image-card" data-image-id=${authoredImagesList.index}
                             data-sly-attribute.customAttr="${model.ridingPositionImageAttributes[authoredImagesList.index]}">
@@ -251,13 +249,15 @@
     </div>
 </script>
 
+
+
+
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
-<!-- <link rel="icon" href="data:,"> -->
-<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>

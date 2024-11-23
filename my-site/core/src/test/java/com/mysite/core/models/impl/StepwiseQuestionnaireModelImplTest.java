@@ -1,6 +1,5 @@
 package com.mysite.core.models.impl;
 
-import com.mysite.core.bean.ImageEntity;
 import com.mysite.core.bean.Index;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -14,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,22 +42,17 @@ class StepwiseQuestionnaireModelImplTest {
 
     @Mock
     private Resource backgroundImageResource2;
-    @Mock
-    private Resource screen3Resource1;
+    
 
     @Mock
-    private Resource screen3Resource2;
-    @Mock
-    private ValueMap valueMapBackgroundImage1;
+    private Resource screen3;
 
     @Mock
-    private ValueMap valueMapBackgroundImage2;
+    private Resource placeToRideResource1;
 
     @Mock
-    private ValueMap valueMapScreen3Resource1;
+    private Resource placeToRideResource2;
 
-    @Mock
-    private ValueMap valueMapScreen3Resource2;
 
     @InjectMocks
     private StepwiseQuestionnaireModelImpl stepwiseQuestionnaireModel;
@@ -123,10 +116,10 @@ class StepwiseQuestionnaireModelImplTest {
         assertEquals(2, result.size(), "The list should contain 2 answers.");
 
         // Verify that the answers are correctly added
-        assertEquals(1, result.get(0).getIndex(), "The index of the first answer should be 1.");
+        assertEquals(1, result.get(0).getItemIndex(), "The index of the first answer should be 1.");
         assertEquals("Answer 1", result.get(0).getAnswer(), "The first answer should be 'Answer 1'.");
 
-        assertEquals(2, result.get(1).getIndex(), "The index of the second answer should be 2.");
+        assertEquals(2, result.get(1).getItemIndex(), "The index of the second answer should be 2.");
         assertEquals("Answer 2", result.get(1).getAnswer(), "The second answer should be 'Answer 2'.");
 
     }
@@ -212,7 +205,7 @@ class StepwiseQuestionnaireModelImplTest {
     }
 
     @Test
-    void getAllAuthoredImages() {
+    void getRidingPositionImagesURL() {
         when(screen4.hasChildren()).thenReturn(true);
 
         // Create a list of child resources
@@ -224,13 +217,13 @@ class StepwiseQuestionnaireModelImplTest {
 
         // Mock behavior of childResource1 and childResource2
         when(childResource1.getValueMap()).thenReturn(valueMap1);
-        when(valueMap1.get("option4", String.class)).thenReturn("Image 1");
+        when(valueMap1.get("ridingPosition", String.class)).thenReturn("Image 1");
 
         when(childResource2.getValueMap()).thenReturn(valueMap2);
-        when(valueMap2.get("option4", String.class)).thenReturn("Image 2");
+        when(valueMap2.get("ridingPosition", String.class)).thenReturn("Image 2");
 
         // Act: Call the method
-        List<String> result = stepwiseQuestionnaireModel.getAllAuthoredImages();
+        List<String> result = stepwiseQuestionnaireModel.getRidingPositionImagesURL();
 
         // Assert: Verify the results
         assertNotNull(result, "The result list should not be null.");
@@ -239,46 +232,5 @@ class StepwiseQuestionnaireModelImplTest {
 
     }
 
-    @Test
-    void getOptionWithImages() {
-//        List<Resource> backgroundImageResources = Arrays.asList(backgroundImageResource1, backgroundImageResource2);
-//        List<Resource> screen3Resources = Arrays.asList(screen3Resource1, screen3Resource2);
-//
-//        when(backgroundImages.hasChildren()).thenReturn(true);
-//        when(backgroundImages.getChildren()).thenReturn(backgroundImageResources);
-//
-//        when(screen2.hasChildren()).thenReturn(true);
-//        when(screen2.getChildren()).thenReturn(screen3Resources);
-//
-//        // Mock the ValueMaps
-//        when(backgroundImageResource1.getValueMap()).thenReturn(valueMapBackgroundImage1);
-//        when(valueMapBackgroundImage1.get("images", String.class)).thenReturn("imageURL1");
-//
-//        when(backgroundImageResource2.getValueMap()).thenReturn(valueMapBackgroundImage2);
-//        when(valueMapBackgroundImage2.get("images", String.class)).thenReturn("imageURL2");
-//
-//        when(screen3Resource1.getValueMap()).thenReturn(valueMapScreen3Resource1);
-//        when(valueMapScreen3Resource1.get("option3", String.class)).thenReturn("Option1");
-//
-//        when(screen3Resource2.getValueMap()).thenReturn(valueMapScreen3Resource2);
-//        when(valueMapScreen3Resource2.get("option3", String.class)).thenReturn("Option2");
-//
-//        // Act: Call the method
-//        List<ImageEntity> result = stepwiseQuestionnaireModel.getOptionWithImages();
-//
-//        // Assert: Verify the results
-//        assertNotNull(result, "The result list should not be null.");
-//        assertEquals(2, result.size(), "The list should contain 2 ImageEntity objects.");
-//
-//        // Verify the first ImageEntity
-//        ImageEntity entity1 = result.get(0);
-//        assertEquals("Option1", entity1.getText(), "First entity optionText should be 'Option1'");
-//        assertEquals("imageURL1", entity1.getBackgroundImage(), "First entity imageURL should be 'imageURL1'");
-//
-//        // Verify the second ImageEntity
-//        ImageEntity entity2 = result.get(1);
-//        assertEquals("Option2", entity2.getText(), "Second entity optionText should be 'Option2'");
-//        assertEquals("imageURL2", entity2.getBackgroundImage(), "Second entity imageURL should be 'imageURL2'");
 
-    }
 }

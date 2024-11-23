@@ -46,18 +46,6 @@ public class StepwiseQuestionnaireModelImpl implements StepwiseQuestionnaireMode
     private String draggableIcon;
 
     @Override
-    public List<String> getRidingPositionImageAttributes() {
-        List<String> ridingPositionImageAttributes = new ArrayList<>();
-        ridingPositionImageAttributes.add("Cruiser");
-        ridingPositionImageAttributes.add("Upright");
-        ridingPositionImageAttributes.add("Off");
-        ridingPositionImageAttributes.add("Agg");
-        ridingPositionImageAttributes.add("Relax");
-        ridingPositionImageAttributes.add("Cafe");
-        return ridingPositionImageAttributes;
-    }
-
-    @Override
     public String getQuestion() {
         return question;
     }
@@ -101,14 +89,15 @@ public class StepwiseQuestionnaireModelImpl implements StepwiseQuestionnaireMode
     }
 
     @Override
-    public List<String> getScreen3Answers(){
-        List<String> screen3Answers = new ArrayList<>();
-        if(screen3 != null && screen3.hasChildren()){
-            for(Resource resource : screen3.getChildren()){
-                screen3Answers.add(resource.getValueMap().get("option3", String.class));
-            }
-        }
-        return screen3Answers;
+    public List<String> getRidingPositionImageAttributes() {
+        List<String> ridingPositionImageAttributes = new ArrayList<>();
+        ridingPositionImageAttributes.add("Cruiser");
+        ridingPositionImageAttributes.add("Upright");
+        ridingPositionImageAttributes.add("Off");
+        ridingPositionImageAttributes.add("Agg");
+        ridingPositionImageAttributes.add("Relax");
+        ridingPositionImageAttributes.add("Cafe");
+        return ridingPositionImageAttributes;
     }
 
     @Override
@@ -116,18 +105,18 @@ public class StepwiseQuestionnaireModelImpl implements StepwiseQuestionnaireMode
         return question4; }
 
     @Override
-    public List<String> getAllAuthoredImages() {
-        List<String> allAuthoredImages = new ArrayList<>();
+    public List<String> getRidingPositionImagesURL() {
+        List<String> ridingPositionImagesURL = new ArrayList<>();
         if(screen4 != null && screen4.hasChildren()){
             for(Resource resource : screen4.getChildren()){
-                allAuthoredImages.add(resource.getValueMap().get("option4", String.class));
+                ridingPositionImagesURL.add(resource.getValueMap().get("ridingPosition", String.class));
             }
         }
-        return allAuthoredImages;
+        return ridingPositionImagesURL;
     }
 
     @Override
-    public List<ImageEntity> getOptionWithImages(){
+    public List<ImageEntity> getScreen3Answers(){
         List<ImageEntity> optionWithImages = new ArrayList<>();
         if(backgroundImages != null && backgroundImages.hasChildren() && screen3 != null && screen3.hasChildren()){
             Iterator<Resource> backgroundImageIterator = backgroundImages.getChildren().iterator();

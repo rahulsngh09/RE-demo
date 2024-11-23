@@ -2,5 +2,5 @@
 #base=js
 jquery.js
 script.js
-getPreferenceForAllScreens.js
-screen4.js
+api_request.js
+

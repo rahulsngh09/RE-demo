@@ -1,0 +1,245 @@
+.form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    /* Apply a blur effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    /* margin-top: 1.2rem; */
+}
+
+.baba {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    /* background: #2a2a2a; */
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    left: 30%;
+    top: 90px;
+    color: #fff;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #EDEDED;
+
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 33px;
+    cursor: pointer;
+    /* margin-top: 0.5rem; */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    /* background: #2a2a2a; */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #EDEDED;
+
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="email"] {
+    width: 470px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #333;
+    background-color: #333;
+    color: #fff;
+    font-size: 14px;
+}
+
+.phone-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.phone-input span {
+    background-color: #444;
+    padding: 10px;
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+    color: #fff;
+}
+
+.phone-input input {
+    border-radius: 0 4px 4px 0;
+}
+
+.form-group.terms-group {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+
+.disclaimer {
+    font-size: 12px;
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+.form-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #000;
+    background-color: #fff;
+}
+
+.submit-btn:disabled {
+    font-weight: 700;
+    background-color: #373737;
+    color: #181818;
+    cursor: not-allowed;
+}
+
+.form-container a {
+    color: #FD5050;
+    text-decoration: none;
+}
+
+.form-container a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 375px)  {
+    .form-container {
+        background-color: #1a1a1a;
+        padding: 30px;
+        border-radius: 8px;
+        width: 320px;
+        height:auto;
+        position: relative;
+        top: 99px;
+        left: 0px;
+        color: #fff;
+        text-align: left;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .navigateBtn{
+        width: 34px;
+        height: 3px;
+        position: absolute;
+        left: 50%;
+        top: 12px;
+        background: #FFFFFF80;
+
+    }
+
+    .form-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        /* Apply a blur effect */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        /* margin-top: 1.2rem; */
+    }
+
+    .allFields {
+        width: 316px;
+        height: 410px;
+        /* background-color: red; */
+    }
+    .form-group input[type="text"],
+    .form-group input[type="tel"],
+    .form-group input[type="email"] {
+        width: 294px;
+        height: 35px;
+        /* padding: 10px; */
+        border-radius: 4px;
+        border: 1px solid #333;
+        background-color: #333;
+        color: #fff;
+        font-size: 14px;
+    }
+
+
+    .close-btn {
+        display: none;
+    }
+}
+
+
+@media(min-width:1024px) and (max-width:1439px) {
+
+    .form-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        /* Apply a blur effect */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        /* margin-top: 1.2rem; */
+    }
+
+    .baba {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-container {
+        /* background: #2a2a2a; */
+        background-color: #1a1a1a;
+        padding: 30px;
+        border-radius: 8px;
+        max-width: 500px;
+        width: 90%;
+        position: relative;
+        color: #fff;
+        text-align: left;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+}

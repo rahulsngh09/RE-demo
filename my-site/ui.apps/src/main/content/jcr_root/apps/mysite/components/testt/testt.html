@@ -1,0 +1,238 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+  <sly data-sly-call="${clientlib.all @ categories='mysite-test'}" />
+</sly>
+
+
+<sly data-sly-use.model="com.mysite.core.models.StepwiseQuestionnaireModel">
+  <div class="main-div">
+    <div class="questionnaire-sections">
+
+      <!-- Section 1 -->
+      <!-- <section id="section1" class="questionnaire-section">
+        <div class="common-div">
+          <div class="section-content">
+            <p class="help-me-choose">HELP ME CHOOSE . Step 1/5</p>
+            <p class="question">${model.question}</p>
+            <p class="drag-to-rearrange">Drag to rearrange.</p>
+            <ul class="sortable answers">
+              <sly data-sly-list.answers="${model.answers}">
+                <div class="answer-container">
+                  <p class="answer-id-box">#${answers.index}</p>
+                  <div class="answer-section">
+                    <li data-value="${answers.answer}" class="sortable-item section1">
+                      <span>
+                        <img src="${model.draggableIcon}" alt="">
+                      </span>
+                      ${answers.answer}
+                    </li>
+                  </div>
+                </div>
+
+              </sly>
+            </ul>
+            <div class="button-container">
+              <button type="button" class="next" data-next-section="#section2">NEXT</button>
+            </div>
+          </div>
+        </div>
+      </section> -->
+
+      <!-- Section 2 -->
+      <!-- <section id="section2" class="questionnaire-section" style="display:none;">
+        <div class="common-div">
+          <p class="help-me-choose">HELP ME CHOOSE . Step 2/5</p>
+          <p class="question">${model.question2}</p>
+          <p class="drag-to-rearrange">Select any one.</p>
+          <ul>
+            <sly data-sly-repeat.screen2Answer="${model.screen2Answers}">
+              <li style="cursor: pointer;" class="option-item">
+                <input type="radio" name="pillion" value="${screen2Answer}" id="myCheckbox" class="option-checkbox">
+                <label style="cursor: pointer;">${screen2Answer}</label>
+              </li>
+            </sly>
+          </ul>
+          <div class="button-container">
+            <button type="button" class="prev" data-prev-section="#section1">BACK</button>
+            <button type="button" id="nextButton" class="next" 
+              data-next-section="#section3">NEXT</button>
+          </div>
+        </div>
+      </section> -->
+
+      <!-- section 3 -->
+      <section id="section3" class="questionnaire-section" style="display:none;">
+        <div class="common-div">
+          <div class="section-content">
+            <p class="help-me-choose">HELP ME CHOOSE . Step 3/5</p>
+            <p class="question">${model.question3}</p>
+            <p class="drag-to-rearrange">Drag to rearrange.</p>
+            <ul class="sortable answers" style="margin-left: 2rem;">
+              <sly data-sly-repeat.screen3Answers="${model.optionWithImages}">
+                <li data-value="${screen3Answers.text}" class="sortable-item section3">
+                  <div class="answer-container answer-container2">
+                    <p class="answer-id-box">#${screen3AnswersList.index}</p>
+                  </div>
+                  <img src="${model.draggableIcon}" alt=""> ${screen3Answers.text}
+                </li>
+              </sly>
+            </ul>
+            <div class="button-container">
+              <button type="button" class="prev" data-prev-section="#section2">BACK</button>
+              <button type="button" class="next"  data-next-section="#section4">NEXT</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- section 4 -->
+      <!-- <section id="section4" class="questionnaire-section" style="display:none;">
+        <div class="common-div">
+          <div class="section-content">
+            <p class="help-me-choose">HELP ME CHOOSE . Step 4/5</p>
+            <p class="question">${model.question4}</p>
+            <div class="notification">
+              <button class="close-btn" aria-label="Close">&times;</button>
+              <p id="notification-message"></p>
+            </div>
+            <div class="image-grid">
+              <sly data-sly-list.authoredImages="${model.allAuthoredImages}">
+                <div class="image-card" data-image-id="${authoredImagesList.index}"
+                  data-sly-attribute.customAttr="${model.ridingPositionImageAttributes[authoredImagesList.index]}">
+                  <div class="img-div">
+                    <img src="${authoredImages}" alt="Motorcycle Riding Position" class="selectable-image">
+                  </div>
+                  <div class="overlay">
+                    <div class="checkmark"><img src="${properties.tickBtnIcon}" alt=""></div>
+                  </div>
+                </div>
+              </sly>
+            </div>
+            <div class="button-container">
+              <button type="button" class="prev" data-prev-section="#section3">BACK</button>
+              <button type="button" class="next riding button-section" data-next-section="#section5"
+                id="callApiBtn" onclick="imageTagAttribute();">NEXT</button>
+            </div>
+          </div>
+        </div>
+      </section> -->
+
+      <section id="section5" class="questionnaire-section" style="display:none;">
+        <div class="common-div">
+          <div class="section-content">
+            <p class="help-me-choose">HELP ME CHOOSE . Step 5/5</p>
+            <p class="question">${properties.question5}</p>
+
+            <div class="notification">
+              <button class="close-btn" aria-label="Close">&times;</button>
+            </div> <!-- Notification element -->
+
+            <div class="image-grid">
+              <div class="personal-interest" id="image-card">
+                <div class="help-me-choose-box" id="img-div">
+                  <!-- Additional content can be dynamically inserted here -->
+                </div>
+                <div class="overlay" style="width: 172px; height: 120px;">
+                  <div class="checkmark">
+                    <img src="${properties.tickBtnIcon}" alt="" id="select-tick-img"
+                      data-image-url="${properties.tickBtnIcon}">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="button-container">
+              <button type="button" class="prev" id="back-button" data-prev-section="#section4">BACK</button>
+              <button type="button" class="next" id="section5Btn" data-next-section="#final-section"
+                >NEXT</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+    </div>
+
+    <!-- Final Section -->
+    <section id="final-section" class="final-section" style="display:none;">
+      <p class="final-content">This is the final section with a different background.</p>
+    </section>
+  </div>
+</sly>
+
+<!-- <script id="bike-template" type="text/x-handlebars-template">
+  <h2 class="section-title">Meet your next Royal Enfield Motorcycle</h2>
+  <div class="bike-cards">
+      {{#each bikes}}
+          <div style="height: 543px; background-color: #000; border: 2px solid grey; border-radius: 6px;">
+              <div>
+                  <div class="bike-card">
+                      <div class="nameAndImgDiv">
+                          <h3 style="margin: 0px;">{{bikeName}}</h3>
+                          <span><img src="{{forwardIcon}}" alt="Forward Icon"></span>
+                      </div>
+                      
+                      <div class="bike-image-container">
+                          <div class="hero-image">
+                              <img src="{{bikeHeroImage}}" alt="{{bikeName}} Image" class="hero-image" width="289px" height="178px">
+                          </div>
+                      </div>
+                      
+                      <p style="display: flex; justify-content: center;"><strong>Starts from ₹</strong> {{bikePrice}}</p>
+                      <div class="image-thumbnails">
+                          {{#each bikeSmallImages}}
+                              <img src="{{this}}" alt="Small Image" >
+                          {{/each}}
+                      </div>
+
+                      <div class="bike-info">
+                          <ul class="bike-features">
+                              {{#each bikeFeatures}}
+                                  <li>{{this}}</li>
+                              {{/each}}
+                          </ul>
+                      </div>
+                  </div>
+
+                 
+              </div>
+              <div class="actions">
+                  <button class="configure-btn prev">CONFIGURE NOW</button>
+                  <button class="test-ride-btn" id="book-a-test-ride" style="
+                      display: flex;
+                      height: 40px;
+                      width: 204px;
+                      padding: 8px 16px;
+                      cursor: pointer;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 12px;
+                      font-weight: 700;
+                  ">BOOK A TEST RIDE</button>
+  
+              </div>
+          </div>
+      {{/each}}
+
+     
+
+  </div>
+  <div class="cta-message">
+      <p>
+          <a href="#" class="retry-link">Get more recommandations</a>
+      </p>
+  </div>
+</script> -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+  rel="stylesheet">
+<!-- <link rel="icon" href="data:,"> -->
+<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>

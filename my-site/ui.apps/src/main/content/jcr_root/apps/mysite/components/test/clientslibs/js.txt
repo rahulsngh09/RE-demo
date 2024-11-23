@@ -1,7 +1,0 @@
-
-#base=js
-jquery.js
-handlebar.js
-script.js
-biketemplate.js
-

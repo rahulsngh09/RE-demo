@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -31,7 +32,7 @@ import java.util.List;
 public class BikeNames extends SlingAllMethodsServlet {
 
     @Reference
-    BikeDetailsService bikeDetailsService;
+    transient BikeDetailsService bikeDetailsService;
 
     @Override
     protected void doGet(SlingHttpServletRequest request,  SlingHttpServletResponse response) throws ServletException, IOException {
@@ -47,7 +48,7 @@ public class BikeNames extends SlingAllMethodsServlet {
         List<BikeDetails> bikeDetails = bikeDetailsService.getBikeDetails(bikeNames);
 
         if (bikeDetails.isEmpty()) {
-            response.setStatus(SlingHttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("{\"error\":\"Unable to fetch bike details\"}");
         } else {
             JSONArray bikeDetailsJsonArray = new JSONArray();
@@ -67,7 +68,7 @@ public class BikeNames extends SlingAllMethodsServlet {
                     bikeDetailsJsonArray.put(bikeDetailJson);
                 } catch (JSONException e) {
                     logger.error("Data is in mismatch format {}",e.getMessage());
-                    response.setStatus(SlingHttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                    response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                     response.getWriter().write("{\"error\":\"Error converting bike details to JSON\"}");
                     return;
                 }

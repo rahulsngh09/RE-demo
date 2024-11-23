@@ -1,0 +1,85 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+    <sly data-sly-call="${clientlib.all @ categories='mysite-formComponent'}" />
+</sly>
+
+<sly data-sly-use.model="com.mysite.core.models.Book_A_Test_Ride_Form_Model">
+    <sly data-sly-test="${model}">
+
+
+        <div id="test-ride-form" class="form-overlay" style="display: none;">
+            <div class="form-container">
+                <div class="navigateBtn"></div>
+                <h2>${model.formLabel}</h2>
+                <button class="close-btn" aria-label="Close">&times;</button>
+                <form id="callbackForm" action="/bin/book-a-test-ride-servlet" method="get"
+                    onsubmit="return validateForm()">
+                    <div class="allFields">
+                        <div class="form-group">
+                            <label for="fullName">${model.nameLabel}</label>
+                            <input type="text" id="fullName" class="inputformdata" name="fullName" required
+                                placeholder="${model.namePlaceholder}" oninput="validateFullName(this)"
+                                pattern="[A-Za-z\s]+" title="Please enter only letters.">
+                            <span class="error-message" id="nameError" style="color: red;"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">${model.phoneLabel}</label>
+                            <div class="phone-input">
+                                <!-- <span>+91</span> -->
+                                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+91" required
+                                    placeholder="${model.phonePlaceholder}" oninput="validatePhoneNumber(this)"
+                                    pattern="\d{10}" title="Please enter a 10-digit phone number.">
+                            </div>
+                            <span class="error-message" id="phoneError" style="color: red;"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailId">${model.emailLabel}</label>
+                            <input type="email" id="emailId" class="inputformdata" name="emailId" required
+                                placeholder="${model.emailPlaceholder}" oninput="validateEmail(this)">
+                            <span class="error-message" id="emailError" style="color: red;"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="pincode">${model.pincodeLabel}</label>
+                            <input type="text" id="pincode" class="inputformdata" name="pincode" required
+                                placeholder="${model.pincodePlaceholder}" oninput="validatePincode(this)"
+                                pattern="\d{6}" title="Please enter a valid 6-digit pincode.">
+                            <span class="error-message" id="pincodeError" style="color: red;"></span>
+                        </div>
+                    </div>
+                    <p class="disclaimer">Disclaimer: By submitting this form you acknowledge and agree to our
+                        <a href="#">terms and conditions</a> and <a href="#">privacy policy</a>.
+                        All information provided will be secured and processed as per our privacy policy.
+                    </p>
+                    <div class="form-group terms-group">
+                        <input type="checkbox" id="agree" name="agree" required>
+                        <label for="agree">I agree to <a href="#">Terms & Conditions</a> and <a href="#">Privacy
+                                Policy</a></label>
+                    </div>
+                    <button type="submit" class="submit-btn" disabled>${model.submitButtonLabel}</button>
+                </form>
+            </div>
+
+        </div>
+
+    </sly>
+
+</sly>
+
+
+<script>
+    function showTestRideForm() {
+        var formDiv = document.getElementById("test-ride-form");
+        if (formDiv) {
+            formDiv.style.display = "block";  // Show the form
+        }
+    }
+
+    // Function to hide the form when the close button is clicked
+    function hideTestRideForm() {
+        var formDiv = document.getElementById("test-ride-form");
+        formDiv.style.display = "none";  // Hide the form
+    }
+
+
+
+
+</script>

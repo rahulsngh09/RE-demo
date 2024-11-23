@@ -49,13 +49,8 @@ main.container {
 }
 
 .section-one {
-    /* background-image: url('/content/dam/mysite/background-images/background-image.png');
-    background-size: 60% 100%;
-    background-position: left center;
-    background-repeat: no-repeat; */
-    /* margin: 0; */
     min-height: 591px;
-    /* width: 100vw; */
+    
 }
 
 .main-div {
@@ -65,10 +60,8 @@ main.container {
 
 .option-item {
     border: 2px solid transparent;
-    /* Default border */
     transition: border 0.3s ease;
     width: 560px;
-    /* Smooth transition */
 }
 
 .container-basic {
@@ -82,25 +75,17 @@ main.container {
     background-size: 60% 100%;
     background-position: left center;
     background-repeat: no-repeat;
-    /* background-repeat: no-repeat; */
-    /* margin: 0; */
-    /* height: 82vh; */
-    /* width: 100vw; */
-
     display: none;
-
-    /* color: white; */
-    /* padding: 20px; */
     width: 654px;
     /* height: 360px; */
     margin: 16px auto;
-    /* border-radius: 8px; */
+    
 }
 
 
 .questionnaire-section.active {
     display: block;
-    /* Display the current section */
+    
 }
 
 .questionnaire-section h2 {
@@ -111,12 +96,12 @@ main.container {
 
 .questionnaire-section ul {
     list-style-type: none;
-    /* margin-bottom: 20px; */
+    
 }
 
 .draggableOptions {
     width: 560px;
-    /* height: 360px; */
+    
     display: flex;
 }
 
@@ -199,15 +184,8 @@ main.container {
     width: 95%;
 }
 
-/* *************** first section over**************** */
-
-/* *************** checkbox design**************** */
-
-/* *************** Second section**************** */
-
 .option-item.selectedd {
     border-color: white;
-    /* Border color when selected */
 }
 .upperside2{
     width: 327px;
@@ -219,7 +197,6 @@ button:disabled {
     background-color: #373737;
     color: #181818;
     cursor: not-allowed;
-    /* Change cursor to not-allowed */
 }
 
 .screen2 {
@@ -289,6 +266,7 @@ input[type="radio"]:checked::before {
     justify-content: space-between;
     width: 560px;
     gap: 10px;
+    margin-top: 23px;
 }
 
 .first {
@@ -449,13 +427,12 @@ input[type="radio"]:checked::before {
 /* CSS to style disabled state of the Next button */
 .button-container .next:disabled {
     background-color: #ccc;
-    /* Change background color */
     color: #666;
-    /* Change text color */
+  
     cursor: not-allowed;
-    /* Change cursor style */
+   
     opacity: 0.6;
-    /* Reduce opacity */
+    
 }
 
 .motorcycle-container {
@@ -586,12 +563,6 @@ input[type="radio"]:checked::before {
 
 }
 
-/* .nameAndImgDiv img{
-    vertical-align: middle; 
-    height: 24px;
-    width: auto; 
-} */
-
 .configure-btn {
     margin: 0px;
     border: 1px solid #A7A7A7;
@@ -627,8 +598,6 @@ input[type="radio"]:checked::before {
 
 #main-section {
     display: none;
-    /* margin-top: 3rem; */
-    /* padding: 20px; */
     color: #fff;
 
 }
@@ -637,14 +606,6 @@ input[type="radio"]:checked::before {
 .motorcycle-image h2 {
     margin-right: 200px;
 }
-
-
-
-
-
-/*  ************form styling*************  */
-
-
 
 .success-message {
     background: #2a2a2a;
@@ -680,31 +641,28 @@ input[type="radio"]:checked::before {
 .notification {
     display: none;
     position: fixed;
-    /* Fixed position to ensure it's always visible */
     bottom: 20px;
-    /* Position at the bottom of the viewport */
     left: 50%;
     /* Center horizontally */
     transform: translateX(-50%);
     /* Center horizontally */
     background-color: #f44336;
-    /* Red background for error/warning */
     color: white;
-    /* White text */
+
     padding: 15px 20px;
-    /* Padding for spacing */
+   
     border-radius: 5px;
-    /* Rounded corners */
+  
     font-size: 16px;
-    /* Text size */
+  
     font-weight: bold;
-    /* Bold text */
+  
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    /* Shadow for better visibility */
+    
     z-index: 1000;
-    /* Ensure it appears above other content */
+    
     transition: opacity 0.5s ease, transform 0.5s ease;
-    /* Smooth transition for appearance */
+   
 }
 
 /* Show notification */
@@ -719,7 +677,7 @@ input[type="radio"]:checked::before {
 .notification.hide {
     opacity: 0;
     transform: translateX(-50%) translateY(100px);
-    /* Slide down out of view */
+   
 }
 
 /* Close button styling */
@@ -761,30 +719,26 @@ input[type="radio"]:checked::before {
 }
 
 #section4 .image-card {
-    /* flex: 1 1 calc(33.333% - 15px); */
-    /* 3 images per row, accounting for gaps */
+   
     box-sizing: border-box;
-    /* Include padding and border in the element's total width and height */
+    
     position: relative;
     width: 172px;
-    /* Position relative for absolute positioning of the overlay */
+    
 }
 
 #section4 .image-card img {
     width: 100%;
-    /* Make image fill the container */
+   
     height: auto;
-    /* Maintain aspect ratio */
+   
     display: block;
-    /* Ensure image doesn't have extra space below */
+ 
     transition: box-shadow 0.3s ease;
-    /* Smooth transition for shadow effect */
+    
 }
 
-/* #section4 .image-card.selected img {
-    box-shadow: 0 0 0 4px;
-    
-} */
+
 
 ::-webkit-scrollbar {
     width: 4px;
@@ -802,19 +756,16 @@ input[type="radio"]:checked::before {
 #section5 .image-grid {
     display: flex;
     flex-wrap: wrap;
-    /* Allow wrapping to the next line */
+
     gap: 15px;
     height: 300px;
     width: 565px;
     margin-bottom: 3rem;
-    /* overflow-y: scroll; */
-    /* Space between images */
+   
 }
 
 #section5 .image-card {
-    /* flex: 1 1 calc(25% - 15px);
-    box-sizing: border-box;
-    position: relative; */
+  
     width: 127px;
     height: 127px;
 }
@@ -949,8 +900,7 @@ input[type="radio"]:checked::before {
 }
 
 .bike-card {
-    /* background-color: #000000; */
-    /* Darker background for cards */
+  
     padding: 20px;
     width: 327px;
     height: 460px;
@@ -1080,69 +1030,7 @@ input[type="radio"]:checked::before {
 }
 
 /*  Responsive or for mobile devices ************/
-@media (max-width: 768px) {
-    .main-div{
-        display: flex;
-        justify-content: space-between;
-    }
-    /* For tablets and mobile (portrait) */
-    .questionnaire-section {
-        width: 90%;
-        height: auto;
-        margin: 20px auto;
-        padding: 15px;
-        background-size: cover;
-        background-position: center;
 
-    }
-
-    .questionnaire-section h2 {
-        font-size: 20px;
-        margin-bottom: 10px;
-    }
-
-    .questionnaire-section .container {
-        padding: 0 10px;
-    }
-
-    /* .questionnaire-section ul {
-        margin-bottom: 10px;
-    } */
-
-    .answer-id-box {
-        width: 30px;
-        height: 30px;
-        font-size: 14px;
-        margin-top: 5px;
-    }
-
-    .questionnaire-section li {
-        /* font-size: 16px;
-        height: auto;
-        padding: 10px;
-        margin: 0 0 15px 0;
-        border-left: 2px solid #fff;
-        flex-direction: column;
-        align-items: flex-start; */
-    }
-
-    .questionnaire-section li .sortable-item {
-        /* display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%; */
-    }
-
-    .questionnaire-section li img {
-        /* max-width: 30px; */
-        /* margin-bottom: 10px; */
-    }
-
-    .buttton-container.first .next {
-        padding: 12px 25px;
-        font-size: 14px;
-    }
-}
 
 @media (max-width: 375px) {
     body {
@@ -1173,7 +1061,7 @@ input[type="radio"]:checked::before {
     .upperside {
         width: 327px;
         height: 129px;
-        /* background-color: yellow; */
+       
         gap: 8px;
     }
 
@@ -1182,7 +1070,7 @@ input[type="radio"]:checked::before {
         height: 26px;
         line-height: 23.9px;
         size: 32px;
-        /* margin-top: 1rem; */
+       
         margin-bottom: 2rem;
     }
 
@@ -1193,7 +1081,7 @@ input[type="radio"]:checked::before {
         flex-direction: column;
         justify-content: space-between;
         top: 250px;
-        /* left: -60px; */
+     
         align-items: center;
     }
 
@@ -1202,7 +1090,7 @@ input[type="radio"]:checked::before {
         width: 327px;
         font-family: TT Commons;
         size: 16px;
-        /* background-color: red; */
+        
     }
 
     .draggableOptions {
@@ -1214,13 +1102,13 @@ input[type="radio"]:checked::before {
         justify-content: space-evenly;
         flex-wrap: nowrap;
         flex-direction: column;
-        /* background-color: red; */
+       
 
     }
     .answer-section {
         width: 283px;
         height: 48px;
-        /* background-color: red; */
+      
     }
 
     .answer-container {
@@ -1234,20 +1122,20 @@ input[type="radio"]:checked::before {
     }
 
     .questionnaire-section {
-        /* margin-top: 20px; */
+       
         background-image: url('/content/dam/mysite/background-images/background-image.png');
         background-size: 100% 100%;
         background-position: 30% left;
         background-repeat: no-repeat;
         /* margin: 0; */
         height:643px;
-        /* width: 100vw; */
+       
 
         display: none;
         color: white;
-        /* padding: 20px; */
+       
         width: 345px;
-        /* height: 360px; */
+       
         margin: 58px auto;
         border-radius: 8px;
     }
@@ -1266,7 +1154,7 @@ input[type="radio"]:checked::before {
         text-align: center;
         background-color: #FFFFFF;
         border-radius: 16px;
-        /* margin-top: 5px; */
+       
         justify-content: center;
         font-weight: 800;
     }
@@ -1306,9 +1194,7 @@ input[type="radio"]:checked::before {
         width: 362px;
         height: 80px;
         gap: 15px;
-        /* padding-right: 10px; */
-        /* padding-left: 9px; */
-        /* margin-top: 12rem; */
+       
         background-color: #262626;
         align-items: center;
         top: 780px;
@@ -1317,7 +1203,7 @@ input[type="radio"]:checked::before {
     }
 
     .buttton-container.first .next {
-        /* padding: 10px 20px; */
+       
         padding: 16px 24px 16px 24px;
         font-size: 12px;
         width: 156px;
@@ -1339,10 +1225,7 @@ input[type="radio"]:checked::before {
         flex-direction: column;
         /* background-color: red; */
     }
-    /* .selectText{
-        display: flex;
-        gap: 24px;
-    } */
+  
 
     input[type="radio"] {
         appearance: none;
@@ -1358,7 +1241,7 @@ input[type="radio"]:checked::before {
     }
 
 
-    /*********** Fourth Screen *****************/
+ 
 
     .image-grid {
         display: flex;

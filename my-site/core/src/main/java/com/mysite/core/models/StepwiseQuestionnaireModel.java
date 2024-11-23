@@ -48,24 +48,20 @@ public interface StepwiseQuestionnaireModel {
      * @return a list of possible answers for the second screen.
      */
     List<String> getScreen2Answers();
-    /**
-     * Gets a list of answer options for the third screen of the questionnaire.
-     *
-     * @return a list of possible answers for the third screen.
-     */
-    List<String> getScreen3Answers();
+
+
     /**
      * Gets all the images authored or added for the questionnaire.
      *
      * @return a list of image paths or identifiers.
      */
-    List<String> getAllAuthoredImages();
+    List<String> getRidingPositionImagesURL();
     /**
      * Gets a list of answer options that include images associated with the answers.
      *
      * @return a list of ImageEntity objects that represent the answers with images.
      */
-    List<ImageEntity> getOptionWithImages();
+    List<ImageEntity> getScreen3Answers();
     /**
      * Gets a list of image attributes related to riding positions, used for answering or visual reference.
      *
