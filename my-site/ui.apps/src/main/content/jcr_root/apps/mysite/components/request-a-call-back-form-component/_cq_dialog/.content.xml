@@ -137,38 +137,7 @@
                                     <column
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/container">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <questions
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldLabel="Enter your question"
-                                                name="./question3"/>
-                                            <questionnaire_options_multifield
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                                composite="{Boolean}true"
-                                                fieldDescription="Enter the Question for third screen"
-                                                fieldLabel="Enter the question for first screen">
-                                                <field
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
-                                                    name="./screen3">
-                                                    <items jcr:primaryType="nt:unstructured">
-                                                        <column
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
-                                                            <items jcr:primaryType="nt:unstructured">
-                                                                <quetionnaire_options
-                                                                    jcr:primaryType="nt:unstructured"
-                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                                    fieldLabel="Enter your options"
-                                                                    name="./option3"/>
-                                                            </items>
-                                                        </column>
-                                                    </items>
-                                                </field>
-                                            </questionnaire_options_multifield>
-                                        </items>
+                                        <items jcr:primaryType="nt:unstructured"/>
                                     </column>
                                 </items>
                             </columns>
