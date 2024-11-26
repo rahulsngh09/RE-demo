@@ -5,7 +5,9 @@
 <sly data-sly-use.model="com.mysite.core.models.StepwiseQuestionnaireModel">
     <div class="main-div">
         <section class="section-one">
-            <div id="questionnaire" class="questionnaire-section active">
+            <div id="questionnaire" class="questionnaire-section active"
+                style="background-image: url('${properties.baseImage @ context='uri'}';)">
+
                 <div class="container-basic">
                     <div class="upperside">
                         <p class="help-me-choose">HELP ME CHOOSE . Step 1/5</p>
@@ -165,7 +167,9 @@
                 </div>
             </div>
             <!-- Handlebars template -->
-            <div class="main-background" id="main-section">
+            <div class="main-background" id="main-section"
+                data-sly-attribute.mobileImageURL="${properties.finalBGImageForMobile}"
+                style="background-image: url('${properties.finalBGImage @ context='uri'}');">
             </div>
         </section>
     </div>

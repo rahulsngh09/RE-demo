@@ -3,12 +3,10 @@ package com.mysite.core.models.impl;
 import com.mysite.core.bean.ImageEntity;
 import com.mysite.core.bean.Index;
 import com.mysite.core.models.StepwiseQuestionnaireModel;
-import com.mysite.core.services.BikeDetailsService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.api.resource.Resource;
 import java.util.ArrayList;
@@ -38,8 +36,6 @@ public class StepwiseQuestionnaireModelImpl implements StepwiseQuestionnaireMode
     private Resource personalInterest;
     @ChildResource
     private Resource backgroundImages;
-    @OSGiService
-    BikeDetailsService bikeDetailsService;
     @ValueMapValue
     private String question4;
     @ValueMapValue

@@ -71,7 +71,7 @@ main.container {
 }
 
 .questionnaire-section {
-    background-image: url('/content/dam/mysite/background-images/background-image.png');
+    
     background-size: 60% 100%;
     background-position: left center;
     background-repeat: no-repeat;
@@ -80,6 +80,11 @@ main.container {
     /* height: 360px; */
     margin: 16px auto;
     
+}
+
+.bgImg{
+    width: 654px;
+    height: 880px;
 }
 
 
@@ -1122,20 +1127,13 @@ input[type="radio"]:checked::before {
     }
 
     .questionnaire-section {
-       
-        background-image: url('/content/dam/mysite/background-images/background-image.png');
         background-size: 100% 100%;
         background-position: 30% left;
         background-repeat: no-repeat;
-        /* margin: 0; */
         height:643px;
-       
-
         display: none;
         color: white;
-       
         width: 345px;
-       
         margin: 58px auto;
         border-radius: 8px;
     }
@@ -1427,7 +1425,6 @@ input[type="radio"]:checked::before {
     }
 
     .main-background {
-        background-image: url('/content/dam/mysite/background-images/mobile-background-image.png');
         background-size: 110%;
         background-position: center;
         background-repeat: no-repeat;

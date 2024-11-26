@@ -311,13 +311,25 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                                 fieldDescription="Upload the image that will be displayed on the first five screen. Ensure the image is designed specifically for the first five screen, as it may differ in layout or size."
                                                 fieldLabel="Background Image"
-                                                name="./initialStepImg"/>
+                                                name="./baseImage"/>
                                             <lastScreenImage
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                                 fieldDescription="Upload the image that will be displayed on the last screen. Ensure the image is designed specifically for the last screen, as it may differ in layout or size."
                                                 fieldLabel="Background Image for final screen"
-                                                name="./lastStepImg"/>
+                                                name="./finalBGImage"/>
+                                            <draggable-icon
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                fieldDescription="Select the Icon for drag  images"
+                                                fieldLabel="Draggable Icon"
+                                                name="./draggableIcon"/>
+                                            <lastScreenImage-for-mobile
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                fieldDescription="Upload the image that will be displayed on the last screen. Ensure the image is designed specifically for the last screen, as it may differ in layout or size."
+                                                fieldLabel="Background Image for mobile final screen"
+                                                name="./finalBGImageForMobile"/>
                                         </items>
                                     </column>
                                 </items>
