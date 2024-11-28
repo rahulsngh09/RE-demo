@@ -42,7 +42,7 @@ function placeToRide() {
     const items = document.querySelectorAll('.sortable .section3');
     items.forEach(function (item) {
         const value = item.getAttribute('data-value');
-        console.log("value is:",value);
+        console.log("value is:", value);
         placePreferences.push(value);
     });
 
@@ -123,21 +123,21 @@ function imageTagAttribute() {
             selectedImageIds.splice(index, 1);
             imageCard.classList.remove('selected');
             console.log(`Deselected image ID: ${imageId}`)
-            console.log(selectedImageIds, "size of array is ",selectedImageIds.length);
+            console.log(selectedImageIds, "size of array is ", selectedImageIds.length);
         } else {
             // Select the image
             selectedImageIds.push(imageId);
             imageCard.classList.add('selected');
             console.log(`Selected image ID: ${imageId}`);
-            console.log(selectedImageIds, "size of array is ",selectedImageIds.length);
+            console.log(selectedImageIds, "size of array is ", selectedImageIds.length);
         }
 
         const nextButton = document.getElementById('section5Btn');
-        if(selectedImageIds.length >= 4){
+        if (selectedImageIds.length >= 4) {
             console.log("finally user selcetd more tha")
             nextButton.disabled = false;
             nextButton.classList.remove('disabled');
-        }else{
+        } else {
             nextButton.disabled = true;
             nextButton.classList.add('disabled');
         }
@@ -202,7 +202,7 @@ function imageTagAttribute() {
                             overlayDiv.className = 'overlay';
                             checkmarkDiv.className = 'checkmark';
 
-                            imgElement.className='img-info';
+                            imgElement.className = 'img-info';
 
                             imgElement.src = image.image_url;
                             imgElement.alt = image.title;
@@ -280,6 +280,8 @@ function imageTagAttribute() {
                                             }))
                                         };
 
+
+
                                         const html = template(context);
                                         document.getElementById('main-section').innerHTML = html;
                                         // console.log("context is :",context);
@@ -289,6 +291,53 @@ function imageTagAttribute() {
                                         const closeButton = document.querySelector(".close-btn");
                                         const checkbox = document.getElementById('agree');
                                         const submitBtn = document.querySelector('.submit-btn');
+
+
+
+
+                                        const tabs = document.querySelectorAll('.bike-tab');
+                                        const cards = document.querySelectorAll('.bike-inner-card');
+
+                                        if (tabs.length === 0 || cards.length === 0) {
+                                            console.error("No elements found for tabs or cards.");
+                                            return; // Exit the script if elements are not found
+                                        }
+
+                                        // Update Active Tab (highlight the selected tab)
+                                        function updateActiveTab(cardId) {
+                                            console.log("inside method");
+                                            if (window.innerWidth <= 500) {
+                                                // Remove 'highlighted' class from all tabs
+                                                tabs.forEach(tab => tab.classList.remove('highlighted'));
+
+                                                // Find and highlight the tab corresponding to the cardId
+                                                const activeTab = Array.from(tabs).find(tab => tab.getAttribute('data-bike-id') === cardId);
+                                                if (activeTab) {
+                                                    activeTab.classList.add('highlighted');
+                                                }
+                                            }
+                                        }
+
+                                        // Observer for each card to update active tab when visible
+                                        const observer = new IntersectionObserver((entries) => {
+                                            console.log("Observer triggered", entries);
+                                            entries.forEach(entry => {
+                                                if (entry.isIntersecting) {
+                                                    const cardId = entry.target.id;
+                                                    updateActiveTab(cardId);
+                                                }
+                                            });
+                                        }, {
+                                            threshold: 0.5  // Trigger when 50% of the card is visible
+                                        });
+
+                                        // Observe each bike card (only when needed, triggered by section5)
+                                        cards.forEach(card => {
+                                            console.log("observing card", card.id);
+                                            observer.observe(card);
+                                        });
+
+
 
                                         function userForm() {
                                             testRideButtons.forEach(button => {
@@ -320,6 +369,8 @@ function imageTagAttribute() {
                     console.error('Error:', error);
                 });
         });
+
+    //******************************************** */
 
     console.log('SelectedImages:', selectedImages);
 }
@@ -406,70 +457,34 @@ function validatePincode(input) {
 }
 
 
+// Function to update background image based on screen size
+function updateBackgroundImage() {
+    var mainSection = document.getElementById('main-section');
+    var mobileImageURL = mainSection.getAttribute('mobileImageURL'); // Get mobile background URL from the data attribute
 
-//   // Start observing the main section
-// const mainSection = document.querySelector("#main-section");
-// let observerTriggered = false;
+    if (window.innerWidth <= 500) {
+        // Change to mobile background image
+        mainSection.style.backgroundImage = 'url(' + mobileImageURL + ')';
+    } else {
+        // Change to default desktop background image (already set inline)
+        var desktopImageURL = mainSection.style.backgroundImage; // Default desktop image from inline style
+        mainSection.style.backgroundImage = desktopImageURL; // Keep the same desktop background
+    }
+}
 
-// // Function to observe when the user scrolls to the main section
-// const observeMainSection = () => {
-//   const observer = new IntersectionObserver((entries, observer) => {
-//     entries.forEach((entry) => {
-//       if (entry.isIntersecting && !observerTriggered) {
-//         observerTriggered = true; // Ensure the function runs only once
-//         observer.unobserve(mainSection); // Stop observing after triggering
-//         onScrollToMainSection(); // Invoke your function
-//       }
-//     });
-//   });
+// Run the function when the window is resized or loaded
+window.addEventListener('resize', updateBackgroundImage);
+window.addEventListener('load', updateBackgroundImage);
 
-//   // Observe the main section
-//   observer.observe(mainSection);
-// };
 
-// // Function to handle the bike tab highlighting
-// const onScrollToMainSection = () => {
-//   const tabs = document.querySelectorAll(".bike-tab");
-//   const bikeCards = document.querySelectorAll(".bike-inner-card");
-//   const tabLine = document.querySelector(".bike-tab-line");
 
-//   // Function to highlight the active tab
-//   const setActiveTab = (bikeId) => {
-//     tabs.forEach((tab) => tab.classList.remove("active")); // Remove active class from all tabs
-//     const activeTab = document.querySelector(`[data-bike-id="${bikeId}"]`);
-//     if (activeTab) {
-//       activeTab.classList.add("active");
 
-//       // Move the red underline below the active tab
-//       const tabRect = activeTab.getBoundingClientRect();
-//       const containerRect = activeTab.parentElement.getBoundingClientRect();
-//       tabLine.style.width = `${tabRect.width}px`;
-//       tabLine.style.transform = `translateX(${tabRect.left - containerRect.left}px)`;
-//     }
-//   };
 
-//   // Observer for individual bike cards
-//   const bikeObserver = new IntersectionObserver((entries) => {
-//     entries.forEach((entry) => {
-//       if (entry.isIntersecting) {
-//         const bikeId = entry.target.id; // Get the bike's ID
-//         setActiveTab(bikeId); // Highlight the corresponding tab
-//       }
-//     });
-//   }, {
-//     root: null, // Viewport is the root
-//     threshold: 0.5, // Trigger when 50% of the element is visible
-//   });
 
-//   // Observe each bike card
-//   bikeCards.forEach((card) => bikeObserver.observe(card));
-// };
 
-// // Directly initialize the observer for the main section
-// observeMainSection();
 
-  
-  
+
+
 
 
 
