@@ -3,31 +3,93 @@
 </sly>
 
 <sly data-sly-use.model="com.mysite.core.models.StepwiseQuestionnaireModel">
-    <div class="main-div">
-        <section class="section-one">
-            <div id="questionnaire" class="questionnaire-section active"
-                style="background-image: url('${properties.baseImage @ context='uri'}';)">
+    <sly data-sly-test="${model}">
+        <div class="main-div">
+            <section class="section-one">
+                <div id="questionnaire" class="questionnaire-section active"
+                    style="background-image: url('${properties.baseImage @ context='uri'}';)">
 
-                <div class="container-basic">
+                    <div class="container-basic">
+                        <div class="upperside">
+                            <p class="help-me-choose">HELP ME CHOOSE . Step 1/5</p>
+                            <p class="question">${model.question}</p>
+                            <p class="drag-to-rearrange">Drag to rearrange.</p>
+                        </div>
+
+                        <div class="draggableOptions">
+                            <ul class="sortable answers">
+                                <sly data-sly-list.answers="${model.answers}">
+                                    <div class="answer-container">
+                                        <p class="answer-id-box">#${answers.itemIndex}</p>
+                                        <div class="answer-section">
+                                            <li data-value="${answers.answer}" class="sortable-item section1">
+                                                <div>
+                                                    <span>
+                                                        <img src="${model.draggableIcon}" alt="">
+                                                    </span>
+                                                </div>
+                                                ${answers.answer}
+                                            </li>
+                                        </div>
+                                    </div>
+                                </sly>
+
+                            </ul>
+                        </div>
+
+                        <div class="buttton-container first">
+                            <button type="button" class="next" data-next-section="#section2"
+                                onclick="storePreferences();">NEXT</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="section2" class="questionnaire-section">
+
+                    <p class="help-me-choose">HELP ME CHOOSE . Step 2/5</p>
+                    <p class="question">${model.question2}</p>
+
+
+                    <div class="screen2">
+                        <ul class="selectText">
+                            <li data-sly-repeat.screen2Answer="${model.screen2Answers}" class="option-item">
+                                <input type="radio" name="pillion" value=" ${screen2Answer}" id="myCheckbox"
+                                    class="option-checkbox">
+                                <label style="cursor: pointer;">${screen2Answer}</label>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="buttton-container button-container">
+                        <button type="button" class="prev" data-prev-section="#questionnaire">BACK</button>
+                        <button type="button" id="nextButton" class="next" onclick="checkSelection();"
+                            data-next-section="#section3" disabled>NEXT</button>
+                    </div>
+                </div>
+
+
+                <div id="section3" class="questionnaire-section">
+
                     <div class="upperside">
-                        <p class="help-me-choose">HELP ME CHOOSE . Step 1/5</p>
-                        <p class="question">${model.question}</p>
+                        <p class="help-me-choose">HELP ME CHOOSE . Step 3/5</p>
+                        <p class="question">${model.question3}</p>
                         <p class="drag-to-rearrange">Drag to rearrange.</p>
                     </div>
-
                     <div class="draggableOptions">
                         <ul class="sortable answers">
-                            <sly data-sly-list.answers="${model.answers}">
+                            <sly data-sly-list.screen3Answers="${model.screen3Answers}">
                                 <div class="answer-container">
-                                    <p class="answer-id-box">#${answers.itemIndex}</p>
+                                    <p class="answer-id-box">#${screen3Answers.index}</p>
                                     <div class="answer-section">
-                                        <li data-value="${answers.answer}" class="sortable-item section1">
+                                        <li data-value="${screen3Answers.text}" class="sortable-item section3"
+                                            style="background-size:100%; background-image: linear-gradient(93.59deg, #000000 0.45%, rgba(0, 0, 0, 0.573648) 45.64%, rgba(0, 0, 0, 0) 108.5%), url('${screen3Answers.backgroundImage @ context='uri'}')">
                                             <div>
                                                 <span>
                                                     <img src="${model.draggableIcon}" alt="">
                                                 </span>
                                             </div>
-                                            ${answers.answer}
+                                            ${screen3Answers.text}
                                         </li>
                                     </div>
                                 </div>
@@ -36,144 +98,91 @@
                         </ul>
                     </div>
 
-                    <div class="buttton-container first">
-                        <button type="button" class="next" data-next-section="#section2"
-                            onclick="storePreferences();">NEXT</button>
+                    <div>
+                        <div class="buttton-container3">
+                            <button type="button" class="prev" data-prev-section="#section2">BACK</button>
+                            <button type="button" class="next" onclick="placeToRide();"
+                                data-next-section="#section4">NEXT</button>
+                        </div>
                     </div>
+
                 </div>
-            </div>
 
 
-            <div id="section2" class="questionnaire-section">
+                <div id="section4" class="questionnaire-section">
+                    <p class="help-me-choose">HELP ME CHOOSE . Step 4/5</p>
+                    <p class="question">${model.question4}</p>
+                    <div class="notification">
+                        <button class="close-btn" aria-label="Close">&times;</button>
+                        <p id="notification-message"></p>
+                    </div> <!-- Notification element -->
+                    <div class="image-grid">
+                        <sly data-sly-list.authoredImages="${model.ridingPositionImagesURL}">
 
-                <p class="help-me-choose">HELP ME CHOOSE . Step 2/5</p>
-                <p class="question">${model.question2}</p>
-
-
-                <div class="screen2">
-                    <ul class="selectText">
-                        <li data-sly-repeat.screen2Answer="${model.screen2Answers}" class="option-item">
-                            <input type="radio" name="pillion" value=" ${screen2Answer}" id="myCheckbox"
-                                class="option-checkbox">
-                            <label style="cursor: pointer;">${screen2Answer}</label>
-                        </li>
-
-                    </ul>
-                </div>
-                <div class="buttton-container">
-                    <button type="button" class="prev" data-prev-section="#questionnaire">BACK</button>
-                    <button type="button" id="nextButton" class="next" onclick="checkSelection();"
-                        data-next-section="#section3" disabled>NEXT</button>
-                </div>
-            </div>
-
-
-            <div id="section3" class="questionnaire-section">
-
-                <div class="upperside">
-                    <p class="help-me-choose">HELP ME CHOOSE . Step 3/5</p>
-                    <p class="question">${model.question3}</p>
-                    <p class="drag-to-rearrange">Drag to rearrange.</p>
-                </div>
-                <div class="draggableOptions">
-                    <ul class="sortable answers">
-                        <sly data-sly-list.screen3Answers="${model.screen3Answers}">
-                            <div class="answer-container">
-                                <p class="answer-id-box">#${screen3Answers.index}</p>
-                                <div class="answer-section">
-                                    <li data-value="${screen3Answers.text}" class="sortable-item section3"
-                                        style="background-size:100%; background-image: linear-gradient(93.59deg, #000000 0.45%, rgba(0, 0, 0, 0.573648) 45.64%, rgba(0, 0, 0, 0) 108.5%), url('${screen3Answers.backgroundImage @ context='uri'}')">
-                                        <div>
-                                            <span>
-                                                <img src="${model.draggableIcon}" alt="">
-                                            </span>
-                                        </div>
-                                        ${screen3Answers.text}
-                                    </li>
+                            <div class="image-card" data-image-id=${authoredImagesList.index}
+                                data-sly-attribute.customAttr="${model.ridingPositionImageAttributes[authoredImagesList.index]}">
+                                <div class="img-div">
+                                    <img src="${authoredImages}" alt="Motorcycle Riding Position"
+                                        class="selectable-image">
                                 </div>
-                            </div>
-                        </sly>
-
-                    </ul>
-                </div>
-
-                <div>
-                    <div class="buttton-container">
-                        <button type="button" class="prev" data-prev-section="#section2">BACK</button>
-                        <button type="button" class="next" onclick="placeToRide();"
-                            data-next-section="#section4">NEXT</button>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div id="section4" class="questionnaire-section">
-                <p class="help-me-choose">HELP ME CHOOSE . Step 4/5</p>
-                <p class="question">${model.question4}</p>
-                <div class="notification">
-                    <button class="close-btn" aria-label="Close">&times;</button>
-                    <p id="notification-message"></p>
-                </div> <!-- Notification element -->
-                <div class="image-grid">
-                    <sly data-sly-list.authoredImages="${model.ridingPositionImagesURL}">
-
-                        <div class="image-card" data-image-id=${authoredImagesList.index}
-                            data-sly-attribute.customAttr="${model.ridingPositionImageAttributes[authoredImagesList.index]}">
-                            <div class="img-div">
-                                <img src="${authoredImages}" alt="Motorcycle Riding Position" class="selectable-image">
-                            </div>
-                            <div class="overlay" style="
+                                <div class="overlay" style="
                             width: 174px;
                             height: 120px;">
-                                <div class="checkmark"><img src="${properties.selectIcon}" alt=""></div>
+                                    <div class="checkmark"><img src="${properties.selectIcon}" alt=""></div>
+                                </div>
+                            </div>
+
+                        </sly>
+                    </div>
+                    <div class="buttton-container3">
+                        <button type="button" class="prev" data-prev-section="#section3">BACK</button>
+                        <button type="button" class="next riding button-section" data-next-section="#section5"
+                            id="callApiBtn" onclick="getDataFromServlet();" disabled>NEXT</button>
+                    </div>
+                </div>
+
+
+                <div id="section5" class="questionnaire-section">
+                    <p class="help-me-choose">HELP ME CHOOSE . Step 5/5</p>
+                    <p class="question">${properties.question5}</p>
+
+                    <div class="notification">
+                        <button class="close-btn" aria-label="Close">&times;</button>
+
+                    </div> <!-- Notification element -->
+                    <div class="image-grid">
+
+                        <div class="personal-interest" id="image-card">
+                            <div class="help-me-choose-box " id="img-div">
+
+                            </div>
+                            <div class="overlay">
+                                <div class="checkmark"><img src="${properties.tickBtnIcon}" alt="" id="select-tick-img"
+                                        data-image-url="${properties.selectIcon}"></div>
                             </div>
                         </div>
 
-                    </sly>
-                </div>
-                <div class="buttton-container">
-                    <button type="button" class="prev" data-prev-section="#section3">BACK</button>
-                    <button type="button" class="next riding button-section" data-next-section="#section5"
-                        id="callApiBtn" onclick="imageTagAttribute();" disabled>NEXT</button>
-                </div>
-            </div>
-
-
-            <div id="section5" class="questionnaire-section">
-                <p class="help-me-choose">HELP ME CHOOSE . Step 5/5</p>
-                <p class="question">${properties.question5}</p>
-
-                <div class="notification">
-                    <button class="close-btn" aria-label="Close">&times;</button>
-
-                </div> <!-- Notification element -->
-                <div class="image-grid">
-
-                    <div class="personal-interest" id="image-card">
-                        <div class="help-me-choose-box " id="img-div">
-
-                        </div>
-                        <div class="overlay">
-                            <div class="checkmark"><img src="${properties.tickBtnIcon}" alt="" id="select-tick-img"
-                                    data-image-url="${properties.selectIcon}"></div>
-                        </div>
                     </div>
-
+                    <div class="buttton-container3">
+                        <button type="button" class="prev" id="back-button" data-prev-section="#section4">BACK</button>
+                        <button type="button" class="next" id="section5Btn"
+                            data-next-section="#main-section">NEXT</button>
+                    </div>
                 </div>
-                <div class="buttton-container">
-                    <button type="button" class="prev" id="back-button" data-prev-section="#section4">BACK</button>
-                    <button type="button" class="next" id="section5Btn" data-next-section="#main-section">NEXT</button>
+                <!-- Handlebars template -->
+                <div class="main-background" id="main-section"
+                    data-sly-attribute.mobileImageURL="${properties.finalBGImageForMobile}"
+                    style="background-image: url('${properties.finalBGImage @ context='uri'}');">
                 </div>
-            </div>
-            <!-- Handlebars template -->
-            <div class="main-background" id="main-section"
-                data-sly-attribute.mobileImageURL="${properties.finalBGImageForMobile}"
-                style="background-image: url('${properties.finalBGImage @ context='uri'}');">
-            </div>
-        </section>
-    </div>
+            </section>
+        </div>
+    </sly>
 
+    <sly data-sly-test="${!model}">
+        <div class="fallback-message">
+            <p>No data available for the questionnaire.</p>
+        </div>
+    </sly>
 </sly>
 
 <script id="bike-template" type="text/x-handlebars-template">
@@ -199,7 +208,7 @@
                         
                         <div class="bike-image-container">
                             <div class="hero-image">
-                                <img src="{{bikeHeroImage}}" alt="{{bikeName}} Image" class="hero-image" width="289px" height="178px">
+                                <img src="{{bikeHeroImage}}" alt="{{bikeName}} Image"  >
                             </div>
                         </div>
                         
