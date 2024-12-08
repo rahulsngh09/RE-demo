@@ -71,12 +71,17 @@ main.container {
     flex-direction: column;
     gap: 18px;
 }
+.bgimageForFirstFiveSection{
+    background-size: 55% 130%;
+    background-position: -8%;
+    background-repeat: no-repeat;
+    width: 908px;
+    
+}
 
 .questionnaire-section {
 
-    background-size: 60% 100%;
-    background-position: left center;
-    background-repeat: no-repeat;
+    
     display: none;
     width: 654px;
     /* height: 360px; */

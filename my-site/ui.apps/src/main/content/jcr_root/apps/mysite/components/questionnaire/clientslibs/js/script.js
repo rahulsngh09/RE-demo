@@ -7,13 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextButton = document.querySelector("#section5 .next");
     const mainSection = document.querySelector("#main-section");
 
-
-    // checkboxes.forEach(checkbox => {        
-    //     checkbox.addEventListener('change', function () {
-    //         updateButtonState();
-    //     });
-    // });
-
     document.querySelectorAll('.option-item').forEach(item => {
         item.addEventListener('click', function(event) {
             // console.log("event",event);
@@ -117,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const nextButton = section.querySelector('.next');
         const notification = section.querySelector('.notification');
         let selectedImages = selectedImagesState[sectionId] || [];
-        let selectionFinalized = false;
+        // let selectionFinalized = false;
 
         function updateNextButtonState() {
             // if (selectionFinalized) return;
@@ -125,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (selectedImages.length >= minSelections) {
                 nextButton.classList.add('enabled');
                 nextButton.disabled = false;
-                console.log("update next button");
+                console.log("update next button");;
             } else {
                 nextButton.classList.remove('enabled');
                 nextButton.disabled = true;
@@ -208,6 +201,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setupImageSelection('#section4', 1, 3);
     // setupImageSelection('#section5', 4, 20);
+
+
+    //Set background image for first five sections.
+    const bgimageForFirstFiveSection = document.querySelector('.bgimageForFirstFiveSection');
+    const bgImageUrl = bgimageForFirstFiveSection?.getAttribute('bgImage');
+
+    if (bgImageUrl) {
+        // Select all sections inside the main-div
+        bgimageForFirstFiveSection.style.backgroundImage = `url('${bgImageUrl}')`;
+    } else {
+        console.error('Background image URL not found in temp div.');
+    }
 });
 
 
