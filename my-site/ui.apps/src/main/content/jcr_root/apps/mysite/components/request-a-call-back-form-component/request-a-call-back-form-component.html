@@ -24,7 +24,6 @@
                         <div class="form-group">
                             <label for="phoneNumber">${model.phoneLabel}</label>
                             <div class="phone-input">
-                                <!-- <span>+91</span> -->
                                 <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+91" required
                                     placeholder="${model.phonePlaceholder}" oninput="validatePhoneNumber(this)"
                                     pattern="\d{10}" title="Please enter a 10-digit phone number.">
@@ -65,21 +64,4 @@
 </sly>
 
 
-<script>
-    function showTestRideForm() {
-        var formDiv = document.getElementById("test-ride-form");
-        if (formDiv) {
-            formDiv.style.display = "block";  // Show the form
-        }
-    }
 
-    // Function to hide the form when the close button is clicked
-    function hideTestRideForm() {
-        var formDiv = document.getElementById("test-ride-form");
-        formDiv.style.display = "none";  // Hide the form
-    }
-
-
-
-
-</script>

@@ -1,7 +1,6 @@
 package com.mysite.core.services;
 
 import com.mysite.core.bean.BikeDetails;
-
 import javax.jcr.RepositoryException;
 import java.util.List;
 

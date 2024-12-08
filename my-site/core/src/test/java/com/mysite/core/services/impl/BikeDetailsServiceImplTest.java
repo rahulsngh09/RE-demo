@@ -19,8 +19,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.slf4j.Logger;
-
 import javax.jcr.*;
 import java.util.*;
 
@@ -71,13 +69,10 @@ class BikeDetailsServiceImplTest {
     @Mock
     private Node node1;
 
-    private Logger logger;
-
     List<String> bikeName;
     private static final String bikeName1 = "Bike1";
     private static final String bikeName2 = "Bike2";
     private static final List<String> bikeNames = Arrays.asList(bikeName1, bikeName2);
-
 
     @BeforeEach
     void setUp() {
@@ -139,11 +134,11 @@ class BikeDetailsServiceImplTest {
         when(resourceResolverFactory.getServiceResourceResolver(map)).thenReturn(resourceResolver);
         when(resourceResolver.adaptTo(Session.class)).thenReturn(null);
 
-        List<BikeDetails> result = bikeDetailsService.getBikeDetails(bikeNames);
+        List<BikeDetails> bikeInfo = bikeDetailsService.getBikeDetails(bikeNames);
 
         // Assert: Verify that the result is empty because session is null
-        assertNotNull(result);
-        assertTrue(result.isEmpty(), "The result should be empty when session is null.");
+        assertNotNull(bikeInfo);
+        assertTrue(bikeInfo.isEmpty(), "The result should be empty when session is null.");
     }
 
 
@@ -167,8 +162,8 @@ class BikeDetailsServiceImplTest {
 //        assertTrue(thrownException.getCause() instanceof LoginException);
 //        assertEquals("Login failed", thrownException.getCause().getMessage());
 //
-//        // Verify that the logger was called with the correct error message
+//         Verify that the logger was called with the correct error message
 //        verify(logger).error(eq("Login Exception occured while getting ResourceResolver."), any(LoginException.class));
-//
+
 //    }
 }

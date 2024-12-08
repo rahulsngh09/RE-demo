@@ -6,13 +6,11 @@ import org.apache.commons.io.IOUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
-import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
-import java.io.BufferedReader;
 import java.io.IOException;
 
 @Component(
@@ -25,7 +23,7 @@ import java.io.IOException;
 public class GetImagesApiServlet  extends SlingAllMethodsServlet {
 
     @Reference
-    private RecommendationService recommendationService;
+    private transient RecommendationService recommendationService;
 
 
     @Override
@@ -39,6 +37,7 @@ public class GetImagesApiServlet  extends SlingAllMethodsServlet {
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
+
         String secondApiResponse = recommendationService.getImageMapping();
 
         if (secondApiResponse == null || secondApiResponse.trim().isEmpty()) {
@@ -48,6 +47,6 @@ public class GetImagesApiServlet  extends SlingAllMethodsServlet {
         }
         response.setStatus(200);  // HTTP OK
         response.setContentType("application/json");
-        response.getWriter().write(secondApiResponse != null ? secondApiResponse : "{}");
+        response.getWriter().write(secondApiResponse);
     }
 }

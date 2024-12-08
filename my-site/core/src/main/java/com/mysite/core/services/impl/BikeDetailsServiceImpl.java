@@ -51,14 +51,16 @@ public class BikeDetailsServiceImpl implements BikeDetailsService {
         }
 
         try {
-            // Step 1: Execute query and fetch results
             SearchResult result = executeQueryAndFetchResults(session);
+            if (result != null && !result.getHits().isEmpty()){
+                bikeDetailsList = processHitsAndPopulateBikeDetails(result, bikeNames, session);
+            }else{
+                logger.warn("No bikes details found for given criteria");
+            }
 
-            // Step 2: Process the hits and populate BikeDetails
-            bikeDetailsList = processHitsAndPopulateBikeDetails(result, bikeNames, session);
         } catch (RepositoryException e) {
-            logger.error("Repository Exception occurred while fetching bike details." + bikeNames, e);
-            throw new BikeDetailsException("Error fetching bike details" + bikeNames, e);
+            logger.error("Repository Exception occurred while fetching bike details." + bikeNames,e);
+            throw new BikeDetailsException("Error fetching bike details {}" , e);
         } finally {
             resourceResolver.close();
         }
@@ -79,11 +81,9 @@ public class BikeDetailsServiceImpl implements BikeDetailsService {
         for (Hit hit : result.getHits()) {
             Node node = hit.getNode();
             if (node == null) continue;
-
             if (count >= 3) {
                 break;
             }
-
             String currentNodeName = node.getName();
             try {
                 Node node1 = session.getNode(CommonConstant.CONTENT_FRAGMENT_PARENT_PATH + currentNodeName + CommonConstant.JCR_MASTER_PATH_OF_CF);
@@ -149,12 +149,12 @@ public class BikeDetailsServiceImpl implements BikeDetailsService {
     public ResourceResolver getResourceResolver() {
         Map<String,Object> map = new HashMap<>();
         map.put(ResourceResolverFactory.SUBSERVICE,CommonConstant.USERNAME);
-        logger.info("found the mentioned username");
+        logger.info("found the mentioned username {}",CommonConstant.USERNAME);
         try {
             return resourceResolverFactory.getServiceResourceResolver(map);
         } catch (ResourceResolverException | LoginException e) {
             logger.error("Login Exception occured while getting ResourceResolver.",e);
-            throw new ResourceResolverException("Error getting ResourceResolver" + CommonConstant.USERNAME ,e);
+            throw new ResourceResolverException("Error getting ResourceResolver {}" + CommonConstant.USERNAME);
         }
     }
 }

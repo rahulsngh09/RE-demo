@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const nextButton = section.querySelector('.next');
         const notification = section.querySelector('.notification');
         let selectedImages = selectedImagesState[sectionId] || [];
-        // let selectionFinalized = false;
+        let selectionFinalized = false;
 
         function updateNextButtonState() {
             // if (selectionFinalized) return;
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (selectedImages.length >= minSelections) {
                 nextButton.classList.add('enabled');
                 nextButton.disabled = false;
-                console.log("update next button");;
+                console.log("update next button");
             } else {
                 nextButton.classList.remove('enabled');
                 nextButton.disabled = true;

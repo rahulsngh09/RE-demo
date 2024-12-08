@@ -14,12 +14,16 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.metatype.annotations.Designate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 @Component(service = {RecommendationService.class})
 @Designate(ocd = ApiConfigurations.class)
 public class RecommendationServiceImpl implements RecommendationService{
+
+    private static final Logger logger = LoggerFactory.getLogger(RecommendationServiceImpl.class);
 
     private String apiUrl;
     private String imageMappingURL;
@@ -71,7 +75,7 @@ public class RecommendationServiceImpl implements RecommendationService{
             HttpEntity responseEntity = response.getEntity();
             return responseEntity != null ? EntityUtils.toString(responseEntity) : null;
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Error occured while calling the API: {}",url,e);
             return null;
         }
     }
