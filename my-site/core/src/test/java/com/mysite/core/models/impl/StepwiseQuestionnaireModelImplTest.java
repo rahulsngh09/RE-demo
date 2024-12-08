@@ -36,27 +36,9 @@ class StepwiseQuestionnaireModelImplTest {
     private Resource childResource1;
     @Mock
     private Resource childResource2;
-    @Mock
-    private Resource placeToRideResource;
-    @Mock
-    private Resource backgroundImageResource;
-    @Mock
-    private Resource backgroundImages;
-    @Mock
-    private Iterator<Resource> backgroundImageIterator;
 
     @Mock
-    private Iterator<Resource> placeToRideIterator;
-    @Mock
-    private Resource backgroundImageResource1;
-    @Mock
-    private Resource backgroundImageResource2;
-    @Mock
     private Resource screen3;
-    @Mock
-    private Resource placeToRideResource1;
-    @Mock
-    private Resource placeToRideResource2;
     @InjectMocks
     private StepwiseQuestionnaireModelImpl stepwiseQuestionnaireModel;
 
@@ -176,50 +158,27 @@ class StepwiseQuestionnaireModelImplTest {
 
     @Test
     void getScreen3Answers() {
-        when(backgroundImages.hasChildren()).thenReturn(true);
+
         when(screen3.hasChildren()).thenReturn(true);
-
-        // Mock iterables and iterators
-        Iterable<Resource> backgroundImageIterable = mock(Iterable.class);
         Iterable<Resource> placeToRideIterable = mock(Iterable.class);
-        when(backgroundImages.getChildren()).thenReturn(backgroundImageIterable);
         when(screen3.getChildren()).thenReturn(placeToRideIterable);
-
-        // Create mock iterators for the resources
-        Iterator<Resource> backgroundImageIterator = mock(Iterator.class);
         Iterator<Resource> placeToRideIterator = mock(Iterator.class);
-
-        when(backgroundImageIterable.iterator()).thenReturn(backgroundImageIterator);
         when(placeToRideIterable.iterator()).thenReturn(placeToRideIterator);
 
-        // Mock background image iterator to return one resource and then stop
-        when(backgroundImageIterator.hasNext()).thenReturn(true, false);  // First time true, second time false
-        Resource backgroundImageResource = mock(Resource.class);
-        when(backgroundImageIterator.next()).thenReturn(backgroundImageResource);
 
-        // Mock placeToRide iterator to return one resource and then stop
-        when(placeToRideIterator.hasNext()).thenReturn(true, false);  // First time true, second time false
+        when(placeToRideIterator.hasNext()).thenReturn(true,false);  // First time true, second time false
         Resource placeToRideResource = mock(Resource.class);
         when(placeToRideIterator.next()).thenReturn(placeToRideResource);
-
-        // Mock valueMap for background image
-        ValueMap valueMap1 = mock(ValueMap.class);
-        when(backgroundImageResource.getValueMap()).thenReturn(valueMap1);
-        when(valueMap1.get("images", String.class)).thenReturn("background-image-url.jpg");
+        ValueMap valueMap = mock(ValueMap.class);
+        when(placeToRideResource.getValueMap()).thenReturn(valueMap);
+        when(valueMap.get("images", String.class)).thenReturn("background-image-url.jpg");
 
         // Mock valueMap for placeToRide resource
-        ValueMap valueMap2 = mock(ValueMap.class);
-        when(placeToRideResource.getValueMap()).thenReturn(valueMap2);
-        when(valueMap2.get("option3", String.class)).thenReturn("Mountain Biking");
-
-        // Run the method
+        when(placeToRideResource.getValueMap()).thenReturn(valueMap);
+        when(valueMap.get("option3", String.class)).thenReturn("Mountain Biking");
         List<ImageEntity> result = stepwiseQuestionnaireModel.getScreen3Answers();
-
-        // Validate results
         assertNotNull(result, "The result should not be null");
         assertEquals(1, result.size(), "The list should contain one element");
-
-        // Check if the ImageEntity in the list matches the expected values
         ImageEntity imageEntity = result.get(0);
         assertEquals("Mountain Biking", imageEntity.getText(), "The option text should match");
         assertEquals("background-image-url.jpg", imageEntity.getBackgroundImage(), "The image URL should match");

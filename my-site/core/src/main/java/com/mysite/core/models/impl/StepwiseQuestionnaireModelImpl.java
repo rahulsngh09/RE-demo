@@ -114,14 +114,12 @@ public class StepwiseQuestionnaireModelImpl implements StepwiseQuestionnaireMode
     @Override
     public List<ImageEntity> getScreen3Answers(){
         List<ImageEntity> optionWithImages = new ArrayList<>();
-        if(backgroundImages != null && backgroundImages.hasChildren() && screen3 != null && screen3.hasChildren()){
-            Iterator<Resource> backgroundImageIterator = backgroundImages.getChildren().iterator();
+        if(screen3 != null && screen3.hasChildren()){
             Iterator<Resource> placeToRideIterator = screen3.getChildren().iterator();
-            while(backgroundImageIterator.hasNext() && placeToRideIterator.hasNext()){
-                Resource backgroundIageResource = backgroundImageIterator.next();
+            while( placeToRideIterator.hasNext()){
                 Resource placeToRideResource = placeToRideIterator.next();
-                String backgroundiMageURL = backgroundIageResource.getValueMap().get("images",String.class);
                 String optionText = placeToRideResource.getValueMap().get("option3", String.class);
+                String backgroundiMageURL = placeToRideResource.getValueMap().get("images",String.class);
                 optionWithImages.add(new ImageEntity(optionText,backgroundiMageURL));
             }
         }
