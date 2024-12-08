@@ -7,7 +7,7 @@
         <div class="main-div">
             <section class="section-one">
                 <div id="questionnaire" class="questionnaire-section active"
-                    style="background-image: url('${properties.baseImage @ context='uri'}';)">
+                    style="background-image: url('${properties.baseImage @ context='uri'}');">
 
                     <div class="container-basic">
                         <div class="upperside">
@@ -99,7 +99,7 @@
                     </div>
 
                     <div>
-                        <div class="buttton-container3">
+                        <div class="buttton-container">
                             <button type="button" class="prev" data-prev-section="#section2">BACK</button>
                             <button type="button" class="next" onclick="placeToRide();"
                                 data-next-section="#section4">NEXT</button>
@@ -134,7 +134,7 @@
 
                         </sly>
                     </div>
-                    <div class="buttton-container3">
+                    <div class="buttton-container">
                         <button type="button" class="prev" data-prev-section="#section3">BACK</button>
                         <button type="button" class="next riding button-section" data-next-section="#section5"
                             id="callApiBtn" onclick="getDataFromServlet();" disabled>NEXT</button>
@@ -163,7 +163,7 @@
                         </div>
 
                     </div>
-                    <div class="buttton-container3">
+                    <div class="buttton-container">
                         <button type="button" class="prev" id="back-button" data-prev-section="#section4">BACK</button>
                         <button type="button" class="next" id="section5Btn"
                             data-next-section="#main-section">NEXT</button>
@@ -193,7 +193,7 @@
                 <div class="bike-tab" data-bike-id="bike-{{@index}}">{{bikeName}}</div>
             {{/each}}
         </div>
-        <div class="bike-tab-line"></div>
+       
 
     </div>
     <div class="bike-cards" id="bike-cards-container">
@@ -234,17 +234,7 @@
                          bike-details=
                         '{"bikeName": "{{bikeName}}", "bikePrice": "{{bikePrice}}", 
                         "bikeHeroImage": "{{bikeHeroImage}}"}'
-                         style="
-                            display: flex;
-                            height: 40px;
-                            width: 204px;
-                            padding: 8px 16px;
-                            cursor: pointer;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 12px;
-                            font-weight: 700;
-                        ">BOOK A TEST RIDE</button>
+                        >BOOK A TEST RIDE</button>
         
                     </div>
                    
