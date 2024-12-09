@@ -18,21 +18,30 @@
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         margin="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <column
+                            <columns
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                                 <items jcr:primaryType="nt:unstructured">
                                     <column
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
                                         <items jcr:primaryType="nt:unstructured">
+                                            <questions
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Rank Options"
+                                                fieldLabel="Use Case Ranking"
+                                                name="./question"/>
                                             <questionnaire_options_multifield
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                                composite="{Boolean}true">
+                                                composite="{Boolean}true"
+                                                fieldDescription="Enter the options for all the fields&#xa; for first screen"
+                                                fieldLabel="Types of Motorcycle Ranking">
                                                 <field
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
+                                                    fieldDescription="Enter the options for all the fields&#xa; for first screen"
                                                     name="./options">
                                                     <items jcr:primaryType="nt:unstructured">
                                                         <column
@@ -42,22 +51,17 @@
                                                                 <quetionnaire_options
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                                    fieldLabel="Enter your options"
+                                                                    fieldLabel="Enter yours options"
                                                                     name="./answers"/>
                                                             </items>
                                                         </column>
                                                     </items>
                                                 </field>
                                             </questionnaire_options_multifield>
-                                            <questions
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldLabel="Enter your question"
-                                                name="./question"/>
                                         </items>
                                     </column>
                                 </items>
-                            </column>
+                            </columns>
                         </items>
                     </screen-1>
                     <screen-2
@@ -66,18 +70,25 @@
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         margin="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <column
+                            <columns
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                                 <items jcr:primaryType="nt:unstructured">
                                     <column
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
                                         <items jcr:primaryType="nt:unstructured">
+                                            <questions
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Frequency of Riding with Pillion"
+                                                name="./question2"/>
                                             <questionnaire_options_multifield
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                                composite="{Boolean}true">
+                                                composite="{Boolean}true"
+                                                fieldDescription="Enter the Question for second screen"
+                                                fieldLabel="Pillion Riding Frequency">
                                                 <field
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
@@ -97,15 +108,10 @@
                                                     </items>
                                                 </field>
                                             </questionnaire_options_multifield>
-                                            <questions
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldLabel="Enter your question"
-                                                name="./question2"/>
                                         </items>
                                     </column>
                                 </items>
-                            </column>
+                            </columns>
                         </items>
                     </screen-2>
                     <screen-3
@@ -114,18 +120,25 @@
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         margin="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <column
+                            <columns
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                                 <items jcr:primaryType="nt:unstructured">
                                     <column
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
                                         <items jcr:primaryType="nt:unstructured">
+                                            <questions
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Use Case Ranking"
+                                                name="./question3"/>
                                             <questionnaire_options_multifield
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                                composite="{Boolean}true">
+                                                composite="{Boolean}true"
+                                                fieldDescription="This description will be displayed as content on the page and should provide details or context related to the image."
+                                                fieldLabel="Types of Motorcycle Ranking">
                                                 <field
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
@@ -140,44 +153,52 @@
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                     fieldLabel="Enter your options"
                                                                     name="./option3"/>
+                                                                <background-images
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                                    fieldLabel="Select the background Images"
+                                                                    name="./images"/>
                                                             </items>
                                                         </column>
                                                     </items>
                                                 </field>
                                             </questionnaire_options_multifield>
-                                            <questions
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldLabel="Enter your question"
-                                                name="./question3"/>
                                         </items>
                                     </column>
                                 </items>
-                            </column>
+                            </columns>
                         </items>
                     </screen-3>
                     <screen-4
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Screen 4"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
+                        fieldDescription="This description will be displayed as content on the page and should provide details or context related to the image."
                         margin="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <column
+                            <columns
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                                 <items jcr:primaryType="nt:unstructured">
                                     <column
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
                                         <items jcr:primaryType="nt:unstructured">
+                                            <questions
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Preferred Riding Positions"
+                                                name="./question4"/>
                                             <questionnaire_options_multifield
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                                composite="{Boolean}true">
+                                                composite="{Boolean}true"
+                                                fieldLabel="Choose Riding Position Images">
                                                 <field
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
-                                                    name="./screen3">
+                                                    fieldLabel="Enter your question"
+                                                    name="./screen4">
                                                     <items jcr:primaryType="nt:unstructured">
                                                         <column
                                                             jcr:primaryType="nt:unstructured"
@@ -185,23 +206,18 @@
                                                             <items jcr:primaryType="nt:unstructured">
                                                                 <quetionnaire_options
                                                                     jcr:primaryType="nt:unstructured"
-                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                                                     fieldLabel="Enter your options"
-                                                                    name="./option3"/>
+                                                                    name="./ridingPosition"/>
                                                             </items>
                                                         </column>
                                                     </items>
                                                 </field>
                                             </questionnaire_options_multifield>
-                                            <questions
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldLabel="Enter your question"
-                                                name="./question4"/>
                                         </items>
                                     </column>
                                 </items>
-                            </column>
+                            </columns>
                         </items>
                     </screen-4>
                     <screen-5
@@ -210,25 +226,75 @@
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         margin="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <column
+                            <columns
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                                 <items jcr:primaryType="nt:unstructured">
                                     <column
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
                                         <items jcr:primaryType="nt:unstructured">
                                             <questions
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldLabel="Enter your question"
+                                                fieldLabel="Perosnal Interest "
                                                 name="./question5"/>
                                         </items>
                                     </column>
                                 </items>
-                            </column>
+                            </columns>
                         </items>
                     </screen-5>
+                    <icons
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Icons"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <select-icon
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                fieldDescription="Select the Icon for choose any  image"
+                                                fieldLabel="Image picker Icon&#xa;"
+                                                name="./selectIcon"/>
+                                            <firstScreenImage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                fieldDescription="Upload the image that will be displayed on the first five screen. Ensure the image is designed specifically for the first five screen, as it may differ in layout or size."
+                                                fieldLabel="Background Image"
+                                                name="./baseImage"/>
+                                            <lastScreenImage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                fieldDescription="Upload the image that will be displayed on the last screen. Ensure the image is designed specifically for the last screen, as it may differ in layout or size."
+                                                fieldLabel="Background Image for final screen"
+                                                name="./finalBGImage"/>
+                                            <draggable-icon
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                fieldDescription="Select the Icon for drag  images"
+                                                fieldLabel="Draggable Icon"
+                                                name="./draggableIcon"/>
+                                            <lastScreenImage-for-mobile
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                fieldDescription="Upload the image that will be displayed on the last screen. Ensure the image is designed specifically for the last screen, as it may differ in layout or size."
+                                                fieldLabel="Background Image for mobile final screen"
+                                                name="./finalBGImageForMobile"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </icons>
                 </items>
             </tabs>
         </items>

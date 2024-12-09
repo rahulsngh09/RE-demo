@@ -1,0 +1,34 @@
+<sly data-sly-use.model="com.mysite.core.models.StepwiseQuestionnaireModel">
+<div id="section3" class="questionnaire-section">
+                 <div class="upperside">
+                        <p class="help-me-choose">HELP ME CHOOSE . Step 3/5</p>
+                        <p class="question">${model.question}</p>
+                        <p class="drag-to-rearrange">Drag to rearrange.</p>
+                    </div>
+
+                     <div class="draggableOptions">
+                        <ul class="sortable answers">
+                            <sly data-sly-list.screen3Answers="${model.optionWithImages}">
+                                <div class="answer-container">
+                                    <p class="answer-id-box">#${screen3Answers.index}</p>
+                                    <div class="answer-section">
+                                        <li data-value="${screen3Answers.text}" class="sortable-item section1" style="background-size:100%; background-image: url('${screen3Answers.backgroundImage @ context='uri'}');">
+                                            <div>
+                                                <span>
+                                                    <img src="${model.draggableIcon}" alt="">
+                                                </span>
+                                            </div>
+                                            ${screen3Answers.text}
+                                        </li>
+                                    </div>
+                                </div>
+                            </sly>
+
+                        </ul>
+                    </div>
+
+
+
+
+              
+            </sly>

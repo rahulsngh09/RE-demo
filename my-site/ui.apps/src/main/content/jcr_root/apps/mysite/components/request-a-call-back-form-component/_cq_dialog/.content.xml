@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Ask a Query"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        granite:class="cmp-button__editor"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs">
+                <items jcr:primaryType="nt:unstructured">
+                    <general
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="General"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <name-label
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="General"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Name label will be here"
+                                                fieldLabel="Name Label"
+                                                margin="{Boolean}true"
+                                                name="./nameLabel"/>
+                                            <phone-label
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="General"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Phone label will be here"
+                                                fieldLabel="Phone Label"
+                                                margin="{Boolean}true"
+                                                name="./phoneLabel"/>
+                                            <email-label
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="General"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Email label will be here"
+                                                fieldLabel="Email Label"
+                                                margin="{Boolean}true"
+                                                name="./emailLabel"/>
+                                            <pincode-label
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="General"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Pincode label will be here"
+                                                fieldLabel="Pincode Label"
+                                                margin="{Boolean}true"
+                                                name="./pincodeLabel"/>
+                                            <submit-btn-label
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="General"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Submit Button label will be here"
+                                                fieldLabel="Submit Button Label"
+                                                margin="{Boolean}true"
+                                                name="./submitButtonLabel"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </general>
+                    <placeholder
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Placeholder"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <name-placeholder
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="Placeholder"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Name placeholder will be here"
+                                                fieldLabel="Name Placeholder"
+                                                margin="{Boolean}true"
+                                                name="./namePlaceholder"/>
+                                            <phone-placeholder
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="Placeholder"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Phone Placeholder will be here"
+                                                fieldLabel="Phone Placeholder"
+                                                margin="{Boolean}true"
+                                                name="./phonePlaceholder"/>
+                                            <email-placeholder
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="Placeholder"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Email Placeholder will be here"
+                                                fieldLabel="Email Placeholder"
+                                                margin="{Boolean}true"
+                                                name="./emailPlaceholder"/>
+                                            <pincode-placeholder
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="Placeholder"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Pincode Placeholder will be here"
+                                                fieldLabel="Pincode Placeholder"
+                                                margin="{Boolean}true"
+                                                name="./pincodePlaceholder"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </placeholder>
+                    <icons
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Icons"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured"/>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </icons>
+                    <Form_x0020_Text
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Form Text"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <form-text
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="Form Text"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Form label will be here"
+                                                fieldLabel="Form Text"
+                                                margin="{Boolean}true"
+                                                name="./formLabel"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </Form_x0020_Text>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>
